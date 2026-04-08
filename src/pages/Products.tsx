@@ -1,11 +1,18 @@
 import { useState, useMemo } from "react";
-import { SlidersHorizontal, X } from "lucide-react";
+import { X, ChevronRight } from "lucide-react";
 import ProductCard, { ProductSkeleton } from "@/components/ProductCard";
 import { products } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-const types = ["all", "memory-foam", "orthopedic", "latex", "hybrid"] as const;
+const mattressTypes = [
+  { id: "all", label: "All Mattresses", icon: "🛏️" },
+  { id: "memory-foam", label: "Memory Foam", icon: "☁️" },
+  { id: "orthopedic", label: "Orthopedic", icon: "🏥" },
+  { id: "latex", label: "Latex", icon: "🌿" },
+  { id: "hybrid", label: "Hybrid", icon: "🔄" },
+];
+
 const sizes = ["All", "Single", "Double", "Queen", "King"];
 const firmnesses = ["all", "soft", "medium", "firm"] as const;
 
@@ -13,7 +20,6 @@ const Products = () => {
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [sizeFilter, setSizeFilter] = useState("All");
   const [firmnessFilter, setFirmnessFilter] = useState<string>("all");
-  const [showFilters, setShowFilters] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const filtered = useMemo(() => {
@@ -24,12 +30,12 @@ const Products = () => {
       if (firmnessFilter !== "all" && p.firmness !== firmnessFilter) return false;
       return true;
     });
-    setTimeout(() => setIsLoading(false), 300); // Simulate loading
+    setTimeout(() => setIsLoading(false), 300);
     return result;
   }, [typeFilter, sizeFilter, firmnessFilter]);
 
   const activeFilters = [
-    typeFilter !== "all" && { type: "type", value: typeFilter, label: typeFilter.replace("-", " ") },
+    typeFilter !== "all" && { type: "type", value: typeFilter, label: mattressTypes.find(t => t.id === typeFilter)?.label || typeFilter },
     sizeFilter !== "All" && { type: "size", value: sizeFilter, label: sizeFilter },
     firmnessFilter !== "all" && { type: "firmness", value: firmnessFilter, label: firmnessFilter }
   ].filter(Boolean);
@@ -47,113 +53,153 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="bg-card border-b border-border/50 py-10">
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <div className="bg-white border-b border-primary/10 py-8 sticky top-20 z-40">
         <div className="container">
-          <h1 className="text-3xl font-bold mb-2">Our Mattresses</h1>
-          <p className="text-muted-foreground">Find the perfect mattress for your best night's sleep</p>
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h1 className="text-4xl font-bold mb-2">Mattresses</h1>
+              <p className="text-muted-foreground">Explore our premium collection</p>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
+                Comparison
+              </Button>
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
+                All Mattresses
+              </Button>
+            </div>
+          </div>
+
+          {/* Horizontal Category Tabs */}
+          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+            {mattressTypes.map((type) => (
+              <button
+                key={type.id}
+                onClick={() => setTypeFilter(type.id)}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap flex items-center gap-2 ${typeFilter === type.id
+                    ? "bg-primary text-white shadow-lg"
+                    : "bg-white border border-primary/20 text-foreground hover:border-primary hover:bg-primary/5"
+                  }`}
+              >
+                <span>{type.icon}</span> {type.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
+      {/* Main Content */}
       <div className="container py-8">
-        <div className="flex items-center gap-3 mb-6 flex-wrap">
-          <Button variant="outline" size="sm" onClick={() => setShowFilters(!showFilters)} className="gap-2 hover-scale">
-            <SlidersHorizontal className="h-4 w-4" /> Filters
-            {activeFilters.length > 0 && (
-              <span className="bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
-                {activeFilters.length}
-              </span>
-            )}
-          </Button>
-          {types.filter((t) => t !== "all").map((t) => (
-            <Button
-              key={t}
-              variant={typeFilter === t ? "default" : "outline"}
-              size="sm"
-              onClick={() => setTypeFilter(typeFilter === t ? "all" : t)}
-              className="capitalize hover-scale transition-all duration-300"
-            >
-              {t.replace("-", " ")}
-            </Button>
-          ))}
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Left Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="bg-white p-6 rounded-lg border border-primary/10 sticky top-32">
+              <h3 className="text-lg font-bold mb-6 text-primary">Filters</h3>
 
-        {/* Active Filters */}
-        {activeFilters.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-6 animate-fade-in">
-            {activeFilters.map((filter: any, index) => (
-              <Badge key={index} variant="secondary" className="bg-primary/10 text-primary px-3 py-1 flex items-center gap-2 animate-fade-in">
-                {filter.label}
-                <X
-                  className="h-3 w-3 cursor-pointer hover:text-destructive transition-colors"
-                  onClick={() => removeFilter(filter)}
-                />
-              </Badge>
-            ))}
-            <Button variant="ghost" size="sm" onClick={clearAllFilters} className="text-muted-foreground hover:text-foreground">
-              Clear all
-            </Button>
-          </div>
-        )}
-
-        {showFilters && (
-          <div className="bg-card rounded-xl border border-border/50 p-6 mb-6 animate-fade-up shadow-lg">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-sm">Advanced Filters</h3>
-              <Button variant="ghost" size="sm" onClick={clearAllFilters}>
-                Clear All
-              </Button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <p className="text-xs font-medium text-muted-foreground mb-2">Size</p>
-                <div className="flex flex-wrap gap-2">
+              {/* Size Filter */}
+              <div className="mb-6">
+                <h4 className="font-semibold text-sm mb-3 text-foreground">Size</h4>
+                <div className="space-y-2">
                   {sizes.map((s) => (
-                    <Button
-                      key={s}
-                      variant={sizeFilter === s ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSizeFilter(s)}
-                      className="hover-scale"
-                    >
-                      {s}
-                    </Button>
+                    <label key={s} className="flex items-center cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={sizeFilter === s}
+                        onChange={() => setSizeFilter(sizeFilter === s ? "All" : s)}
+                        className="w-4 h-4 rounded border-primary/30 text-primary cursor-pointer"
+                      />
+                      <span className="ml-3 text-sm text-foreground/70 group-hover:text-primary transition-colors">{s}</span>
+                    </label>
                   ))}
                 </div>
               </div>
-              <div>
-                <p className="text-xs font-medium text-muted-foreground mb-2">Firmness</p>
-                <div className="flex flex-wrap gap-2">
-                  {firmnesses.map((f) => (
-                    <Button
-                      key={f}
-                      variant={firmnessFilter === f ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setFirmnessFilter(f)}
-                      className="capitalize hover-scale"
-                    >
-                      {f}
-                    </Button>
+
+              <div className="border-t border-primary/10 my-4"></div>
+
+              {/* Firmness Filter */}
+              <div className="mb-6">
+                <h4 className="font-semibold text-sm mb-3 text-foreground">Firmness</h4>
+                <div className="space-y-2">
+                  {["all", "soft", "medium", "firm"].map((f) => (
+                    <label key={f} className="flex items-center cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={firmnessFilter === f}
+                        onChange={() => setFirmnessFilter(firmnessFilter === f ? "all" : f)}
+                        className="w-4 h-4 rounded border-primary/30 text-primary cursor-pointer"
+                      />
+                      <span className="ml-3 text-sm text-foreground/70 group-hover:text-primary transition-colors capitalize">
+                        {f === "all" ? "All Firmness" : f}
+                      </span>
+                    </label>
                   ))}
                 </div>
               </div>
+
+              <div className="border-t border-primary/10 my-4"></div>
+
+              {/* Clear Filters */}
+              {activeFilters.length > 0 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearAllFilters}
+                  className="w-full text-primary hover:bg-primary/5 mt-4"
+                >
+                  Clear All Filters
+                </Button>
+              )}
             </div>
           </div>
-        )}
 
-        <p className="text-sm text-muted-foreground mb-6">{filtered.length} products found</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {isLoading
-            ? Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)
-            : filtered.map((p) => <ProductCard key={p.id} product={p} />)
-          }
-        </div>
-        {filtered.length === 0 && !isLoading && (
-          <div className="text-center py-20 text-muted-foreground">
-            <p className="text-lg mb-2">No mattresses match your filters</p>
-            <Button variant="link" onClick={clearAllFilters} className="hover-scale">Clear all filters</Button>
+          {/* Right Content Area */}
+          <div className="lg:col-span-3">
+            {/* Active Filters */}
+            {activeFilters.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-6 animate-fade-in">
+                {activeFilters.map((filter: any, index) => (
+                  <Badge
+                    key={index}
+                    variant="secondary"
+                    className="bg-primary/10 text-primary px-3 py-1 flex items-center gap-2 animate-fade-in"
+                  >
+                    {filter.label}
+                    <X
+                      className="h-3 w-3 cursor-pointer hover:text-destructive transition-colors"
+                      onClick={() => removeFilter(filter)}
+                    />
+                  </Badge>
+                ))}
+              </div>
+            )}
+
+            {/* Products Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {isLoading
+                ? Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)
+                : filtered.length > 0
+                  ? filtered.map((p) => <ProductCard key={p.id} product={p} />)
+                  : (
+                    <div className="col-span-full text-center py-20">
+                      <p className="text-lg text-muted-foreground mb-4">No mattresses match your filters</p>
+                      <Button onClick={clearAllFilters} className="bg-primary text-white">
+                        Clear Filters
+                      </Button>
+                    </div>
+                  )
+              }
+            </div>
+
+            {/* Results Count */}
+            {!isLoading && filtered.length > 0 && (
+              <div className="mt-8 text-center text-sm text-muted-foreground">
+                Showing {filtered.length} mattress{filtered.length !== 1 ? "es" : ""} • Sorted by popularity
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
