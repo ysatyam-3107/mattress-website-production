@@ -1,4 +1,4 @@
-import { Clock, BookOpen, Moon, Heart, Lightbulb, TrendingUp, CheckCircle2 } from "lucide-react";
+import { Clock, BookOpen, Moon, Heart, Lightbulb, TrendingUp, CheckCircle2, ArrowRight } from "lucide-react";
 import { blogPosts } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
