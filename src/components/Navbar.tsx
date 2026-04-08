@@ -46,19 +46,23 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 glass border-b border-border/50 shadow-lg backdrop-blur-xl bg-surface/90">
-      <div className="container flex items-center justify-between h-16">
-        <Link to="/" className="text-xl font-bold text-foreground tracking-tight hover:scale-105 transition-transform duration-300">
-          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Sleep</span>
-          <span className="text-foreground">Well</span>
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-primary/10 shadow-md">
+      <div className="container flex items-center justify-between h-20">
+        <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <div className="flex items-center">
+            <span className="text-3xl font-bold text-primary">Sleep</span>
+            <span className="text-3xl font-bold text-foreground">Company</span>
+          </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === link.to ? "text-primary" : "text-muted-foreground"
+              className={`px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${location.pathname === link.to
+                  ? "text-primary bg-primary/10"
+                  : "text-foreground/70 hover:text-primary hover:bg-primary/5"
                 }`}
             >
               {link.label}

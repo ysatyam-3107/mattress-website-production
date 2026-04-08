@@ -3,6 +3,7 @@ import { Shield, Truck, Clock, Moon, Star, ChevronLeft, ChevronRight, ArrowRight
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import ProductCard, { ProductSkeleton } from "@/components/ProductCard";
+import ProductCarousel from "@/components/ProductCarousel";
 import { products, testimonials } from "@/data/products";
 import heroImg from "@/assets/hero-bedroom.jpg";
 import memoryFoamImg from "@/assets/mattress-memory-foam.jpg";
@@ -64,79 +65,81 @@ const Index = () => {
   return (
     <div>
       {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroImg} alt="Premium bedroom" className="w-full h-full object-cover" width={1920} height={1080} />
-          <div className="absolute inset-0 bg-gradient-to-br from-foreground/80 via-foreground/50 to-foreground/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/35" />
         </div>
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-warning/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
-        </div>
-        <div className="container relative z-10 py-20">
-          <div className="max-w-xl space-y-6">
-            <span className="inline-block text-primary bg-gradient-to-r from-primary/20 to-accent/20 backdrop-blur-sm text-sm font-medium px-4 py-1.5 rounded-full animate-fade-up border border-primary/20 shadow-lg">
-              ✨ New Collection 2026
-            </span>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight animate-fade-up-delay-1">
-              <span className="bg-gradient-to-r from-background via-background/90 to-primary bg-clip-text text-transparent">
-                Sleep Better,
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-primary via-accent to-warning bg-clip-text text-transparent animate-gradient">
-                Live Better
-              </span>
-            </h1>
-            <p className="text-lg text-background/90 leading-relaxed animate-fade-up-delay-2 drop-shadow-sm">
-              Premium mattresses designed for ultimate comfort. Experience the perfect night's sleep, every night.
+
+        {/* Content */}
+        <div className="relative z-10 container px-4 py-20 text-center max-w-3xl mx-auto">
+          <div className="space-y-8">
+            <div className="space-y-2 animate-fade-up">
+              <p className="text-primary-foreground/80 text-lg md:text-xl font-light tracking-widest uppercase">
+                Experience Ultimate Comfort
+              </p>
+              <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground leading-tight">
+                Perfect Sleep,<br />Every Night
+              </h1>
+            </div>
+
+            <p className="text-lg md:text-xl text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto font-light animate-fade-up-delay-1">
+              Discover our premium collection of mattresses designed for the perfect balance of comfort and support. Crafted with the finest materials for your ultimate sleep experience.
             </p>
-            <div className="flex flex-wrap gap-4 animate-fade-up-delay-3">
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6 animate-fade-up-delay-2">
               <Link to="/products">
-                <Button size="lg" className="text-base px-8">
-                  Shop Now <ArrowRight className="ml-2 h-4 w-4" />
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-6 rounded-lg shadow-lg">
+                  Shop Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/products">
-                <Button size="lg" variant="outline" className="text-base px-8 bg-background/10 border-background/30 text-background hover:bg-background/20">
-                  Explore Mattresses
+                <Button size="lg" variant="outline" className="text-primary-foreground border-primary-foreground hover:bg-white/10 text-base px-8 py-6 rounded-lg">
+                  Explore Collection
                 </Button>
               </Link>
             </div>
-            <div className="flex items-center gap-6 pt-4 animate-fade-up-delay-3">
+
+            {/* Trust Metrics */}
+            <div className="grid grid-cols-3 gap-4 pt-8 animate-fade-up-delay-3 max-w-xl mx-auto">
               <div className="text-center">
-                <p className="text-2xl font-bold text-background">50K+</p>
-                <p className="text-xs text-background/60">Happy Customers</p>
+                <p className="text-3xl md:text-4xl font-bold text-primary-foreground">50K+</p>
+                <p className="text-sm text-primary-foreground/70 mt-1">Happy Customers</p>
               </div>
-              <div className="w-px h-10 bg-background/20" />
+              <div className="h-12 w-px bg-primary-foreground/20 mx-auto"></div>
               <div className="text-center">
-                <p className="text-2xl font-bold text-background">4.8★</p>
-                <p className="text-xs text-background/60">Average Rating</p>
-              </div>
-              <div className="w-px h-10 bg-background/20" />
-              <div className="text-center">
-                <p className="text-2xl font-bold text-background">100</p>
-                <p className="text-xs text-background/60">Night Trial</p>
+                <p className="text-3xl md:text-4xl font-bold text-primary-foreground">4.8★</p>
+                <p className="text-sm text-primary-foreground/70 mt-1">Rating</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-primary-foreground/60 text-sm">Scroll to explore</span>
+            <ChevronLeft className="h-5 w-5 text-primary-foreground/60 -rotate-90" />
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-16 bg-card border-b border-border/50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-        <div className="container relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="py-20 bg-primary/5 border-b border-primary/10">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Why Choose Us</h2>
+            <p className="text-lg text-muted-foreground">What sets our mattresses apart</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((f, i) => (
-              <div key={i} className="text-center space-y-3 p-6 group hover-lift rounded-xl bg-gradient-to-br from-card to-card/50 border border-border/30 hover:border-primary/20 transition-all duration-300">
-                <div className="mx-auto w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <f.icon className="h-6 w-6 text-primary" />
+              <div key={i} className="group text-center space-y-4 p-6">
+                <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                  <f.icon className="h-8 w-8 text-primary group-hover:text-primary-foreground transition-colors" />
                 </div>
-                <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors duration-300">{f.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
+                <h3 className="text-xl font-bold text-foreground">{f.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -144,22 +147,21 @@ const Index = () => {
       </section>
 
       {/* Categories */}
-      <section className="py-20">
+      <section className="py-20 bg-background">
         <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-3">Shop by Category</h2>
-            <p className="text-muted-foreground">Find the perfect mattress for your sleep style</p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Shop by Type</h2>
+            <p className="text-lg text-muted-foreground">Find the mattress that suits your needs</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((cat) => (
               <Link key={cat.name} to="/products" className="group">
-                <div className="relative rounded-xl overflow-hidden aspect-[4/5] hover-lift shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                <div className="relative rounded-lg overflow-hidden aspect-[4/5] shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
                   <img src={cat.image} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" width={400} height={500} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent group-hover:from-foreground/90 transition-all duration-300" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="font-semibold text-background text-sm mb-1">{cat.name}</h3>
-                    <p className="text-xs text-background/80">{cat.desc}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-black/80 transition-all duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="font-bold text-white text-xl mb-2">{cat.name}</h3>
+                    <p className="text-gray-200 text-sm">{cat.desc}</p>
                   </div>
                 </div>
               </Link>
@@ -168,24 +170,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Bestsellers */}
-      <section className="py-20 bg-gradient-to-br from-muted/50 via-card/30 to-accent/10 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-card/20 to-transparent" />
+      {/* Bestsellers Carousel */}
+      <section className="py-20 bg-gradient-to-br from-background via-card/30 to-accent/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-card/10 to-transparent" />
         <div className="container relative z-10">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">Bestsellers</h2>
-              <p className="text-muted-foreground">Our most loved mattresses</p>
-            </div>
-            <Link to="/products" className="text-sm text-primary font-medium hover:underline hidden md:block hover:text-accent transition-colors duration-300">
-              View All →
-            </Link>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Bestsellers</h2>
+            <p className="text-lg text-muted-foreground">Discover our most loved and recommended mattresses</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {isLoading
-              ? Array.from({ length: 3 }).map((_, i) => <ProductSkeleton key={i} />)
-              : bestsellers.map((p) => <ProductCard key={p.id} product={p} />)
-            }
+          <ProductCarousel products={bestsellers.length > 0 ? bestsellers : products} />
+          <div className="text-center mt-12">
+            <Link to="/products">
+              <Button size="lg" variant="outline" className="px-8 py-6 border-primary text-primary hover:bg-primary/5">
+                View All Products
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
