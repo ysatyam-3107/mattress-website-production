@@ -1,8 +1,11 @@
-import { Clock, BookOpen, Moon, Heart, Lightbulb, TrendingUp, CheckCircle2 } from "lucide-react";
+import { Clock, BookOpen, Moon, Heart, Lightbulb, TrendingUp, ArrowRight, ArrowUpRight, BarChart3, ShoppingBag, HeartPulse } from "lucide-react";
 import { blogPosts } from "@/data/products";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-bedroom.jpg";
+import memoryFoamImg from "@/assets/mattress-memory-foam.jpg";
+import orthopedicImg from "@/assets/mattress-orthopedic.jpg";
+import latexImg from "@/assets/mattress-latex.jpg";
 
 const sleepTips = [
   {
@@ -28,189 +31,238 @@ const sleepTips = [
 ];
 
 const Blog = () => (
-  <div className="min-h-screen">
-    {/* Hero Section */}
-    <section className="relative w-full min-h-[500px] flex items-center justify-center overflow-hidden">
+  <div className="min-h-screen bg-slate-50">
+    {/* Hero Editorial Header */}
+    <section className="relative w-full min-h-[60vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroImg} alt="Sleep guide hero" className="w-full h-full object-cover" width={1920} height={600} />
-        <div className="absolute inset-0 bg-black/40" />
+        <img src={heroImg} alt="Sleep guide hero" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/40 mix-blend-multiply" />
       </div>
 
-      <div className="relative z-10 container px-4 py-20 text-center max-w-3xl mx-auto">
-        <Badge className="mb-4 bg-white/20 text-white hover:bg-white/30">Sleep Science & Tips</Badge>
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
-          Your Complete Sleep Guide
+      <div className="relative z-10 container px-4 pt-32 pb-20 text-center max-w-4xl mx-auto">
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-white border border-white/20 font-bold text-xs tracking-widest uppercase mb-8 backdrop-blur-sm">
+          <BookOpen className="w-4 h-4" /> Sleepwell Editorial
+        </span>
+        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tight">
+          The Science of <br/> <span className="text-blue-300">Perfect Rest.</span>
         </h1>
-        <p className="text-lg md:text-xl text-white/90 leading-relaxed">
-          Expert advice, science-backed tips, and everything you need to know about better sleep and finding the perfect mattress for your needs.
+        <p className="text-xl md:text-2xl text-white/80 leading-relaxed font-medium max-w-2xl mx-auto">
+          Expert advice, clinical insights, and routines to transform your nights and energize your days.
         </p>
       </div>
     </section>
 
-    {/* Sleep Tips Quick View */}
-    <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5 border-b border-primary/10">
+    {/* Featured Story */}
+    <section className="py-20 -mt-16 relative z-20">
       <div className="container">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Simple Sleep Improvement Tips</h2>
-          <p className="text-lg text-muted-foreground">Science-backed strategies to sleep better tonight</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {sleepTips.map((tip, i) => (
-            <div key={i} className="group bg-white rounded-xl p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                <tip.icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
-              </div>
-              <h3 className="font-semibold text-lg mb-2 text-foreground">{tip.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{tip.desc}</p>
+        {blogPosts[0] && (
+          <div className="bg-white rounded-[32px] overflow-hidden shadow-2xl border border-slate-100 flex flex-col lg:flex-row max-w-6xl mx-auto">
+            <div className="lg:w-1/2 relative min-h-[400px]">
+               <img src={memoryFoamImg} alt="Featured" className="absolute inset-0 w-full h-full object-cover" />
+               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent lg:hidden" />
+               
+               <div className="absolute bottom-6 left-6 lg:hidden">
+                 <span className="bg-accent text-slate-900 text-xs font-black px-3 py-1.5 rounded-full uppercase tracking-wider shadow">
+                    {blogPosts[0].category}
+                  </span>
+               </div>
             </div>
-          ))}
+            
+            <div className="lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center bg-white relative">
+               <div className="hidden lg:flex items-center gap-3 mb-6">
+                  <span className="bg-primary/10 text-primary text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest flex items-center gap-1.5">
+                    <ShoppingBag className="w-3.5 h-3.5" />
+                    {blogPosts[0].category}
+                  </span>
+                  <span className="text-slate-400 text-sm font-semibold flex items-center gap-1.5">
+                    <Clock className="w-4 h-4" /> {blogPosts[0].readTime}
+                  </span>
+               </div>
+               
+               <h2 className="text-3xl lg:text-5xl font-black text-slate-900 mb-6 leading-[1.15] tracking-tight hover:text-primary transition-colors cursor-pointer">
+                  {blogPosts[0].title}
+               </h2>
+               
+               <p className="text-slate-600 text-lg leading-relaxed mb-10 font-medium">
+                  {blogPosts[0].excerpt}
+               </p>
+               
+               <div className="flex items-center justify-between mt-auto">
+                  <div className="flex items-center gap-4">
+                     <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-primary font-black shadow-inner">
+                        NK
+                     </div>
+                     <div>
+                        <p className="font-bold text-slate-900">{blogPosts[0].author}</p>
+                        <p className="text-sm text-slate-500 font-medium">{blogPosts[0].authorRole}</p>
+                     </div>
+                  </div>
+                  
+                  <Button className="rounded-full bg-slate-900 hover:bg-primary text-white h-12 w-12 p-0 flex items-center justify-center transition-all group">
+                     <ArrowUpRight className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  </Button>
+               </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+
+    {/* Latest Feed & Quick Tips Grid */}
+    <section className="py-20 bg-slate-50 border-t border-slate-200/60">
+      <div className="container max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+           
+           {/* Left Column: Latest Articles Feed */}
+           <div className="lg:col-span-8">
+              <div className="flex items-center gap-4 mb-10">
+                 <div className="h-px pt-0.5 bg-slate-900 w-8" />
+                 <h3 className="text-2xl font-black text-slate-900 uppercase tracking-widest">Latest Stories</h3>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 {/* Article 2 */}
+                 {blogPosts[1] && (
+                 <div className="group bg-white rounded-3xl p-8 border border-slate-200/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col relative overflow-hidden h-[400px]">
+                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541123437800-141350c70d4c?auto=format&fit=crop&q=80')] bg-cover opacity-10 group-hover:scale-105 transition-transform duration-700 pointer-events-none grayscale" />
+                    
+                    <div className="flex items-center gap-3 mb-6 relative z-10">
+                       <span className="inline-flex items-center gap-1.5 bg-red-50 text-red-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">
+                          <HeartPulse className="w-3 h-3" /> {blogPosts[1].category}
+                       </span>
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-primary transition-colors relative z-10 leading-snug">
+                       {blogPosts[1].title}
+                    </h3>
+                    
+                    <p className="text-slate-600 text-sm line-clamp-3 mb-6 relative z-10 font-medium leading-relaxed">
+                       {blogPosts[1].excerpt}
+                    </p>
+                    
+                    <div className="mt-auto flex items-center justify-between border-t border-slate-100 pt-6 relative z-10">
+                       <div className="flex items-center gap-2">
+                          <span className="text-xs font-bold text-slate-900">{blogPosts[1].author}</span>
+                       </div>
+                       <span className="text-slate-400 text-xs font-medium">{blogPosts[1].readTime}</span>
+                    </div>
+                 </div>
+                 )}
+
+                 {/* Article 3 */}
+                 {blogPosts[2] && (
+                 <div className="group bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-[400px]">
+                    <div className="flex items-center gap-3 mb-6">
+                       <span className="inline-flex items-center gap-1.5 bg-white/10 text-blue-200 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">
+                          <Moon className="w-3 h-3" /> {blogPosts[2].category}
+                       </span>
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors leading-snug">
+                       {blogPosts[2].title}
+                    </h3>
+                    
+                    <p className="text-slate-400 text-sm line-clamp-3 mb-6 font-medium leading-relaxed max-w-[90%]">
+                       {blogPosts[2].excerpt}
+                    </p>
+                    
+                    <div className="mt-auto flex items-center justify-between border-t border-slate-800 pt-6">
+                       <div className="flex items-center gap-2 text-white">
+                          <span className="text-xs font-bold">{blogPosts[2].author}</span>
+                       </div>
+                       <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-white group-hover:text-slate-900 transition-colors">
+                          <ArrowUpRight className="w-4 h-4" />
+                       </div>
+                    </div>
+                 </div>
+                 )}
+
+                 {/* Article 4 (Spans full width) */}
+                 {blogPosts[3] && (
+                 <div className="md:col-span-2 group bg-gradient-to-br from-white to-slate-50 rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row gap-8 items-center overflow-hidden relative">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-bl-full pointer-events-none" />
+                    
+                    <div className="w-20 h-20 rounded-2xl bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200 shadow-inner">
+                       <BarChart3 className="w-10 h-10 text-primary" />
+                    </div>
+                    
+                    <div className="flex-1 relative z-10">
+                       <div className="flex items-center gap-3 mb-3">
+                          <span className="bg-primary/10 text-primary text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">
+                             {blogPosts[3].category}
+                          </span>
+                       </div>
+                       <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
+                          {blogPosts[3].title}
+                       </h3>
+                       <p className="text-slate-600 text-sm line-clamp-2 md:line-clamp-1 font-medium">
+                          {blogPosts[3].excerpt}
+                       </p>
+                    </div>
+                 </div>
+                 )}
+              </div>
+           </div>
+
+           {/* Right Column: Quick Tips Widget */}
+           <div className="lg:col-span-4 space-y-6">
+              <div className="flex items-center gap-4 mb-10">
+                 <div className="h-px pt-0.5 bg-accent w-8" />
+                 <h3 className="text-2xl font-black text-slate-900 uppercase tracking-widest">Core Habits</h3>
+              </div>
+              
+              <div className="bg-white rounded-[32px] p-8 border border-slate-200/60 shadow-xl relative overflow-hidden">
+                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-accent" />
+                 
+                 <div className="space-y-8 relative z-10">
+                    {sleepTips.map((tip, i) => (
+                      <div key={i} className="group relative">
+                         {i !== 0 && <div className="h-px bg-slate-100 w-full mb-8" />}
+                         <div className="flex gap-4 items-start">
+                            <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors border border-slate-100">
+                               <tip.icon className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
+                            </div>
+                            <div>
+                               <h4 className="font-bold text-slate-900 mb-1.5 group-hover:text-primary transition-colors">{tip.title}</h4>
+                               <p className="text-xs text-slate-500 font-medium leading-relaxed">{tip.desc}</p>
+                            </div>
+                         </div>
+                      </div>
+                    ))}
+                 </div>
+              </div>
+           </div>
+           
         </div>
       </div>
     </section>
 
-    {/* Featured Article */}
-    <section className="py-20 bg-background">
-      <div className="container">
-        <h2 className="text-3xl font-bold mb-12">Featured Reading</h2>
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
-          {/* Featured Content */}
-          <div className="space-y-6">
-            <Badge className="bg-primary/10 text-primary hover:bg-primary/20 text-sm">Buying Guide</Badge>
-            <h3 className="text-3xl font-bold leading-tight">
-              How to Choose the Right Mattress for Your Sleep Style
-            </h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Your sleep position plays a crucial role in determining the best mattress for you. Whether you're a side sleeper, back sleeper, or stomach sleeper, different mattresses offer different levels of support and comfort. Learn the key factors to consider when selecting your perfect mattress.
-            </p>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <p className="font-semibold">Know Your Sleep Position</p>
-                  <p className="text-sm text-muted-foreground">Side sleepers need more cushioning, back sleepers need balanced support.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <p className="font-semibold">Consider Firmness Level</p>
-                  <p className="text-sm text-muted-foreground">Firmness affects both comfort and spinal alignment throughout the night.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <p className="font-semibold">Test Before Buying</p>
-                  <p className="text-sm text-muted-foreground">Our 100-night free trial lets you sleep on it risk-free.</p>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground pt-4">
-              <span>March 15, 2026</span>
-              <span>•</span>
-              <span className="flex items-center gap-1"><Clock className="h-4 w-4" /> 5 min read</span>
-            </div>
-            <Button className="bg-primary text-white hover:bg-primary/90 mt-4">
-              Read Full Guide
-            </Button>
-          </div>
-
-          {/* Featured Image */}
-          <div className="lg:order-2">
-            <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl aspect-square overflow-hidden group">
-              <BookOpen className="w-full h-full text-primary/40 flex items-center justify-center text-8xl" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/* More Articles */}
-    <section className="py-20 bg-primary/5 border-t border-primary/10">
-      <div className="container">
-        <div className="flex items-center justify-between mb-12">
-          <div>
-            <h2 className="text-3xl font-bold mb-2">More Sleep Guides</h2>
-            <p className="text-muted-foreground">Explore our comprehensive collection of sleep and mattress resources</p>
-          </div>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogPosts.filter(post => post.id !== "1").map((post) => (
-            <article key={post.id} className="bg-white rounded-xl border border-primary/10 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-              {/* Image Container */}
-              <div className="h-48 bg-gradient-to-br from-primary/15 to-accent/15 flex items-center justify-center overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 via-accent/10 to-accent/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <BookOpen className="h-16 w-16 text-primary/40 group-hover:text-primary/60 transition-colors" />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 space-y-4">
-                <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="border-primary/30 text-primary/70 hover:bg-primary/5">{post.category}</Badge>
-                  <span className="text-xs text-muted-foreground">{post.date}</span>
-                </div>
-                <h3 className="font-semibold text-lg leading-tight group-hover:text-primary transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {post.excerpt}
-                </p>
-                <div className="flex items-center gap-1 text-xs text-muted-foreground pt-2">
-                  <Clock className="h-3 w-3" />
-                  <span>{post.readTime}</span>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* Sleep Tips Quiz / CTA */}
-    <section className="py-20 bg-gradient-to-br from-primary via-primary to-accent relative overflow-hidden">
+    {/* Massive Footer CTA */}
+    <section className="py-32 bg-slate-900 relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-2xl animate-float" />
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[100px]" />
       </div>
-      <div className="container relative z-10 text-center max-w-2xl mx-auto">
-        <h2 className="text-4xl font-bold text-white mb-4">Ready to Sleep Better?</h2>
-        <p className="text-lg text-white/90 mb-8 leading-relaxed">
-          Apply these science-backed sleep tips and find the perfect mattress for your needs. Our expert team is here to help you choose the ideal mattress for your sleep style.
+      
+      <div className="container relative z-10 text-center max-w-3xl mx-auto">
+        <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-[1.1] tracking-tight">
+          Ready to experience the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-300">perfect night?</span>
+        </h2>
+        <p className="text-xl text-white/70 mb-12 font-medium leading-relaxed">
+          Put our science into practice. Find the exact mattress engineered for your body type and sleep position.
         </p>
-        <Button size="lg" variant="secondary" className="text-base px-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 bg-white text-primary hover:bg-white/90">
-          Find Your Perfect Mattress
-        </Button>
+        
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+           <Button size="lg" className="h-14 px-8 rounded-full bg-accent hover:bg-yellow-400 text-slate-900 font-black tracking-wide text-lg w-full sm:w-auto shadow-[0_0_40px_rgba(255,183,3,0.3)]">
+             Find Your Mattress
+           </Button>
+           <Button size="lg" variant="outline" className="h-14 px-8 rounded-full bg-white/5 border-white/20 text-white hover:bg-white hover:text-slate-900 font-bold w-full sm:w-auto transition-colors">
+             Take the Sleep Quiz
+           </Button>
+        </div>
       </div>
     </section>
 
-    {/* Sleep Statistics */}
-    <section className="py-20 bg-background border-t border-primary/10">
-      <div className="container">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Why Sleep Matters</h2>
-          <p className="text-lg text-muted-foreground">The impact of quality sleep on your health</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-          <div className="text-center p-6">
-            <div className="text-4xl font-bold text-primary mb-2">⅓</div>
-            <h3 className="font-semibold text-lg mb-2">Of Your Life</h3>
-            <p className="text-muted-foreground">You spend about one-third of your life sleeping. Quality matters!</p>
-          </div>
-          <div className="text-center p-6">
-            <div className="text-4xl font-bold text-primary mb-2">7-9</div>
-            <h3 className="font-semibold text-lg mb-2">Hours Needed</h3>
-            <p className="text-muted-foreground">Most adults need 7-9 hours of sleep for optimal health and productivity.</p>
-          </div>
-          <div className="text-center p-6">
-            <div className="text-4xl font-bold text-primary mb-2">90%</div>
-            <h3 className="font-semibold text-lg mb-2">Sleep Dependent</h3>
-            <p className="text-muted-foreground">Your mattress influences 90% of your sleep comfort experience.</p>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 );
 

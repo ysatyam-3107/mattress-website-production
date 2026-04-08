@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { Star, ShoppingCart, Shield, Truck, RotateCcw, Check } from "lucide-react";
+import { Star, ShoppingCart, Shield, Truck, RotateCcw, Check, Award } from "lucide-react";
 import { useState } from "react";
 import { products } from "@/data/products";
 import { useCart } from "@/contexts/CartContext";
@@ -43,7 +43,9 @@ const ProductDetail = () => {
           {/* Details */}
           <div className="space-y-6">
             {product.bestseller && (
-              <span className="inline-block bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full">⭐ Bestseller</span>
+              <span className="inline-flex items-center gap-1.5 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider w-max">
+                <Award className="w-4 h-4" /> Bestseller
+              </span>
             )}
             <h1 className="text-3xl font-bold">{product.name}</h1>
             <div className="flex items-center gap-2">
@@ -110,6 +112,51 @@ const ProductDetail = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Deep Content: Mattress Anatomy Diagram */}
+        <div className="mt-24 max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-4">What's Inside?</h2>
+            <p className="text-slate-600">Discover the science of perfect sleep with our multi-layered support system.</p>
+          </div>
+          
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            {/* 3D-ish Stack */}
+            <div className="flex-1 w-full flex flex-col gap-2 perspective-1000 rotate-x-12 transform-gpu hover:rotate-0 transition-all duration-700 cursor-pointer group">
+              <div className="bg-blue-100 h-16 w-full rounded-2xl shadow-sm border-t-2 border-blue-200 flex items-center justify-center -mb-4 relative z-40 hover:-translate-y-4 transition-transform">
+                <span className="font-semibold text-blue-800 tracking-wider text-sm uppercase">1. Cooling Tech Cover</span>
+              </div>
+              <div className="bg-blue-300 h-20 w-full rounded-2xl shadow-md flex items-center justify-center -mb-4 relative z-30 hover:-translate-y-4 transition-transform">
+                <span className="font-semibold text-blue-900 tracking-wider text-sm uppercase">2. Pressure Relief Core</span>
+              </div>
+              <div className="bg-yellow-200 h-24 w-full rounded-2xl shadow-lg flex items-center justify-center -mb-4 relative z-20 hover:-translate-y-4 transition-transform">
+                <span className="font-semibold text-yellow-800 tracking-wider text-sm uppercase">3. Adaptive Transition Zone</span>
+              </div>
+              <div className="bg-slate-300 h-32 w-full rounded-xl shadow-xl flex items-center justify-center relative z-10 hover:-translate-y-4 transition-transform">
+                <span className="font-semibold text-slate-700 tracking-wider text-sm uppercase">4. High-Density Base</span>
+              </div>
+            </div>
+            
+            <div className="flex-1 space-y-6">
+              {[
+                { title: "Cooling Tech Cover", desc: "Instantly cool to the touch, pulling heat away from your body." },
+                { title: "Pressure Relief Core", desc: "Adapts to your curves, eliminating pain off shoulders and hips." },
+                { title: "Adaptive Transition Zone", desc: "Ensures you don't sink too far while isolating motion." },
+                { title: "High-Density Base", desc: "Provides heavy-duty structural support for longevity." },
+              ].map((layer, idx) => (
+                <div key={idx} className="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold shrink-0">
+                    {idx + 1}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900">{layer.title}</h4>
+                    <p className="text-slate-600 text-sm mt-1">{layer.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -20,6 +20,8 @@ const Products = () => {
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [sizeFilter, setSizeFilter] = useState("All");
   const [firmnessFilter, setFirmnessFilter] = useState<string>("all");
+  const [priceMax, setPriceMax] = useState<number>(30000);
+  const [sortBy, setSortBy] = useState<string>("popular");
   const [isLoading, setIsLoading] = useState(false);
 
   const filtered = useMemo(() => {
@@ -28,7 +30,12 @@ const Products = () => {
       if (typeFilter !== "all" && p.type !== typeFilter) return false;
       if (sizeFilter !== "All" && !p.sizes.includes(sizeFilter)) return false;
       if (firmnessFilter !== "all" && p.firmness !== firmnessFilter) return false;
+      if (p.price > priceMax) return false;
       return true;
+    }).sort((a, b) => {
+      if (sortBy === "price-low") return a.price - b.price;
+      if (sortBy === "price-high") return b.price - a.price;
+      return b.rating - a.rating; // Default 'popular'
     });
     setTimeout(() => setIsLoading(false), 300);
     return result;
@@ -50,25 +57,29 @@ const Products = () => {
     setTypeFilter("all");
     setSizeFilter("All");
     setFirmnessFilter("all");
+    setPriceMax(30000);
   };
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-white border-b border-primary/10 py-8 sticky top-20 z-40">
+      <div className="bg-background border-b border-primary/10 py-8 sticky top-20 z-40">
         <div className="container">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="text-4xl font-bold mb-2">Mattresses</h1>
               <p className="text-muted-foreground">Explore our premium collection</p>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
-                Comparison
-              </Button>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
-                All Mattresses
-              </Button>
+            <div className="flex items-center gap-4">
+              <select 
+                className="bg-secondary/20 border border-slate-200 text-slate-800 text-sm rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-primary/20"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+              >
+                <option value="popular">Popularity</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+              </select>
             </div>
           </div>
 
@@ -80,7 +91,7 @@ const Products = () => {
                 onClick={() => setTypeFilter(type.id)}
                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap flex items-center gap-2 ${typeFilter === type.id
                     ? "bg-primary text-white shadow-lg"
-                    : "bg-white border border-primary/20 text-foreground hover:border-primary hover:bg-primary/5"
+                    : "bg-card border border-primary/20 text-foreground hover:border-primary hover:bg-primary/5"
                   }`}
               >
                 <span>{type.icon}</span> {type.label}
@@ -95,8 +106,27 @@ const Products = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Left Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white p-6 rounded-lg border border-primary/10 sticky top-32">
-              <h3 className="text-lg font-bold mb-6 text-primary">Filters</h3>
+            <div className="bg-card p-6 rounded-lg border border-primary/10 sticky top-32">
+              <h3 className="text-lg font-bold mb-6 text-slate-900 border-b border-primary/10 pb-4">Filters</h3>
+
+              {/* Price Filter */}
+              <div className="mb-8">
+                <div className="flex justify-between items-center mb-4">
+                  <h4 className="font-bold text-sm text-slate-900">Max Price</h4>
+                  <span className="text-primary font-bold text-sm">₹{priceMax.toLocaleString()}</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="5000" 
+                  max="30000" 
+                  step="1000"
+                  value={priceMax}
+                  onChange={(e) => setPriceMax(Number(e.target.value))}
+                  className="w-full accent-primary h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer"
+                />
+              </div>
+
+              <div className="border-t border-primary/10 my-4"></div>
 
               {/* Size Filter */}
               <div className="mb-6">

@@ -1,4 +1,4 @@
-import { Star, Heart, ShoppingCart, Eye } from "lucide-react";
+import { Star, Heart, ShoppingCart, Eye, Award, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Product } from "@/data/products";
@@ -87,57 +87,79 @@ const ProductCard = ({ product }: { product: Product }) => {
 
   return (
     <>
-      <div className="group bg-card rounded-xl border border-border/50 overflow-hidden hover-lift shadow-sm hover:shadow-xl transition-all duration-500 hover:border-primary/20 hover-scale">
-        <div className="relative overflow-hidden">
-          <Link to={`/product/${product.id}`}>
+      <div className="group bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col relative w-full translate-y-0 hover:-translate-y-2">
+        <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden bg-slate-50">
+          <Link to={`/product/${product.id}`} className="block w-full h-full">
             <img
               src={product.image}
               alt={product.name}
-              className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-700"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
               loading="lazy"
-              width={400}
-              height={400}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {/* Subtle Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </Link>
-          {product.bestseller && (
-            <span className="absolute top-3 left-3 bg-gradient-to-r from-primary to-accent text-primary-foreground text-xs font-medium px-2.5 py-1 rounded-full shadow-lg animate-pulse">
-              Bestseller
+          
+          {/* Top-Left Badges */}
+          <div className="absolute top-3 left-3 flex flex-col gap-2">
+            {product.bestseller && (
+              <span className="bg-primary text-white text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 uppercase tracking-wider backdrop-blur-md">
+                <Award className="w-3.5 h-3.5" /> Bestseller
+              </span>
+            )}
+            <span className="bg-white/95 text-slate-800 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1 uppercase">
+              <Zap className="w-3.5 h-3.5 text-accent" /> {discount}% OFF
             </span>
-          )}
-          <span className="absolute top-3 right-12 bg-gradient-to-r from-success to-success/80 text-success-foreground text-xs font-medium px-2 py-1 rounded-full shadow-lg">
-            {discount}% OFF
-          </span>
-          <button
-            onClick={() => toggleWishlist(product.id)}
-            className="absolute top-3 right-3 h-8 w-8 rounded-full bg-surface/90 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-surface hover:scale-110 shadow-lg"
-          >
-            <Heart className={`h-4 w-4 transition-colors duration-300 ${isWished ? "fill-destructive text-destructive" : "text-muted-foreground group-hover:text-destructive"}`} />
-          </button>
-          <button
-            onClick={() => setShowQuickView(true)}
-            className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 hover:opacity-100"
-          >
-            <Eye className="h-6 w-6 text-white drop-shadow-lg" />
-          </button>
+          </div>
+
+          {/* Action Buttons: Wishlist & Quick View */}
+          <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
+            <button
+              onClick={() => toggleWishlist(product.id)}
+              className="h-9 w-9 rounded-full bg-white/95 shadow-sm flex items-center justify-center transition-transform hover:scale-110 text-slate-400 hover:text-red-500"
+            >
+              <Heart className={`h-4 w-4 transition-colors ${isWished ? "fill-red-500 text-red-500" : ""}`} />
+            </button>
+            <button
+              onClick={() => setShowQuickView(true)}
+              className="h-9 w-9 rounded-full bg-white/95 shadow-sm flex items-center justify-center transition-transform hover:scale-110 text-slate-400 hover:text-slate-800"
+            >
+              <Eye className="h-4 w-4" />
+            </button>
+          </div>
         </div>
-        <div className="p-4 space-y-2">
-          <Link to={`/product/${product.id}`}>
-            <h3 className="font-semibold text-sm group-hover:text-primary transition-colors duration-300 line-clamp-2">{product.name}</h3>
+        
+        {/* Card Body */}
+        <div className="p-5 flex flex-col flex-1 bg-white">
+          <Link to={`/product/${product.id}`} className="mb-2">
+            <h3 className="font-extrabold text-slate-900 text-lg group-hover:text-primary transition-colors line-clamp-1">{product.name}</h3>
           </Link>
-          <div className="flex items-center gap-1">
-            <Star className="h-3.5 w-3.5 fill-warning text-warning" />
-            <span className="text-xs font-medium">{product.rating}</span>
-            <span className="text-xs text-muted-foreground">({product.reviews.toLocaleString()})</span>
+
+          <div className="flex items-center gap-1.5 mb-3">
+            <div className="flex">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star key={star} className={`h-3.5 w-3.5 ${star <= Math.floor(product.rating) ? "fill-accent text-accent" : "fill-slate-200 text-slate-200"}`} />
+              ))}
+            </div>
+            <span className="text-xs font-bold text-slate-700">{product.rating}</span>
+            <span className="text-xs font-medium text-slate-400">({product.reviews.toLocaleString()})</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">₹{product.price.toLocaleString()}</span>
-            <span className="text-sm text-muted-foreground line-through">₹{product.originalPrice.toLocaleString()}</span>
+
+          <div className="mt-auto">
+            <div className="flex items-end gap-2 mb-1">
+              <span className="text-2xl font-black text-slate-900 leading-none">₹{product.price.toLocaleString()}</span>
+              <span className="text-sm font-semibold text-slate-400 line-through mb-0.5">₹{product.originalPrice.toLocaleString()}</span>
+            </div>
+            <p className="text-xs font-medium text-slate-500 mb-4">EMI from ₹{Math.round(product.price / 12).toLocaleString()}/mo</p>
+            
+            <Button 
+              className="w-full bg-slate-900 hover:bg-primary text-white rounded-xl h-11 font-bold shadow-sm transition-colors text-sm" 
+              onClick={() => addToCart(product)}
+            >
+              <ShoppingCart className="h-4 w-4 mr-2" />
+              Add to Cart
+            </Button>
           </div>
-          <p className="text-xs text-muted-foreground">EMI from ₹{Math.round(product.price / 12).toLocaleString()}/mo</p>
-          <Button className="w-full mt-2" size="sm" onClick={() => addToCart(product)}>
-            <ShoppingCart className="h-4 w-4 mr-2" /> Add to Cart
-          </Button>
         </div>
       </div>
 

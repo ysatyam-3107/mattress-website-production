@@ -18,9 +18,30 @@ const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<typeof products>([]);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    // Default to dark mode if not set
+    if (typeof document !== 'undefined') {
+      const isDarkSet = document.documentElement.classList.contains('dark');
+      if (!isDarkSet && localStorage.getItem('theme') !== 'light') {
+        document.documentElement.classList.add('dark');
+        return true;
+      }
+      return isDarkSet;
+    }
+    return true;
+  });
   const { totalItems, setIsCartOpen, wishlist } = useCart();
   const location = useLocation();
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDark]);
 
   // Enhanced search with autocomplete
   useEffect(() => {
@@ -46,12 +67,12 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-primary/10 shadow-md">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-xl border-b border-primary/10 shadow-md">
       <div className="container flex items-center justify-between h-20">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <div className="flex items-center">
             <span className="text-3xl font-bold text-primary">Sleep</span>
-            <span className="text-3xl font-bold text-foreground">Company</span>
+            <span className="text-3xl font-bold text-foreground">well</span>
           </div>
         </Link>
 
