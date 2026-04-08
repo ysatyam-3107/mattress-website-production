@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Truck, Clock, Moon, Star, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { Shield, Truck, Clock, Moon, Star, ChevronLeft, ChevronRight, ArrowRight, Lightbulb, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import ProductCard, { ProductSkeleton } from "@/components/ProductCard";
@@ -249,6 +249,58 @@ const Index = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sleep Tips Preview */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5 border-t border-primary/10">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Sleep Better Tonight</h2>
+            <p className="text-lg text-muted-foreground">Discover science-backed tips and expert advice for improving your sleep quality</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="group bg-white rounded-xl p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <Moon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Sleep Schedule</h3>
+              <p className="text-sm text-muted-foreground">Sleep at the same time daily to regulate your circadian rhythm.</p>
+            </div>
+
+            <div className="group bg-white rounded-xl p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <Heart className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Cool Room</h3>
+              <p className="text-sm text-muted-foreground">Keep your bedroom at 65-68°F for optimal sleep quality.</p>
+            </div>
+
+            <div className="group bg-white rounded-xl p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <Lightbulb className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">No Screens</h3>
+              <p className="text-sm text-muted-foreground">Avoid screens 1-2 hours before bed to improve sleep onset.</p>
+            </div>
+
+            <div className="group bg-white rounded-xl p-6 border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <Star className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Good Mattress</h3>
+              <p className="text-sm text-muted-foreground">Your mattress affects 90% of your sleep comfort.</p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Link to="/blog">
+              <Button size="lg" variant="outline" className="px-8 py-6 border-primary text-primary hover:bg-primary/5">
+                Read Our Complete Sleep Guide <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
