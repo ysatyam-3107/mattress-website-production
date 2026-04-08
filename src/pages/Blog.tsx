@@ -38,35 +38,13 @@ const Blog = () => (
 
       <div className="relative z-10 container px-4 py-20 text-center max-w-4xl mx-auto">
         <div className="space-y-8">
-          {/* Animated Badge */}
-          <Badge className="mb-4 bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm border-white/20 inline-block animate-fade-up">
-            Sleep Science & Tips
-          </Badge>
-
-          {/* Animated Heading */}
-          <div className="relative">
-            <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-lg animate-fade-up-delay-1">
-              Your Complete
-            </h1>
-            <h1 className="text-6xl md:text-7xl font-bold mb-4 leading-tight drop-shadow-lg animate-fade-up-delay-2">
-              <span className="relative inline-block">
-                Sleep Guide
-                <span className="absolute bottom-2 left-0 w-0 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full animate-expand-width" />
-              </span>
-            </h1>
-          </div>
-
-          {/* Animated Paragraph */}
-          <p className="text-xl md:text-2xl text-white/95 leading-relaxed drop-shadow animate-fade-up-delay-3">
+          <Badge className="mb-4 bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm border-white/20">Sleep Science & Tips</Badge>
+          <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-lg">
+            Your Complete Sleep Guide
+          </h1>
+          <p className="text-xl md:text-2xl text-white/95 leading-relaxed drop-shadow">
             Expert advice, science-backed tips, and everything you need to know about better sleep and finding the perfect mattress for your needs.
           </p>
-
-          {/* Animated Scroll Indicator */}
-          <div className="flex justify-center items-center gap-3 text-white/70 text-sm pt-4 animate-fade-up-delay-4">
-            <span className="inline-block h-1 w-1 bg-white/50 rounded-full animate-pulse" />
-            <span>Discover sleep science below</span>
-            <span className="inline-block h-1 w-1 bg-white/50 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
-          </div>
         </div>
       </div>
     </section>
