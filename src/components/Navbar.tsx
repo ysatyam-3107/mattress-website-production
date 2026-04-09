@@ -71,8 +71,8 @@ const Navbar = () => {
       <div className="container flex items-center justify-between h-20">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <div className="flex items-center">
-            <span className="text-3xl font-bold text-primary">Sleep</span>
-            <span className="text-3xl font-bold text-foreground">well</span>
+            <span className="text-3xl font-bold text-primary">Mustafa's</span>
+            <span className="text-3xl font-bold ml-2 text-foreground">Mattress</span>
           </div>
         </Link>
 
