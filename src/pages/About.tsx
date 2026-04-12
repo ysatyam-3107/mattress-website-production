@@ -1,4 +1,5 @@
 import { Target, Heart, Award, Users, Lightbulb, BadgeIndianRupee } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 const values = [
   { icon: Lightbulb, title: "Research-Driven Design", desc: "Every mattress is backed by sleep science and extensive R&D." },
@@ -8,12 +9,17 @@ const values = [
 ];
 
 const About = () => (
-  <div className="min-h-screen">
+  <>
+    <SEO 
+      title="Our Story & Core Values" 
+      description="Learn about Mustafa's Mattress's mission to craft the perfect sleep experience. 100% Indian made, transparent pricing, and CertiPUR-US® certified."
+    />
+    <div className="min-h-screen">
     <div className="bg-primary py-20">
       <div className="container text-center space-y-4">
         <h1 className="text-4xl font-bold text-primary-foreground">Our Story</h1>
         <p className="text-primary-foreground/80 max-w-2xl mx-auto text-lg">
-          We started SleepWell with a simple mission — to make great sleep affordable and accessible for every Indian home.
+          We started Mustafa's Mattress with a simple mission — to make great sleep affordable and accessible for every Indian home.
         </p>
       </div>
     </div>
@@ -23,7 +29,7 @@ const About = () => (
         <div className="space-y-6">
           <h2 className="text-3xl font-bold">Improving Sleep, One Mattress at a Time</h2>
           <p className="text-muted-foreground leading-relaxed">
-            Founded in 2020, SleepWell was born out of frustration with overpriced, low-quality mattresses in India. We believed that everyone deserves a great night's sleep without breaking the bank.
+            Founded in 2020, Mustafa's Mattress was born out of frustration with overpriced, low-quality mattresses in India. We believed that everyone deserves a great night's sleep without breaking the bank.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Today, we serve over 50,000 happy customers across India. Our mattresses are designed in-house, rigorously tested, and delivered directly to your doorstep — no showroom markups.
@@ -48,7 +54,7 @@ const About = () => (
     <div className="bg-muted/50 py-20">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-3">Why Choose SleepWell?</h2>
+          <h2 className="text-3xl font-bold mb-3">Why Choose Mustafa's Mattress?</h2>
           <p className="text-muted-foreground">What makes us different from the rest</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -65,6 +71,7 @@ const About = () => (
       </div>
     </div>
   </div>
+  </>
 );
 
 export default About;

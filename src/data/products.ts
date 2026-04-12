@@ -233,6 +233,38 @@ export const testimonials = [
     text: "Tried the DreamFusion Hybrid and it's the perfect balance of firm support and soft comfort. My wife and I both love it.",
     product: "DreamFusion Hybrid",
   },
+  {
+    id: 5,
+    name: "Meera Iyer",
+    location: "Chennai",
+    rating: 5,
+    text: "Finally got a mattress that doesn't trap heat. The ArcticBreeze Cooling is perfect for our weather. Sleeping cool all night!",
+    product: "ArcticBreeze Cooling",
+  },
+  {
+    id: 6,
+    name: "Aditya Joshi",
+    location: "Pune",
+    rating: 5,
+    text: "Ordered a mattress for my 5-year-old and the quality is exceptional. Firm enough for growing bodies and the anti-allergy feature is a bonus.",
+    product: "JuniorNest Kids",
+  },
+  {
+    id: 7,
+    name: "Fatima Khan",
+    location: "Lucknow",
+    rating: 5,
+    text: "The 100-night trial gave us confidence to try. Within a week, my husband's snoring reduced — the orthopedic alignment really works!",
+    product: "SpineGuard Orthopedic",
+  },
+  {
+    id: 8,
+    name: "Suresh Reddy",
+    location: "Vijayawada",
+    rating: 5,
+    text: "EMI option made it easy to buy a premium mattress. Delivery was free and on time. The unboxing experience felt truly premium.",
+    product: "CloudRest Memory Foam",
+  },
 ];
 
 export const blogPosts = [
@@ -266,7 +298,7 @@ export const blogPosts = [
     icon: "Moon",
     readTime: "6 min read",
     date: "March 5, 2026",
-    author: "Sleepwell Research",
+    author: "Mustafa's Mattress",
     authorRole: "Editorial Team",
   },
   {
@@ -280,4 +312,87 @@ export const blogPosts = [
     author: "Rahul Verma",
     authorRole: "Product Engineer",
   },
+];
+
+export interface MegaMenuLink {
+  label: string;
+  href: string;
+  isNew?: boolean;
+}
+
+export interface MegaMenuColumn {
+  title: string;
+  links: MegaMenuLink[];
+}
+
+export const megaMenuCategories: MegaMenuColumn[] = [
+  {
+    title: "Ortho Memory Foam Series",
+    links: [
+      { label: "Essential", href: "/products" },
+      { label: "Classic", href: "/products" },
+      { label: "Infiniti", href: "/products" },
+      { label: "Ultra", href: "/products" },
+      { label: "Spring", href: "/products" },
+    ]
+  },
+  {
+    title: "Dual Comfort Series",
+    links: [
+      { label: "Classic", href: "/products" },
+      { label: "Plus", href: "/products" }
+    ]
+  },
+  {
+    title: "EcoLatex Series",
+    links: [
+      { label: "Essential", href: "/products" },
+      { label: "Classic", href: "/products" },
+      { label: "Infiniti", href: "/products" },
+      { label: "Ultra", href: "/products" },
+      { label: "Spring", href: "/products" },
+    ]
+  },
+  {
+    title: "XpertGrid Series",
+    links: [
+      { label: "Essential", href: "/products" },
+      { label: "Classic", href: "/products" },
+      { label: "Infiniti", href: "/products" },
+      { label: "Ultra", href: "/products" },
+      { label: "Spring", href: "/products" },
+    ]
+  },
+  {
+    title: "Utility Mattresses",
+    links: [
+      { label: "DreamPod Mattress", href: "/product/9" }, 
+      { label: "Baby Mattress", href: "/product/10" },
+      { label: "Rollup Mattress", href: "/products" },
+      { label: "Flexagon TriFold Mattress", href: "/products" },
+    ]
+  },
+  {
+    title: "Mattress By Size",
+    links: [
+      { label: "King Size", href: "/products" },
+      { label: "Queen Size", href: "/products" },
+      { label: "Single Bed", href: "/products" },
+      { label: "Diwan Size", href: "/products" },
+      { label: "Kids Mattress", href: "/product/10" },
+    ]
+  },
+  {
+    title: "Mustafa's PureSleep Mattress",
+    links: [
+      { label: "PostureFlex PureSleep", href: "/products" },
+      { label: "DualSwitch PureSleep", href: "/products" },
+      { label: "Natura PureSleep Latex", href: "/products" },
+      { label: "Ortho Plus ActiveCool", href: "/products" },
+      { label: "Spinecore Firm Plus", href: "/products" },
+      { label: "Optima Plus Pocket Spring", href: "/products" },
+      { label: "IcyBreeze HR Foam", href: "/product/7" },
+      { label: "BlissMax Mattress", href: "/product/5" },
+    ]
+  }
 ];

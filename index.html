@@ -5,29 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Title -->
-    <title>Sleep Better, Live Better | Premium Mattresses</title>
+    <title>Mustafa's Mattress — Premium Sleep, Perfected</title>
 
-    <!-- ✅ Remove favicon (transparent) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22/>">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- SEO -->
-    <meta name="description" content="India's most trusted mattresses for perfect comfort. Experience better sleep with our premium memory foam and orthopedic mattresses." />
-    <meta name="author" content="Sleep Better" />
+    <meta name="description" content="India's most trusted mattresses for perfect comfort. Scientifically engineered memory foam, orthopedic, latex & hybrid mattresses. 100-night trial, free delivery." />
+    <meta name="author" content="Mustafa's Mattress" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#4F8EF7" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="My App" />
-    <meta property="og:description" content="My Application" />
+    <meta property="og:title" content="Mustafa's Mattress — Premium Sleep, Perfected" />
+    <meta property="og:description" content="India's most trusted mattresses. Scientifically engineered for deep, uninterrupted sleep. 100-night free trial." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="" />
+    <meta property="og:site_name" content="Mustafa's Mattress" />
+    <meta property="og:locale" content="en_IN" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@MyApp" />
-    <meta name="twitter:image" content="" />
+    <meta name="twitter:title" content="Mustafa's Mattress — Premium Sleep, Perfected" />
+    <meta name="twitter:description" content="India's most trusted mattresses. 100-night free trial, free delivery across India." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Mustafa's Mattress",
+        "description": "India's most trusted mattresses for perfect comfort.",
+        "telephone": "1800-123-4567",
+        "email": "hello@mustafasmattress.in",
+        "sameAs": []
+      }
+    </script>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('SW registered!', reg))
+            .catch(err => console.log('SW registration failed: ', err));
+        });
+      }
+    </script>
   </body>
 </html>

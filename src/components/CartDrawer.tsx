@@ -1,6 +1,7 @@
-import { X, Plus, Minus, ShoppingBag } from "lucide-react";
+import { X, Plus, Minus, ShoppingBag, ShieldCheck } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const CartDrawer = () => {
   const { items, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, totalPrice } = useCart();
@@ -58,10 +59,15 @@ const CartDrawer = () => {
                 <span className="text-muted-foreground">Delivery</span>
                 <span className="font-medium text-success">FREE</span>
               </div>
-              <Button className="w-full" size="lg">
-                Checkout — ₹{totalPrice.toLocaleString()}
-              </Button>
-              <p className="text-xs text-center text-muted-foreground">EMI options available from ₹999/month</p>
+              <Link to="/checkout" onClick={() => setIsCartOpen(false)}>
+                <Button className="w-full bg-[#1E3A8A] hover:bg-blue-900 border-[#1E3A8A] border h-12 text-md font-montserrat font-bold shadow-lg shadow-blue-900/20 btn-press">
+                  Checkout Form — ₹{totalPrice.toLocaleString()}
+                </Button>
+              </Link>
+              <div className="flex items-center justify-center gap-2 pt-2 text-[#3B82F6]">
+                <ShieldCheck className="w-4 h-4" />
+                <span className="text-xs font-montserrat font-bold uppercase tracking-wider">Secure Checkout Pipeline</span>
+              </div>
             </div>
           </>
         )}

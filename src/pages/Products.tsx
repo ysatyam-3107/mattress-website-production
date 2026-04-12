@@ -1,16 +1,17 @@
 import { useState, useMemo } from "react";
-import { X, ChevronRight } from "lucide-react";
+import { X, ChevronRight, Bed, Cloud, Stethoscope, Leaf, RefreshCw } from "lucide-react";
 import ProductCard, { ProductSkeleton } from "@/components/ProductCard";
 import { products } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { SEO } from "@/components/SEO";
 
 const mattressTypes = [
-  { id: "all", label: "All Mattresses", icon: "🛏️" },
-  { id: "memory-foam", label: "Memory Foam", icon: "☁️" },
-  { id: "orthopedic", label: "Orthopedic", icon: "🏥" },
-  { id: "latex", label: "Latex", icon: "🌿" },
-  { id: "hybrid", label: "Hybrid", icon: "🔄" },
+  { id: "all", label: "All Mattresses", icon: Bed },
+  { id: "memory-foam", label: "Memory Foam", icon: Cloud },
+  { id: "orthopedic", label: "Orthopedic", icon: Stethoscope },
+  { id: "latex", label: "Latex", icon: Leaf },
+  { id: "hybrid", label: "Hybrid", icon: RefreshCw },
 ];
 
 const sizes = ["All", "Single", "Double", "Queen", "King"];
@@ -22,11 +23,9 @@ const Products = () => {
   const [firmnessFilter, setFirmnessFilter] = useState<string>("all");
   const [priceMax, setPriceMax] = useState<number>(30000);
   const [sortBy, setSortBy] = useState<string>("popular");
-  const [isLoading, setIsLoading] = useState(false);
 
   const filtered = useMemo(() => {
-    setIsLoading(true);
-    const result = products.filter((p) => {
+    return products.filter((p) => {
       if (typeFilter !== "all" && p.type !== typeFilter) return false;
       if (sizeFilter !== "All" && !p.sizes.includes(sizeFilter)) return false;
       if (firmnessFilter !== "all" && p.firmness !== firmnessFilter) return false;
@@ -37,9 +36,7 @@ const Products = () => {
       if (sortBy === "price-high") return b.price - a.price;
       return b.rating - a.rating; // Default 'popular'
     });
-    setTimeout(() => setIsLoading(false), 300);
-    return result;
-  }, [typeFilter, sizeFilter, firmnessFilter]);
+  }, [typeFilter, sizeFilter, firmnessFilter, priceMax, sortBy]);
 
   const activeFilters = [
     typeFilter !== "all" && { type: "type", value: typeFilter, label: mattressTypes.find(t => t.id === typeFilter)?.label || typeFilter },
@@ -47,7 +44,7 @@ const Products = () => {
     firmnessFilter !== "all" && { type: "firmness", value: firmnessFilter, label: firmnessFilter }
   ].filter(Boolean);
 
-  const removeFilter = (filter: any) => {
+  const removeFilter = (filter: { type: string; value: string; label: string }) => {
     if (filter.type === "type") setTypeFilter("all");
     if (filter.type === "size") setSizeFilter("All");
     if (filter.type === "firmness") setFirmnessFilter("all");
@@ -61,7 +58,12 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <SEO 
+        title="Shop All Mattresses" 
+        description="Explore our complete collection of memory foam, orthopedic, and hybrid mattresses. Find your perfect fit based on size and firmness."
+      />
+      <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="bg-background border-b border-primary/10 py-8 sticky top-20 z-40">
         <div className="container">
@@ -72,9 +74,10 @@ const Products = () => {
             </div>
             <div className="flex items-center gap-4">
               <select 
-                className="bg-secondary/20 border border-slate-200 text-slate-800 text-sm rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-primary/20"
+                className="bg-secondary/20 border border-slate-200 dark:border-slate-700 text-foreground text-sm rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-primary/20"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
+                aria-label="Sort products"
               >
                 <option value="popular">Popularity</option>
                 <option value="price-low">Price: Low to High</option>
@@ -84,19 +87,24 @@ const Products = () => {
           </div>
 
           {/* Horizontal Category Tabs */}
-          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-            {mattressTypes.map((type) => (
-              <button
-                key={type.id}
-                onClick={() => setTypeFilter(type.id)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap flex items-center gap-2 ${typeFilter === type.id
-                    ? "bg-primary text-white shadow-lg"
-                    : "bg-card border border-primary/20 text-foreground hover:border-primary hover:bg-primary/5"
-                  }`}
-              >
-                <span>{type.icon}</span> {type.label}
-              </button>
-            ))}
+          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide" role="tablist" aria-label="Filter by mattress type">
+            {mattressTypes.map((type) => {
+              const IconComponent = type.icon;
+              return (
+                <button
+                  key={type.id}
+                  onClick={() => setTypeFilter(type.id)}
+                  role="tab"
+                  aria-selected={typeFilter === type.id}
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap flex items-center gap-2 ${typeFilter === type.id
+                      ? "bg-primary text-white shadow-lg"
+                      : "bg-card border border-primary/20 text-foreground hover:border-primary hover:bg-primary/5"
+                    }`}
+                >
+                  <IconComponent className="w-4 h-4" /> {type.label}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -107,12 +115,12 @@ const Products = () => {
           {/* Left Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-card p-6 rounded-lg border border-primary/10 sticky top-32">
-              <h3 className="text-lg font-bold mb-6 text-slate-900 border-b border-primary/10 pb-4">Filters</h3>
+              <h3 className="text-lg font-bold mb-6 text-foreground border-b border-primary/10 pb-4">Filters</h3>
 
               {/* Price Filter */}
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-4">
-                  <h4 className="font-bold text-sm text-slate-900">Max Price</h4>
+                  <h4 className="font-bold text-sm text-foreground">Max Price</h4>
                   <span className="text-primary font-bold text-sm">₹{priceMax.toLocaleString()}</span>
                 </div>
                 <input 
@@ -122,7 +130,8 @@ const Products = () => {
                   step="1000"
                   value={priceMax}
                   onChange={(e) => setPriceMax(Number(e.target.value))}
-                  className="w-full accent-primary h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer"
+                  className="w-full accent-primary h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer"
+                  aria-label="Maximum price filter"
                 />
               </div>
 
@@ -189,7 +198,7 @@ const Products = () => {
             {/* Active Filters */}
             {activeFilters.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6 animate-fade-in">
-                {activeFilters.map((filter: any, index) => (
+                {(activeFilters as { type: string; value: string; label: string }[]).map((filter, index) => (
                   <Badge
                     key={index}
                     variant="secondary"
@@ -207,31 +216,30 @@ const Products = () => {
 
             {/* Products Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {isLoading
-                ? Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)
-                : filtered.length > 0
-                  ? filtered.map((p) => <ProductCard key={p.id} product={p} />)
-                  : (
-                    <div className="col-span-full text-center py-20">
-                      <p className="text-lg text-muted-foreground mb-4">No mattresses match your filters</p>
-                      <Button onClick={clearAllFilters} className="bg-primary text-white">
-                        Clear Filters
-                      </Button>
-                    </div>
-                  )
+              {filtered.length > 0
+                ? filtered.map((p) => <ProductCard key={p.id} product={p} />)
+                : (
+                  <div className="col-span-full text-center py-20">
+                    <p className="text-lg text-muted-foreground mb-4">No mattresses match your filters</p>
+                    <Button onClick={clearAllFilters} className="bg-primary text-white">
+                      Clear Filters
+                    </Button>
+                  </div>
+                )
               }
             </div>
 
             {/* Results Count */}
-            {!isLoading && filtered.length > 0 && (
+            {filtered.length > 0 && (
               <div className="mt-8 text-center text-sm text-muted-foreground">
-                Showing {filtered.length} mattress{filtered.length !== 1 ? "es" : ""} • Sorted by popularity
+                Showing {filtered.length} mattress{filtered.length !== 1 ? "es" : ""} • Sorted by {sortBy === "popular" ? "popularity" : sortBy === "price-low" ? "price (low to high)" : "price (high to low)"}
               </div>
             )}
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 };
 

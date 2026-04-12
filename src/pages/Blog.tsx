@@ -2,6 +2,7 @@ import { Clock, BookOpen, Moon, Heart, Lightbulb, TrendingUp, ArrowRight, ArrowU
 import { blogPosts } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import heroImg from "@/assets/hero-bedroom.jpg";
 import memoryFoamImg from "@/assets/mattress-memory-foam.jpg";
 import orthopedicImg from "@/assets/mattress-orthopedic.jpg";
@@ -31,7 +32,12 @@ const sleepTips = [
 ];
 
 const Blog = () => (
-  <div className="min-h-screen bg-slate-50">
+  <>
+    <SEO 
+      title="Sleep Guide & Mattress Advice" 
+      description="Read our latest articles on improving sleep quality, choosing the right mattress, and comparing back pain solutions."
+    />
+    <div className="min-h-screen bg-slate-50">
     {/* Hero Editorial Header */}
     <section className="relative w-full min-h-[60vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
@@ -41,7 +47,7 @@ const Blog = () => (
 
       <div className="relative z-10 container px-4 pt-32 pb-20 text-center max-w-4xl mx-auto">
         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-white border border-white/20 font-bold text-xs tracking-widest uppercase mb-8 backdrop-blur-sm">
-          <BookOpen className="w-4 h-4" /> Sleepwell Editorial
+          <BookOpen className="w-4 h-4" /> Mustafa's Mattress Editorial
         </span>
         <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tight">
           The Science of <br/> <span className="text-blue-300">Perfect Rest.</span>
@@ -124,7 +130,7 @@ const Blog = () => (
                  {/* Article 2 */}
                  {blogPosts[1] && (
                  <div className="group bg-white rounded-3xl p-8 border border-slate-200/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col relative overflow-hidden h-[400px]">
-                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541123437800-141350c70d4c?auto=format&fit=crop&q=80')] bg-cover opacity-10 group-hover:scale-105 transition-transform duration-700 pointer-events-none grayscale" />
+                    <div className="absolute inset-0 bg-slate-100 opacity-10 group-hover:scale-105 transition-transform duration-700 pointer-events-none" />
                     
                     <div className="flex items-center gap-3 mb-6 relative z-10">
                        <span className="inline-flex items-center gap-1.5 bg-red-50 text-red-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">
@@ -264,6 +270,7 @@ const Blog = () => (
     </section>
 
   </div>
+  </>
 );
 
 export default Blog;
