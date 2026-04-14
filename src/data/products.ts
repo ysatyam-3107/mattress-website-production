@@ -23,6 +23,10 @@ export interface Product {
   bestseller?: boolean;
   features: string[];
   description: string;
+  thickness: string;
+  warranty: string;
+  layers: number;
+  trialPeriod: string;
 }
 
 export const products: Product[] = [
@@ -40,6 +44,10 @@ export const products: Product[] = [
     bestseller: true,
     features: ["Pressure Relief", "Motion Isolation", "Cooling Gel Layer", "CertiPUR-US Certified"],
     description: "Experience cloud-like comfort with our premium memory foam mattress. Engineered with advanced cooling gel technology and body-conforming support.",
+    thickness: "10 Inches",
+    warranty: "10 Years",
+    layers: 4,
+    trialPeriod: "100 Nights",
   },
   {
     id: "2",
@@ -55,6 +63,10 @@ export const products: Product[] = [
     bestseller: true,
     features: ["Spinal Alignment", "High-Density Foam", "Anti-Sag Technology", "Doctor Recommended"],
     description: "Designed for optimal spinal support, this orthopedic mattress is recommended by doctors for back pain relief and healthy sleep posture.",
+    thickness: "8 Inches",
+    warranty: "12 Years",
+    layers: 5,
+    trialPeriod: "100 Nights",
   },
   {
     id: "3",
@@ -69,6 +81,10 @@ export const products: Product[] = [
     firmness: "medium",
     features: ["100% Natural Latex", "Hypoallergenic", "Eco-Friendly", "Breathable"],
     description: "Crafted from 100% natural latex, this mattress offers exceptional breathability and eco-friendly comfort for the conscious sleeper.",
+    thickness: "10 Inches",
+    warranty: "15 Years",
+    layers: 3,
+    trialPeriod: "100 Nights",
   },
   {
     id: "4",
@@ -84,6 +100,10 @@ export const products: Product[] = [
     bestseller: true,
     features: ["Pocketed Springs", "Memory Foam Top", "Edge Support", "Temperature Neutral"],
     description: "The best of both worlds — pocketed spring support with a premium memory foam top for unmatched comfort and durability.",
+    thickness: "12 Inches",
+    warranty: "10 Years",
+    layers: 6,
+    trialPeriod: "100 Nights",
   },
   {
     id: "5",
@@ -98,6 +118,10 @@ export const products: Product[] = [
     firmness: "soft",
     features: ["Extra Plush Top", "Adaptive Foam", "Zero Motion Transfer", "Breathable Cover"],
     description: "Our most luxurious memory foam mattress with an extra plush pillow-top layer for those who love sinking into softness.",
+    thickness: "12 Inches",
+    warranty: "10 Years",
+    layers: 5,
+    trialPeriod: "100 Nights",
   },
   {
     id: "6",
@@ -112,6 +136,10 @@ export const products: Product[] = [
     firmness: "firm",
     features: ["Advanced Lumbar Support", "Reinforced Core", "Pressure Mapping", "10-Year Warranty"],
     description: "Professional-grade orthopedic support with advanced lumbar technology for the most demanding sleepers.",
+    thickness: "10 Inches",
+    warranty: "10 Years",
+    layers: 5,
+    trialPeriod: "100 Nights",
   },
   {
     id: "7",
@@ -127,6 +155,10 @@ export const products: Product[] = [
     bestseller: true,
     features: ["Gel-Infused Foam", "Phase-Change Material", "Airflow Channels", "Cool-Touch Cover"],
     description: "Stay cool all night with our advanced cooling gel mattress featuring phase-change technology that actively regulates your body temperature.",
+    thickness: "10 Inches",
+    warranty: "10 Years",
+    layers: 4,
+    trialPeriod: "100 Nights",
   },
   {
     id: "8",
@@ -141,6 +173,10 @@ export const products: Product[] = [
     firmness: "medium",
     features: ["Organic Cotton Cover", "Dunlop Latex Core", "Zero VOC", "GOLS Certified"],
     description: "Our premium euro-top latex mattress with an organic cotton cover and GOLS-certified Dunlop latex for the ultimate in sustainable luxury.",
+    thickness: "12 Inches",
+    warranty: "15 Years",
+    layers: 4,
+    trialPeriod: "100 Nights",
   },
   {
     id: "9",
@@ -155,6 +191,10 @@ export const products: Product[] = [
     firmness: "medium",
     features: ["Bed-in-a-Box", "Easy Setup", "Compact Delivery", "30-Day Trial"],
     description: "Conveniently delivered in a box, this hybrid mattress expands to full size in hours. Perfect for apartments, guest rooms, and easy moving.",
+    thickness: "8 Inches",
+    warranty: "7 Years",
+    layers: 4,
+    trialPeriod: "30 Nights",
   },
   {
     id: "10",
@@ -169,6 +209,10 @@ export const products: Product[] = [
     firmness: "medium",
     features: ["Child-Safe Materials", "Anti-Bacterial", "Washable Cover", "Growth-Friendly Support"],
     description: "Designed specifically for growing kids with child-safe, anti-bacterial materials and the right amount of support for developing bodies.",
+    thickness: "6 Inches",
+    warranty: "5 Years",
+    layers: 3,
+    trialPeriod: "100 Nights",
   },
   {
     id: "11",
@@ -184,6 +228,10 @@ export const products: Product[] = [
     bestseller: true,
     features: ["Titanium Coil System", "Cashmere Blend Cover", "Zoned Support", "15-Year Warranty"],
     description: "Our flagship hybrid mattress with a titanium coil system and cashmere-blend cover for hotel-grade luxury in your bedroom.",
+    thickness: "14 Inches",
+    warranty: "15 Years",
+    layers: 7,
+    trialPeriod: "100 Nights",
   },
   {
     id: "12",
@@ -198,6 +246,10 @@ export const products: Product[] = [
     firmness: "firm",
     features: ["Coir & Foam Layers", "Budget-Friendly", "Posture Support", "5-Year Warranty"],
     description: "Affordable orthopedic support with natural coir and high-density foam layers. The smart choice for back care on a budget.",
+    thickness: "6 Inches",
+    warranty: "5 Years",
+    layers: 3,
+    trialPeriod: "30 Nights",
   },
 ];
 export const testimonials = [

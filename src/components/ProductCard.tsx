@@ -1,8 +1,9 @@
-import { Star, Heart, ShoppingCart, Eye, Award, Zap } from "lucide-react";
+import { Star, Heart, ShoppingCart, Eye, Award, Zap, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Product } from "@/data/products";
 import { useCart } from "@/contexts/CartContext";
+import { useCompare } from "@/contexts/CompareContext";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
@@ -81,9 +82,11 @@ const ProductQuickView = ({ product, onClose }: { product: Product; onClose: () 
 
 const ProductCard = ({ product }: { product: Product }) => {
   const { addToCart, wishlist, toggleWishlist } = useCart();
+  const { toggleCompare, selectedIds } = useCompare();
   const [showQuickView, setShowQuickView] = useState(false);
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
   const isWished = wishlist.includes(product.id);
+  const isComparing = selectedIds.includes(product.id);
 
   return (
     <>
@@ -100,6 +103,21 @@ const ProductCard = ({ product }: { product: Product }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A8A]/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </Link>
           
+          {/* Compare Checkbox */}
+          <div 
+            className="absolute bottom-3 right-3 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-2.5 py-1.5 rounded-full shadow-sm border border-slate-100 cursor-pointer hover:bg-white transition-colors"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleCompare(product.id);
+            }}
+          >
+            <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${isComparing ? 'bg-[#1E3A8A] border-[#1E3A8A]' : 'border-slate-300'}`}>
+              {isComparing && <Check className="w-3 h-3 text-white" />}
+            </div>
+            <span className="text-[10px] font-bold text-slate-900 uppercase tracking-tighter">Compare</span>
+          </div>
+
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-2">
             {product.bestseller && (

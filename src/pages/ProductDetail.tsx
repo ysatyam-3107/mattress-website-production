@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/ProductCard";
 import { SEO } from "@/components/SEO";
 import { SizeGuideModal } from "@/components/SizeGuideModal";
+import { TrustBadges } from "@/components/TrustBadges";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -194,21 +195,8 @@ const ProductDetail = () => {
                 </Button>
               </div>
 
-              {/* Trust Badges */}
-              <div className="grid grid-cols-3 gap-6 pt-10 mt-10 border-t border-gray-100">
-                {[
-                  { icon: Truck, text: "Free Delivery" },
-                  { icon: RotateCcw, text: "100 Night Trial" },
-                  { icon: Shield, text: "10-Year Warranty" },
-                ].map((item) => (
-                  <div key={item.text} className="text-center group">
-                    <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-[#3B82F6] transition-colors border border-blue-100 group-hover:border-[#3B82F6]">
-                       <item.icon className="h-5 w-5 text-[#3B82F6] group-hover:text-white transition-colors" />
-                    </div>
-                    <p className="text-xs font-bold text-gray-700 uppercase tracking-wider font-montserrat">{item.text}</p>
-                  </div>
-                ))}
-              </div>
+              {/* Enhanced Trust Badges Grid */}
+              <TrustBadges variant="grid" />
             </div>
           </div>
         </div>

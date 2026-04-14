@@ -20,6 +20,7 @@ import CategoryGrid from "@/components/CategoryGrid";
 import FindMattressBanner from "@/components/FindMattressBanner";
 import TopSellers from "@/components/TopSellers";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import { SleepersGallery } from "@/components/SleepersGallery";
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import { SEO } from "@/components/SEO";
 
@@ -136,6 +137,9 @@ const Index = () => {
 
       {/* 8.5 Testimonials */}
       <TestimonialsCarousel />
+
+      {/* 8.6 Sleepers Gallery (Social Proof) */}
+      <SleepersGallery />
 
       {/* 9. SLEEP GUIDE — Magazine-Quality Editorial Section */}
       <section className="py-28 bg-[#F9FAFB] dark:bg-card relative overflow-hidden">

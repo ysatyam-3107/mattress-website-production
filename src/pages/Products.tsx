@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { X, ChevronRight, Bed, Cloud, Stethoscope, Leaf, RefreshCw } from "lucide-react";
 import ProductCard, { ProductSkeleton } from "@/components/ProductCard";
 import { products } from "@/data/products";
@@ -23,6 +23,20 @@ const Products = () => {
   const [firmnessFilter, setFirmnessFilter] = useState<string>("all");
   const [priceMax, setPriceMax] = useState<number>(30000);
   const [sortBy, setSortBy] = useState<string>("popular");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const gridContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = gridContainerRef.current;
+    if (!grid) return;
+
+    const handleScroll = () => {
+      setIsScrolled(grid.scrollTop > 50);
+    };
+
+    grid.addEventListener("scroll", handleScroll);
+    return () => grid.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const filtered = useMemo(() => {
     return products.filter((p) => {
@@ -63,64 +77,66 @@ const Products = () => {
         title="Shop All Mattresses" 
         description="Explore our complete collection of memory foam, orthopedic, and hybrid mattresses. Find your perfect fit based on size and firmness."
       />
-      <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-background border-b border-primary/10 py-8 sticky top-20 z-40">
-        <div className="container">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h1 className="text-4xl font-bold mb-2">Mattresses</h1>
-              <p className="text-muted-foreground">Explore our premium collection</p>
-            </div>
-            <div className="flex items-center gap-4">
-              <select 
-                className="bg-secondary/20 border border-slate-200 dark:border-slate-700 text-foreground text-sm rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-primary/20"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                aria-label="Sort products"
-              >
-                <option value="popular">Popularity</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Horizontal Category Tabs */}
-          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide" role="tablist" aria-label="Filter by mattress type">
-            {mattressTypes.map((type) => {
-              const IconComponent = type.icon;
-              return (
-                <button
-                  key={type.id}
-                  onClick={() => setTypeFilter(type.id)}
-                  role="tab"
-                  aria-selected={typeFilter === type.id}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap flex items-center gap-2 ${typeFilter === type.id
-                      ? "bg-primary text-white shadow-lg"
-                      : "bg-card border border-primary/20 text-foreground hover:border-primary hover:bg-primary/5"
-                    }`}
+      <div className="flex flex-col h-[calc(100vh-80px)] overflow-hidden bg-background">
+        {/* Collapsible Local Header */}
+        <div 
+          className={`bg-white/95 backdrop-blur-md border-b border-primary/5 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden z-40 ${
+            isScrolled ? "max-h-0 opacity-0 transform -translate-y-full" : "max-h-[300px] opacity-100 py-8"
+          }`}
+        >
+          <div className="container">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h1 className="text-4xl font-black text-[#1E3A8A] mb-2 font-playfair tracking-tight">Mattresses</h1>
+                <p className="text-muted-foreground text-sm font-medium">Explore our premium collection</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <select 
+                  className="bg-secondary/20 border border-slate-200 dark:border-slate-700 text-foreground text-sm rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-primary/20"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  aria-label="Sort products"
                 >
-                  <IconComponent className="w-4 h-4" /> {type.label}
-                </button>
-              );
-            })}
+                  <option value="popular">Popularity</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide" role="tablist" aria-label="Filter by mattress type">
+              {mattressTypes.map((type) => {
+                const IconComponent = type.icon;
+                return (
+                  <button
+                    key={type.id}
+                    onClick={() => setTypeFilter(type.id)}
+                    role="tab"
+                    aria-selected={typeFilter === type.id}
+                    className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap flex items-center gap-2 ${typeFilter === type.id
+                        ? "bg-[#1E3A8A] text-white shadow-lg"
+                        : "bg-card border border-primary/20 text-foreground hover:border-primary hover:bg-primary/5"
+                      }`}
+                  >
+                    <IconComponent className="w-4 h-4" /> {type.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="container py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Left Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-card p-6 rounded-lg border border-primary/10 sticky top-32">
-              <h3 className="text-lg font-bold mb-6 text-foreground border-b border-primary/10 pb-4">Filters</h3>
+        {/* Independent Scroll Panes */}
+        <div className="flex flex-1 overflow-hidden container py-0 gap-0">
+          {/* Left Sidebar (Filters) */}
+          <div className="hidden lg:block w-72 h-full overflow-y-auto border-r border-primary/5 py-8 pr-8 scrollbar-hide">
+            <div className="bg-card p-6 rounded-2xl border border-primary/10 shadow-sm">
+              <h3 className="text-lg font-bold mb-6 text-[#1E3A8A] border-b border-primary/10 pb-4 font-playfair">Filters</h3>
 
               {/* Price Filter */}
-              <div className="mb-8">
+              <div className="mb-8 font-montserrat">
                 <div className="flex justify-between items-center mb-4">
-                  <h4 className="font-bold text-sm text-foreground">Max Price</h4>
+                  <h4 className="font-bold text-xs uppercase tracking-widest text-slate-400">Max Price</h4>
                   <span className="text-primary font-bold text-sm">₹{priceMax.toLocaleString()}</span>
                 </div>
                 <input 
@@ -130,17 +146,16 @@ const Products = () => {
                   step="1000"
                   value={priceMax}
                   onChange={(e) => setPriceMax(Number(e.target.value))}
-                  className="w-full accent-primary h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer"
-                  aria-label="Maximum price filter"
+                  className="w-full accent-primary h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer"
                 />
               </div>
 
-              <div className="border-t border-primary/10 my-4"></div>
+              <div className="border-t border-primary/10 my-6"></div>
 
               {/* Size Filter */}
-              <div className="mb-6">
-                <h4 className="font-semibold text-sm mb-3 text-foreground">Size</h4>
-                <div className="space-y-2">
+              <div className="mb-6 font-montserrat">
+                <h4 className="font-bold text-xs uppercase tracking-widest text-slate-400 mb-4">Size</h4>
+                <div className="space-y-3">
                   {sizes.map((s) => (
                     <label key={s} className="flex items-center cursor-pointer group">
                       <input
@@ -149,18 +164,18 @@ const Products = () => {
                         onChange={() => setSizeFilter(sizeFilter === s ? "All" : s)}
                         className="w-4 h-4 rounded border-primary/30 text-primary cursor-pointer"
                       />
-                      <span className="ml-3 text-sm text-foreground/70 group-hover:text-primary transition-colors">{s}</span>
+                      <span className="ml-3 text-sm font-bold text-slate-600 group-hover:text-primary transition-colors">{s}</span>
                     </label>
                   ))}
                 </div>
               </div>
 
-              <div className="border-t border-primary/10 my-4"></div>
+              <div className="border-t border-primary/10 my-6"></div>
 
               {/* Firmness Filter */}
-              <div className="mb-6">
-                <h4 className="font-semibold text-sm mb-3 text-foreground">Firmness</h4>
-                <div className="space-y-2">
+              <div className="mb-6 font-montserrat">
+                <h4 className="font-bold text-xs uppercase tracking-widest text-slate-400 mb-4">Firmness</h4>
+                <div className="space-y-3">
                   {["all", "soft", "medium", "firm"].map((f) => (
                     <label key={f} className="flex items-center cursor-pointer group">
                       <input
@@ -169,7 +184,7 @@ const Products = () => {
                         onChange={() => setFirmnessFilter(firmnessFilter === f ? "all" : f)}
                         className="w-4 h-4 rounded border-primary/30 text-primary cursor-pointer"
                       />
-                      <span className="ml-3 text-sm text-foreground/70 group-hover:text-primary transition-colors capitalize">
+                      <span className="ml-3 text-sm font-bold text-slate-600 group-hover:text-primary transition-colors capitalize">
                         {f === "all" ? "All Firmness" : f}
                       </span>
                     </label>
@@ -177,24 +192,24 @@ const Products = () => {
                 </div>
               </div>
 
-              <div className="border-t border-primary/10 my-4"></div>
-
-              {/* Clear Filters */}
               {activeFilters.length > 0 && (
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={clearAllFilters}
-                  className="w-full text-primary hover:bg-primary/5 mt-4"
+                  className="w-full text-primary hover:bg-primary/5 mt-4 font-bold text-xs uppercase tracking-widest"
                 >
-                  Clear All Filters
+                  Clear All
                 </Button>
               )}
             </div>
           </div>
 
-          {/* Right Content Area */}
-          <div className="lg:col-span-3">
+          {/* Right Product Grid */}
+          <div 
+            ref={gridContainerRef}
+            className="flex-1 h-full overflow-y-auto py-8 lg:pl-8 scroll-smooth"
+          >
             {/* Active Filters */}
             {activeFilters.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6 animate-fade-in">
@@ -202,7 +217,7 @@ const Products = () => {
                   <Badge
                     key={index}
                     variant="secondary"
-                    className="bg-primary/10 text-primary px-3 py-1 flex items-center gap-2 animate-fade-in"
+                    className="bg-primary/10 text-primary px-3 py-1 flex items-center gap-2"
                   >
                     {filter.label}
                     <X
@@ -215,7 +230,7 @@ const Products = () => {
             )}
 
             {/* Products Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
               {filtered.length > 0
                 ? filtered.map((p) => <ProductCard key={p.id} product={p} />)
                 : (
@@ -231,14 +246,13 @@ const Products = () => {
 
             {/* Results Count */}
             {filtered.length > 0 && (
-              <div className="mt-8 text-center text-sm text-muted-foreground">
-                Showing {filtered.length} mattress{filtered.length !== 1 ? "es" : ""} • Sorted by {sortBy === "popular" ? "popularity" : sortBy === "price-low" ? "price (low to high)" : "price (high to low)"}
+              <div className="mt-12 mb-12 text-center text-xs font-bold uppercase tracking-widest text-[#1E3A8A]/40">
+                End of Results • {filtered.length} Mattresses Found
               </div>
             )}
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

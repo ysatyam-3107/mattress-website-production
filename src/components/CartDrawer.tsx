@@ -2,6 +2,7 @@ import { X, Plus, Minus, ShoppingBag, ShieldCheck } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { TrustBadges } from "@/components/TrustBadges";
 
 const CartDrawer = () => {
   const { items, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, totalPrice } = useCart();
@@ -26,10 +27,10 @@ const CartDrawer = () => {
           </div>
         ) : (
           <>
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {items.map((item) => (
-                <div key={item.product.id} className="flex gap-4 p-4 bg-muted/50 rounded-lg">
-                  <img src={item.product.image} alt={item.product.name} className="w-20 h-20 object-cover rounded-md" loading="lazy" />
+                <div key={item.product.id} className="flex gap-3 p-3 bg-muted/30 rounded-lg">
+                  <img src={item.product.image} alt={item.product.name} className="w-16 h-16 object-cover rounded-md" loading="lazy" />
                   <div className="flex-1">
                     <h3 className="text-sm font-medium">{item.product.name}</h3>
                     <p className="text-xs text-muted-foreground">Size: {item.size}</p>
@@ -50,23 +51,28 @@ const CartDrawer = () => {
                 </div>
               ))}
             </div>
-            <div className="p-6 border-t border-border space-y-4">
-              <div className="flex justify-between text-sm">
+            <div className="p-4 border-t border-border space-y-3">
+              <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Subtotal</span>
-                <span className="font-semibold">₹{totalPrice.toLocaleString()}</span>
+                <span className="font-semibold text-sm">₹{totalPrice.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-xs mt-1">
                 <span className="text-muted-foreground">Delivery</span>
-                <span className="font-medium text-success">FREE</span>
+                <span className="font-medium text-success uppercase text-[10px] tracking-wider">Free</span>
               </div>
-              <Link to="/checkout" onClick={() => setIsCartOpen(false)}>
-                <Button className="w-full bg-[#1E3A8A] hover:bg-blue-900 border-[#1E3A8A] border h-12 text-md font-montserrat font-bold shadow-lg shadow-blue-900/20 btn-press">
-                  Checkout Form — ₹{totalPrice.toLocaleString()}
+              <Link to="/checkout" onClick={() => setIsCartOpen(false)} className="block mt-4">
+                <Button className="w-full bg-[#1E3A8A] hover:bg-blue-900 border-[#1E3A8A] border h-10 text-sm font-montserrat font-bold shadow-md btn-press">
+                  Checkout — ₹{totalPrice.toLocaleString()}
                 </Button>
               </Link>
-              <div className="flex items-center justify-center gap-2 pt-2 text-[#3B82F6]">
-                <ShieldCheck className="w-4 h-4" />
-                <span className="text-xs font-montserrat font-bold uppercase tracking-wider">Secure Checkout Pipeline</span>
+              <div className="flex items-center justify-center gap-1.5 pt-1 text-[#3B82F6]">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span className="text-[10px] font-montserrat font-bold uppercase tracking-tight">Secure Payment</span>
+              </div>
+              
+              {/* Compact Trust Badges */}
+              <div className="pt-3 border-t border-gray-100 mt-4">
+                <TrustBadges variant="compact" />
               </div>
             </div>
           </>

@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider, useCart } from "@/contexts/CartContext";
+import { CompareProvider } from "@/contexts/CompareContext";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -12,6 +13,7 @@ import PromoBanner from "@/components/PromoBanner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
+import { CompareBar } from "@/components/CompareBar";
 import BackToTop from "@/components/BackToTop";
 import { lazy, Suspense } from "react";
 
@@ -81,7 +83,8 @@ const App = () => (
       <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <CartProvider>
-          <Toaster />
+          <CompareProvider>
+            <Toaster />
           <Sonner />
           <BrowserRouter>
             <PromoBanner />
@@ -103,8 +106,10 @@ const App = () => (
               </Suspense>
             </main>
             <Footer />
+            <CompareBar />
             <BackToTop />
           </BrowserRouter>
+          </CompareProvider>
         </CartProvider>
       </TooltipProvider>
     </QueryClientProvider>
