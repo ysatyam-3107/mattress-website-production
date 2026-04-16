@@ -82,7 +82,7 @@ const HeroCarousel = () => {
                   i === selectedIndex ? "scale-110" : "scale-100"
                 }`}
                 loading={i === 0 ? "eager" : "lazy"}
-                fetchPriority={i === 0 ? "high" : undefined}
+                fetchpriority={i === 0 ? "high" : undefined}
               />
               {/* Deep blue gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#0f1d47]/90 via-[#1E3A8A]/60 to-transparent" />

@@ -8,6 +8,9 @@ import memoryFoamImg from "@/assets/mattress-memory-foam.jpg";
 import orthopedicImg from "@/assets/mattress-orthopedic.jpg";
 import latexImg from "@/assets/mattress-latex.jpg";
 
+const toSlug = (title: string) =>
+  title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 const sleepTips = [
   {
     icon: Moon,
@@ -62,7 +65,8 @@ const Blog = () => (
     <section className="py-20 -mt-16 relative z-20">
       <div className="container">
         {blogPosts[0] && (
-          <div className="bg-white rounded-[32px] overflow-hidden shadow-2xl border border-slate-100 flex flex-col lg:flex-row max-w-6xl mx-auto">
+          <Link to={`/blog/${toSlug(blogPosts[0].title)}`} className="block">
+          <div className="bg-white rounded-[32px] overflow-hidden shadow-2xl border border-slate-100 flex flex-col lg:flex-row max-w-6xl mx-auto hover:shadow-3xl transition-shadow duration-300">
             <div className="lg:w-1/2 relative min-h-[400px]">
                <img src={memoryFoamImg} alt="Featured" className="absolute inset-0 w-full h-full object-cover" />
                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent lg:hidden" />
@@ -110,6 +114,7 @@ const Blog = () => (
                </div>
             </div>
           </div>
+          </Link>
         )}
       </div>
     </section>
@@ -129,7 +134,8 @@ const Blog = () => (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  {/* Article 2 */}
                  {blogPosts[1] && (
-                 <div className="group bg-white rounded-3xl p-8 border border-slate-200/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col relative overflow-hidden h-[400px]">
+                 <Link to={`/blog/${toSlug(blogPosts[1].title)}`} className="block h-[400px]">
+                 <div className="group bg-white rounded-3xl p-8 border border-slate-200/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col relative overflow-hidden h-full">
                     <div className="absolute inset-0 bg-slate-100 opacity-10 group-hover:scale-105 transition-transform duration-700 pointer-events-none" />
                     
                     <div className="flex items-center gap-3 mb-6 relative z-10">
@@ -153,11 +159,13 @@ const Blog = () => (
                        <span className="text-slate-400 text-xs font-medium">{blogPosts[1].readTime}</span>
                     </div>
                  </div>
+                 </Link>
                  )}
 
                  {/* Article 3 */}
                  {blogPosts[2] && (
-                 <div className="group bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-[400px]">
+                 <Link to={`/blog/${toSlug(blogPosts[2].title)}`} className="block h-[400px]">
+                 <div className="group bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
                     <div className="flex items-center gap-3 mb-6">
                        <span className="inline-flex items-center gap-1.5 bg-white/10 text-blue-200 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">
                           <Moon className="w-3 h-3" /> {blogPosts[2].category}
@@ -181,11 +189,13 @@ const Blog = () => (
                        </div>
                     </div>
                  </div>
+                 </Link>
                  )}
 
                  {/* Article 4 (Spans full width) */}
                  {blogPosts[3] && (
-                 <div className="md:col-span-2 group bg-gradient-to-br from-white to-slate-50 rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row gap-8 items-center overflow-hidden relative">
+                 <Link to={`/blog/${toSlug(blogPosts[3].title)}`} className="block md:col-span-2">
+                 <div className="group bg-gradient-to-br from-white to-slate-50 rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row gap-8 items-center overflow-hidden relative">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-bl-full pointer-events-none" />
                     
                     <div className="w-20 h-20 rounded-2xl bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200 shadow-inner">
@@ -206,6 +216,7 @@ const Blog = () => (
                        </p>
                     </div>
                  </div>
+                 </Link>
                  )}
               </div>
            </div>

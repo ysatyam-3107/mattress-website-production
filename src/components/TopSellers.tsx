@@ -1,17 +1,23 @@
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Star, Heart, Award, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
-import { products } from "@/data/products";
-import { useCart } from "@/contexts/CartContext";
+import { useQuery } from "@tanstack/react-query";
+import { fetchShopifyProducts } from "@/api/products";
+import { useCartStore } from "@/store/cartStore";
 import { Button } from "@/components/ui/button";
 
 const TopSellers = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const { addToCart, wishlist, toggleWishlist } = useCart();
+  const { addToCart, wishlist, toggleWishlist } = useCartStore();
 
-  const bestsellers = products.filter((p) => p.bestseller);
+  const { data: storeProducts = [] } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchShopifyProducts,
+  });
+
+  const bestsellers = storeProducts.filter((p) => p.bestseller);
 
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -77,7 +83,7 @@ const TopSellers = () => {
                 >
                   {/* Image */}
                   <div className="relative aspect-[4/3] overflow-hidden bg-gray-50 dark:bg-muted/30">
-                    <Link to={`/product/${product.id}`}>
+                    <Link to={`/product/${product.slug}`}>
                       <img
                         src={product.image}
                         alt={product.name}
@@ -103,7 +109,7 @@ const TopSellers = () => {
 
                   {/* Content */}
                   <div className="p-4">
-                    <Link to={`/product/${product.id}`}>
+                    <Link to={`/product/${product.slug}`}>
                       <h3 className="font-bold text-[#111827] dark:text-gray-100 text-sm mb-2 line-clamp-1 group-hover:text-[#3B82F6] transition-colors duration-300 font-playfair">
                         {product.name}
                       </h3>

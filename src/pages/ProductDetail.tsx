@@ -1,8 +1,9 @@
 import { useParams, Link } from "react-router-dom";
 import { Star, ShoppingCart, Shield, Truck, RotateCcw, Check, Award, ChevronRight, ChevronLeft } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { products } from "@/data/products";
-import { useCart } from "@/contexts/CartContext";
+import { useQuery } from "@tanstack/react-query";
+import { fetchShopifyProducts } from "@/api/products";
+import { useCartStore } from "@/store/cartStore";
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/ProductCard";
 import { SEO } from "@/components/SEO";
@@ -10,9 +11,13 @@ import { SizeGuideModal } from "@/components/SizeGuideModal";
 import { TrustBadges } from "@/components/TrustBadges";
 
 const ProductDetail = () => {
-  const { id } = useParams();
-  const product = products.find((p) => p.id === id);
-  const { addToCart } = useCart();
+  const { slug } = useParams();
+  const { data: storeProducts = [], isLoading } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchShopifyProducts,
+  });
+  const product = storeProducts.find((p) => p.slug === slug);
+  const { addToCart } = useCartStore();
   const [selectedSize, setSelectedSize] = useState("");
   const [activeImage, setActiveImage] = useState(0);
   const [isStickyCTAVisible, setIsStickyCTAVisible] = useState(false);
@@ -33,6 +38,15 @@ const ProductDetail = () => {
     return () => observer.disconnect();
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="container py-20 text-center animate-pulse">
+        <div className="w-64 h-8 bg-gray-200 rounded mx-auto mb-8"></div>
+        <div className="w-1/2 aspect-video bg-gray-200 mx-auto rounded-3xl"></div>
+      </div>
+    )
+  }
+
   if (!product) {
     return (
       <div className="container py-20 text-center">
@@ -43,7 +57,7 @@ const ProductDetail = () => {
   }
 
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
-  const related = products.filter((p) => p.id !== product.id && p.type === product.type).slice(0, 3);
+  const related = storeProducts.filter((p) => p.id !== product.id && p.type === product.type).slice(0, 3);
   const size = selectedSize || product.sizes[0];
 
   // Mock product gallery images
@@ -57,6 +71,33 @@ const ProductDetail = () => {
         image={product.image}
         type="product"
       />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org/",
+          "@type": "Product",
+          "name": product.name,
+          "image": [product.image],
+          "description": product.description,
+          "sku": product.id,
+          "brand": {
+            "@type": "Brand",
+            "name": "Mustafa's Mattress"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": `https://mustafasmattress.in/product/${product.slug}`,
+            "priceCurrency": "INR",
+            "price": product.price,
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": product.rating,
+            "reviewCount": product.reviews
+          }
+        })}
+      </script>
       
       {/* Sticky Mobile Add to Cart */}
       <div className={`fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-50 lg:hidden transform transition-transform duration-300 ${isStickyCTAVisible ? 'translate-y-0' : 'translate-y-full'}`}>

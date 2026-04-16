@@ -139,7 +139,7 @@ const SmartMattressFinder = () => {
                 <span className="text-2xl font-black text-foreground">₹{recommendation.price.toLocaleString()}</span>
                 <span className="text-sm text-muted-foreground line-through">₹{recommendation.originalPrice.toLocaleString()}</span>
               </div>
-              <Link to={`/product/${recommendation.id}`}>
+              <Link to={`/product/${recommendation.slug}`}>
                 <Button className="w-full bg-accent hover:bg-yellow-600 text-white font-bold h-12 text-lg">
                   View Mattress <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>

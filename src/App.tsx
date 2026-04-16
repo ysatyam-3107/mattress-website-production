@@ -1,11 +1,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { CartProvider, useCart } from "@/contexts/CartContext";
-import { CompareProvider } from "@/contexts/CompareContext";
+import { useCartStore, useCartTotalItems } from "@/store/cartStore";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -15,16 +14,19 @@ import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import { CompareBar } from "@/components/CompareBar";
 import BackToTop from "@/components/BackToTop";
-import { lazy, Suspense } from "react";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { lazy, Suspense, useEffect } from "react";
 
 const Index = lazy(() => import("./pages/Index"));
 const Products = lazy(() => import("./pages/Products"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 const About = lazy(() => import("./pages/About"));
 const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Checkout = lazy(() => import("./pages/Checkout"));
+const Wishlist = lazy(() => import("./pages/Wishlist"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,9 +37,19 @@ const queryClient = new QueryClient({
   },
 });
 
+// Fix #3: Scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 // Floating Action Button Component
 const FloatingCartButton = () => {
-  const { totalItems, setIsCartOpen } = useCart();
+  const totalItems = useCartTotalItems();
+  const setIsCartOpen = useCartStore((state) => state.setIsCartOpen);
 
   if (totalItems === 0) return null;
 
@@ -82,11 +94,11 @@ const App = () => (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <CartProvider>
-          <CompareProvider>
+
             <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <PromoBanner />
             <Navbar />
             <CartDrawer />
@@ -96,11 +108,13 @@ const App = () => (
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/products" element={<Products />} />
-                  <Route path="/product/:id" element={<ProductDetail />} />
+                  <Route path="/product/:slug" element={<ProductDetail />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:slug" element={<BlogPost />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/wishlist" element={<Wishlist />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
@@ -108,9 +122,9 @@ const App = () => (
             <Footer />
             <CompareBar />
             <BackToTop />
+            <WhatsAppButton />
           </BrowserRouter>
-          </CompareProvider>
-        </CartProvider>
+
       </TooltipProvider>
     </QueryClientProvider>
     </HelmetProvider>

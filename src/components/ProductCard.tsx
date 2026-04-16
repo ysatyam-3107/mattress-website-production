@@ -2,8 +2,8 @@ import { Star, Heart, ShoppingCart, Eye, Award, Zap, Check } from "lucide-react"
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Product } from "@/data/products";
-import { useCart } from "@/contexts/CartContext";
-import { useCompare } from "@/contexts/CompareContext";
+import { useCartStore } from "@/store/cartStore";
+import { useCompareStore } from "@/store/compareStore";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
@@ -23,7 +23,7 @@ export const ProductSkeleton = () => (
 
 // Quick View Modal Component
 const ProductQuickView = ({ product, onClose }: { product: Product; onClose: () => void }) => {
-  const { addToCart } = useCart();
+  const { addToCart } = useCartStore();
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
 
   return (
@@ -69,7 +69,7 @@ const ProductQuickView = ({ product, onClose }: { product: Product; onClose: () 
               <Button onClick={() => addToCart(product)} className="flex-1 bg-[#3B82F6] hover:bg-blue-500 text-white btn-press font-montserrat">
                 <ShoppingCart className="h-4 w-4 mr-2" /> Add to Cart
               </Button>
-              <Link to={`/product/${product.id}`} className="flex-1">
+              <Link to={`/product/${product.slug}`} className="flex-1">
                 <Button variant="outline" className="w-full border-[#1E3A8A] text-[#1E3A8A] hover:bg-[#1E3A8A] hover:text-white btn-press font-montserrat">View Details</Button>
               </Link>
             </div>
@@ -81,8 +81,8 @@ const ProductQuickView = ({ product, onClose }: { product: Product; onClose: () 
 };
 
 const ProductCard = ({ product }: { product: Product }) => {
-  const { addToCart, wishlist, toggleWishlist } = useCart();
-  const { toggleCompare, selectedIds } = useCompare();
+  const { addToCart, wishlist, toggleWishlist } = useCartStore();
+  const { toggleCompare, selectedIds } = useCompareStore();
   const [showQuickView, setShowQuickView] = useState(false);
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
   const isWished = wishlist.includes(product.id);
@@ -92,7 +92,7 @@ const ProductCard = ({ product }: { product: Product }) => {
     <>
       <div className="group bg-white dark:bg-card rounded-2xl border border-gray-100 dark:border-border/50 overflow-hidden shadow-sm hover:shadow-[0_20px_60px_-12px_rgba(30,58,138,0.15)] transition-all duration-500 ease-out flex flex-col relative w-full translate-y-0 hover:-translate-y-2">
         <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden bg-gray-50 dark:bg-muted/30">
-          <Link to={`/product/${product.id}`} className="block w-full h-full">
+          <Link to={`/product/${product.slug}`} className="block w-full h-full">
             <img
               src={product.image}
               alt={product.name}
@@ -149,7 +149,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         
         {/* Card Body */}
         <div className="p-5 flex flex-col flex-1">
-          <Link to={`/product/${product.id}`} className="mb-2">
+          <Link to={`/product/${product.slug}`} className="mb-2">
             <h3 className="font-bold text-gray-900 dark:text-gray-100 text-lg group-hover:text-[#3B82F6] transition-colors duration-300 line-clamp-1 font-playfair">{product.name}</h3>
           </Link>
 

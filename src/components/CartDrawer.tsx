@@ -1,11 +1,12 @@
 import { X, Plus, Minus, ShoppingBag, ShieldCheck } from "lucide-react";
-import { useCart } from "@/contexts/CartContext";
+import { useCartStore, useCartTotalPrice } from "@/store/cartStore";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { TrustBadges } from "@/components/TrustBadges";
 
 const CartDrawer = () => {
-  const { items, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, totalPrice } = useCart();
+  const { items, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity } = useCartStore();
+  const totalPrice = useCartTotalPrice();
 
   if (!isCartOpen) return null;
 
@@ -29,21 +30,21 @@ const CartDrawer = () => {
           <>
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {items.map((item) => (
-                <div key={item.product.id} className="flex gap-3 p-3 bg-muted/30 rounded-lg">
+                <div key={`${item.product.id}-${item.size}`} className="flex gap-3 p-3 bg-muted/30 rounded-lg">
                   <img src={item.product.image} alt={item.product.name} className="w-16 h-16 object-cover rounded-md" loading="lazy" />
                   <div className="flex-1">
                     <h3 className="text-sm font-medium">{item.product.name}</h3>
                     <p className="text-xs text-muted-foreground">Size: {item.size}</p>
                     <p className="text-sm font-semibold text-primary mt-1">₹{item.product.price.toLocaleString()}</p>
                     <div className="flex items-center gap-2 mt-2">
-                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.product.id, item.quantity - 1)}>
+                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}>
                         <Minus className="h-3 w-3" />
                       </Button>
                       <span className="text-sm w-6 text-center">{item.quantity}</span>
-                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.product.id, item.quantity + 1)}>
+                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}>
                         <Plus className="h-3 w-3" />
                       </Button>
-                      <Button variant="ghost" size="sm" className="ml-auto text-xs text-destructive" onClick={() => removeFromCart(item.product.id)}>
+                      <Button variant="ghost" size="sm" className="ml-auto text-xs text-destructive" onClick={() => removeFromCart(item.product.id, item.size)}>
                         Remove
                       </Button>
                     </div>

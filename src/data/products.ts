@@ -11,6 +11,7 @@ import eurotopImg from "@/assets/mattress-eurotop.jpg";
 
 export interface Product {
   id: string;
+  slug: string;
   name: string;
   type: "memory-foam" | "orthopedic" | "latex" | "hybrid";
   price: number;
@@ -32,6 +33,7 @@ export interface Product {
 export const products: Product[] = [
   {
     id: "1",
+    slug: "cloudrest-memory-foam",
     name: "CloudRest Memory Foam",
     type: "memory-foam",
     price: 8999,
@@ -51,6 +53,7 @@ export const products: Product[] = [
   },
   {
     id: "2",
+    slug: "spineguard-orthopedic",
     name: "SpineGuard Orthopedic",
     type: "orthopedic",
     price: 10999,
@@ -70,6 +73,7 @@ export const products: Product[] = [
   },
   {
     id: "3",
+    slug: "naturesleep-latex",
     name: "NatureSleep Latex",
     type: "latex",
     price: 15999,
@@ -88,6 +92,7 @@ export const products: Product[] = [
   },
   {
     id: "4",
+    slug: "dreamfusion-hybrid",
     name: "DreamFusion Hybrid",
     type: "hybrid",
     price: 12999,
@@ -107,6 +112,7 @@ export const products: Product[] = [
   },
   {
     id: "5",
+    slug: "cloudrest-plus",
     name: "CloudRest Plus",
     type: "memory-foam",
     price: 11999,
@@ -125,6 +131,7 @@ export const products: Product[] = [
   },
   {
     id: "6",
+    slug: "spineguard-pro",
     name: "SpineGuard Pro",
     type: "orthopedic",
     price: 13999,
@@ -143,6 +150,7 @@ export const products: Product[] = [
   },
   {
     id: "7",
+    slug: "arcticbreeze-cooling-gel",
     name: "ArcticBreeze Cooling Gel",
     type: "memory-foam",
     price: 13499,
@@ -162,6 +170,7 @@ export const products: Product[] = [
   },
   {
     id: "8",
+    slug: "ecobliss-natural-latex",
     name: "EcoBliss Natural Latex",
     type: "latex",
     price: 18999,
@@ -180,6 +189,7 @@ export const products: Product[] = [
   },
   {
     id: "9",
+    slug: "dreambox-compact",
     name: "DreamBox Compact",
     type: "hybrid",
     price: 6999,
@@ -198,6 +208,7 @@ export const products: Product[] = [
   },
   {
     id: "10",
+    slug: "littledreamer-kids",
     name: "LittleDreamer Kids",
     type: "memory-foam",
     price: 4999,
@@ -216,6 +227,7 @@ export const products: Product[] = [
   },
   {
     id: "11",
+    slug: "hybridelite-luxury",
     name: "HybridElite Luxury",
     type: "hybrid",
     price: 17999,
@@ -235,6 +247,7 @@ export const products: Product[] = [
   },
   {
     id: "12",
+    slug: "backcare-essential",
     name: "BackCare Essential",
     type: "orthopedic",
     price: 7999,
@@ -381,45 +394,45 @@ export const megaMenuCategories: MegaMenuColumn[] = [
   {
     title: "Ortho Memory Foam Series",
     links: [
-      { label: "Essential", href: "/products" },
-      { label: "Classic", href: "/products" },
-      { label: "Infiniti", href: "/products" },
-      { label: "Ultra", href: "/products" },
-      { label: "Spring", href: "/products" },
+      { label: "Essential", href: "/products?type=memory-foam" },
+      { label: "Classic", href: "/products?type=memory-foam" },
+      { label: "Infiniti", href: "/products?type=memory-foam" },
+      { label: "Ultra", href: "/products?type=memory-foam" },
+      { label: "Spring", href: "/products?type=hybrid" },
     ]
   },
   {
     title: "Dual Comfort Series",
     links: [
-      { label: "Classic", href: "/products" },
-      { label: "Plus", href: "/products" }
+      { label: "Classic", href: "/products?type=hybrid" },
+      { label: "Plus", href: "/products?type=hybrid" }
     ]
   },
   {
     title: "EcoLatex Series",
     links: [
-      { label: "Essential", href: "/products" },
-      { label: "Classic", href: "/products" },
-      { label: "Infiniti", href: "/products" },
-      { label: "Ultra", href: "/products" },
-      { label: "Spring", href: "/products" },
+      { label: "Essential", href: "/products?type=latex" },
+      { label: "Classic", href: "/products?type=latex" },
+      { label: "Infiniti", href: "/products?type=latex" },
+      { label: "Ultra", href: "/products?type=latex" },
+      { label: "Spring", href: "/products?type=latex" },
     ]
   },
   {
     title: "XpertGrid Series",
     links: [
-      { label: "Essential", href: "/products" },
-      { label: "Classic", href: "/products" },
-      { label: "Infiniti", href: "/products" },
-      { label: "Ultra", href: "/products" },
-      { label: "Spring", href: "/products" },
+      { label: "Essential", href: "/products?type=orthopedic" },
+      { label: "Classic", href: "/products?type=orthopedic" },
+      { label: "Infiniti", href: "/products?type=orthopedic" },
+      { label: "Ultra", href: "/products?type=orthopedic" },
+      { label: "Spring", href: "/products?type=orthopedic" },
     ]
   },
   {
     title: "Utility Mattresses",
     links: [
-      { label: "DreamPod Mattress", href: "/product/9" }, 
-      { label: "Baby Mattress", href: "/product/10" },
+      { label: "DreamPod Mattress", href: "/product/dreambox-compact" },
+      { label: "Baby Mattress", href: "/product/littledreamer-kids" },
       { label: "Rollup Mattress", href: "/products" },
       { label: "Flexagon TriFold Mattress", href: "/products" },
     ]
@@ -427,24 +440,24 @@ export const megaMenuCategories: MegaMenuColumn[] = [
   {
     title: "Mattress By Size",
     links: [
-      { label: "King Size", href: "/products" },
-      { label: "Queen Size", href: "/products" },
-      { label: "Single Bed", href: "/products" },
-      { label: "Diwan Size", href: "/products" },
-      { label: "Kids Mattress", href: "/product/10" },
+      { label: "King Size", href: "/products?size=King" },
+      { label: "Queen Size", href: "/products?size=Queen" },
+      { label: "Single Bed", href: "/products?size=Single" },
+      { label: "Diwan Size", href: "/products?size=Double" },
+      { label: "Kids Mattress", href: "/product/littledreamer-kids" },
     ]
   },
   {
     title: "Mustafa's PureSleep Mattress",
     links: [
-      { label: "PostureFlex PureSleep", href: "/products" },
-      { label: "DualSwitch PureSleep", href: "/products" },
-      { label: "Natura PureSleep Latex", href: "/products" },
-      { label: "Ortho Plus ActiveCool", href: "/products" },
-      { label: "Spinecore Firm Plus", href: "/products" },
-      { label: "Optima Plus Pocket Spring", href: "/products" },
-      { label: "IcyBreeze HR Foam", href: "/product/7" },
-      { label: "BlissMax Mattress", href: "/product/5" },
+      { label: "PostureFlex PureSleep", href: "/products?type=orthopedic" },
+      { label: "DualSwitch PureSleep", href: "/products?type=hybrid" },
+      { label: "Natura PureSleep Latex", href: "/products?type=latex" },
+      { label: "Ortho Plus ActiveCool", href: "/products?type=orthopedic" },
+      { label: "Spinecore Firm Plus", href: "/products?type=orthopedic&firmness=firm" },
+      { label: "Optima Plus Pocket Spring", href: "/products?type=hybrid" },
+      { label: "IcyBreeze HR Foam", href: "/product/arcticbreeze-cooling-gel" },
+      { label: "BlissMax Mattress", href: "/product/cloudrest-plus" },
     ]
   }
 ];

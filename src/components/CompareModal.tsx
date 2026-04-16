@@ -1,12 +1,13 @@
 import { X, Check, ShoppingCart, Info } from "lucide-react";
-import { useCompare } from "@/contexts/CompareContext";
-import { useCart } from "@/contexts/CartContext";
+import { useCompareStore, useCompareProducts } from "@/store/compareStore";
+import { useCartStore } from "@/store/cartStore";
 import { Button } from "./ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 export const CompareModal = () => {
-  const { selectedProducts, isCompareOpen, setIsCompareOpen } = useCompare();
-  const { addToCart } = useCart();
+  const { isCompareOpen, setIsCompareOpen } = useCompareStore();
+  const selectedProducts = useCompareProducts();
+  const { addToCart } = useCartStore();
 
   const specs = [
     { label: "Price", key: "price", format: (v: number) => `₹${v.toLocaleString()}` },

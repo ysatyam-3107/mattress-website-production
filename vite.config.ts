@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import { VitePWA } from 'vite-plugin-pwa';
 import path from "path";
 
 // https://vitejs.dev/config/
@@ -11,7 +12,28 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [react()].filter(Boolean),
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      injectRegister: 'auto',
+      manifest: {
+        name: "Mustafa's Mattress",
+        short_name: "Mustafa's",
+        description: "India's most trusted mattresses.",
+        theme_color: "#4F8EF7",
+        background_color: "#ffffff",
+        icons: [
+          {
+            src: "/favicon.svg",
+            sizes: "192x192 512x512",
+            type: "image/svg+xml",
+            purpose: "any maskable"
+          }
+        ]
+      }
+    })
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -29,5 +51,8 @@ export default defineConfig(({ mode }) => ({
         },
       },
     },
+  },
+  esbuild: {
+    drop: mode === "production" ? ["console", "debugger"] : [],
   },
 }));

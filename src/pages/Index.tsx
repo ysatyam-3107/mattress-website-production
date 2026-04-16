@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import {
   Shield, Truck, Clock, RefreshCw, Star, Check, ArrowRight, ArrowUpRight,
@@ -7,20 +8,23 @@ import {
   BarChart3 as BarChart3Icon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SmartMattressFinder from "@/components/SmartMattressFinder";
-import SleepScoreCalculator from "@/components/SleepScoreCalculator";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
+const SmartMattressFinder = lazy(() => import("@/components/SmartMattressFinder"));
+const SleepScoreCalculator = lazy(() => import("@/components/SleepScoreCalculator"));
+const ExitIntentPopup = lazy(() => import("@/components/ExitIntentPopup"));
 import { products, blogPosts } from "@/data/products";
 import heroImg from "@/assets/hero-bedroom.jpg";
 import orthopedicImg from "@/assets/mattress-orthopedic.jpg";
+
+const toSlug = (title: string) =>
+  title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 import HeroCarousel from "@/components/HeroCarousel";
 import SaleCountdown from "@/components/SaleCountdown";
 import CategoryGrid from "@/components/CategoryGrid";
 import FindMattressBanner from "@/components/FindMattressBanner";
-import TopSellers from "@/components/TopSellers";
-import TestimonialsCarousel from "@/components/TestimonialsCarousel";
-import { SleepersGallery } from "@/components/SleepersGallery";
+const TopSellers = lazy(() => import("@/components/TopSellers"));
+const TestimonialsCarousel = lazy(() => import("@/components/TestimonialsCarousel"));
+const SleepersGallery = lazy(() => import("@/components/SleepersGallery").then(m => ({ default: m.SleepersGallery })));
 import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
 import { SEO } from "@/components/SEO";
 
@@ -37,10 +41,14 @@ const Index = () => {
         description="Experience luxury and comfort with Mustafa's Mattress. Memory foam, orthopedic, and hybrid mattresses with a 100-night risk-free trial."
       />
       <div className="bg-background">
-        <ExitIntentPopup />
+        <Suspense fallback={null}>
+          <ExitIntentPopup />
+        </Suspense>
 
       {/* 1. Hero Carousel */}
       <HeroCarousel />
+
+      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading...</div>}>
 
       {/* 2. Sale Timer + Trust Badges */}
       <div ref={reveal1} className="reveal-section">
@@ -174,7 +182,7 @@ const Index = () => {
 
             {/* FEATURED CARD */}
             <Link
-              to="/blog"
+              to={`/blog/${toSlug(blogPosts[0].title)}`}
               className="lg:col-span-7 group relative rounded-2xl overflow-hidden min-h-[480px] flex flex-col justify-end shadow-xl hover:shadow-2xl transition-all duration-500"
             >
               <img
@@ -224,7 +232,7 @@ const Index = () => {
 
               {/* Card 2 */}
               <Link
-                to="/blog"
+                to={`/blog/${toSlug(blogPosts[1].title)}`}
                 className="group relative rounded-2xl overflow-hidden flex flex-col justify-end shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <img
@@ -256,7 +264,7 @@ const Index = () => {
 
               {/* Card 3 */}
               <Link
-                to="/blog"
+                to={`/blog/${toSlug(blogPosts[2].title)}`}
                 className="group relative rounded-2xl bg-white dark:bg-card border border-gray-100 dark:border-border p-7 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
                 <div className="absolute -top-4 -right-4 w-28 h-28 rounded-full bg-[#3B82F6]/5 pointer-events-none" />
@@ -293,7 +301,7 @@ const Index = () => {
 
           {/* Bottom Strip */}
           <Link
-            to="/blog"
+            to={`/blog/${toSlug(blogPosts[3].title)}`}
             className="group mt-5 rounded-2xl bg-[#111827] p-8 lg:p-10 flex flex-col md:flex-row items-center gap-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden relative"
           >
             <div className="absolute top-0 right-0 w-80 h-80 bg-[#3B82F6]/10 rounded-full blur-3xl pointer-events-none" />
@@ -323,6 +331,7 @@ const Index = () => {
           </Link>
         </div>
       </section>
+      </Suspense>
     </div>
     </>
   );

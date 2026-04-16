@@ -11,6 +11,7 @@ const NotFound = () => {
       <SEO 
         title="404 - Page Not Found"
         description="The page you're looking for doesn't exist. Return to Mustafa's Mattress to find your perfect sleep solution."
+        noIndex
       />
       <div className="flex min-h-[75vh] items-center justify-center bg-[#1E3A8A] px-4 relative overflow-hidden">
         {/* Decorative elements */}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, Heart, Search, Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
-import { useCart } from "@/contexts/CartContext";
+import { useCartStore, useCartTotalItems } from "@/store/cartStore";
 import { Button } from "@/components/ui/button";
 import { products, megaMenuCategories } from "@/data/products";
 
@@ -30,7 +30,8 @@ const Navbar = () => {
     }
     return true;
   });
-  const { totalItems, setIsCartOpen, wishlist } = useCart();
+  const totalItems = useCartTotalItems();
+  const { setIsCartOpen, wishlist } = useCartStore();
   const location = useLocation();
 
   // Scroll shadow effect
@@ -194,7 +195,7 @@ const Navbar = () => {
               {searchResults.map((product) => (
                 <Link
                   key={product.id}
-                  to={`/product/${product.id}`}
+                  to={`/product/${product.slug}`}
                   onClick={clearSearch}
                   className="flex items-center gap-3 p-3 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors border-b border-border/30 last:border-b-0"
                 >
@@ -229,7 +230,7 @@ const Navbar = () => {
             {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
 
-          <Link to="/products" className="flex items-center">
+          <Link to="/wishlist" className="flex items-center">
             <Button variant="ghost" size="icon" className="relative text-blue-100 hover:text-white hover:bg-white/10" aria-label="Wishlist">
               <Heart className="h-5 w-5" />
               {wishlist.length > 0 && (
@@ -282,7 +283,7 @@ const Navbar = () => {
                 {searchResults.map((product) => (
                   <Link
                     key={product.id}
-                    to={`/product/${product.id}`}
+                    to={`/product/${product.slug}`}
                     onClick={clearSearch}
                     className="flex items-center gap-3 p-3 border-b border-border/30 last:border-b-0"
                   >

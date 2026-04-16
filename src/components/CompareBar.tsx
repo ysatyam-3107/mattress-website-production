@@ -1,11 +1,12 @@
 import { X, ArrowRightLeft, LayoutGrid, Trash2 } from "lucide-react";
-import { useCompare } from "@/contexts/CompareContext";
+import { useCompareStore, useCompareProducts } from "@/store/compareStore";
 import { Button } from "./ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import { CompareModal } from "./CompareModal";
 
 export const CompareBar = () => {
-  const { selectedProducts, removeFromCompare, clearCompare, isCompareOpen, setIsCompareOpen } = useCompare();
+  const { removeFromCompare, clearCompare, isCompareOpen, setIsCompareOpen } = useCompareStore();
+  const selectedProducts = useCompareProducts();
 
   if (selectedProducts.length === 0) return null;
 

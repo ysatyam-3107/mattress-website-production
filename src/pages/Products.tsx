@@ -1,7 +1,9 @@
 import { useState, useMemo, useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import { X, ChevronRight, Bed, Cloud, Stethoscope, Leaf, RefreshCw } from "lucide-react";
 import ProductCard, { ProductSkeleton } from "@/components/ProductCard";
-import { products } from "@/data/products";
+import { useQuery } from "@tanstack/react-query";
+import { fetchShopifyProducts } from "@/api/products";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SEO } from "@/components/SEO";
@@ -18,9 +20,10 @@ const sizes = ["All", "Single", "Double", "Queen", "King"];
 const firmnesses = ["all", "soft", "medium", "firm"] as const;
 
 const Products = () => {
-  const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [sizeFilter, setSizeFilter] = useState("All");
-  const [firmnessFilter, setFirmnessFilter] = useState<string>("all");
+  const [searchParams] = useSearchParams();
+  const [typeFilter, setTypeFilter] = useState<string>(searchParams.get("type") || "all");
+  const [sizeFilter, setSizeFilter] = useState(searchParams.get("size") || "All");
+  const [firmnessFilter, setFirmnessFilter] = useState<string>(searchParams.get("firmness") || "all");
   const [priceMax, setPriceMax] = useState<number>(30000);
   const [sortBy, setSortBy] = useState<string>("popular");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,8 +41,13 @@ const Products = () => {
     return () => grid.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const { data: storeProducts = [], isLoading } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchShopifyProducts,
+  });
+
   const filtered = useMemo(() => {
-    return products.filter((p) => {
+    return storeProducts.filter((p) => {
       if (typeFilter !== "all" && p.type !== typeFilter) return false;
       if (sizeFilter !== "All" && !p.sizes.includes(sizeFilter)) return false;
       if (firmnessFilter !== "all" && p.firmness !== firmnessFilter) return false;
@@ -50,7 +58,7 @@ const Products = () => {
       if (sortBy === "price-high") return b.price - a.price;
       return b.rating - a.rating; // Default 'popular'
     });
-  }, [typeFilter, sizeFilter, firmnessFilter, priceMax, sortBy]);
+  }, [storeProducts, typeFilter, sizeFilter, firmnessFilter, priceMax, sortBy]);
 
   const activeFilters = [
     typeFilter !== "all" && { type: "type", value: typeFilter, label: mattressTypes.find(t => t.id === typeFilter)?.label || typeFilter },
@@ -231,7 +239,9 @@ const Products = () => {
 
             {/* Products Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-              {filtered.length > 0
+              {isLoading ? (
+                Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)
+              ) : filtered.length > 0
                 ? filtered.map((p) => <ProductCard key={p.id} product={p} />)
                 : (
                   <div className="col-span-full text-center py-20">
