@@ -88,7 +88,7 @@ const Products = () => {
       <div className="flex flex-col h-[calc(100vh-80px)] overflow-hidden bg-background">
         {/* Collapsible Local Header */}
         <div 
-          className={`bg-white/95 backdrop-blur-md border-b border-primary/5 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden z-40 ${
+          className={`bg-white/95 backdrop-blur-md border-b border-primary/5 transition-all duration-700 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] overflow-hidden z-40 ${
             isScrolled ? "max-h-0 opacity-0 transform -translate-y-full" : "max-h-[300px] opacity-100 py-8"
           }`}
         >

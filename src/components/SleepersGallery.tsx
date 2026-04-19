@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 export const SleepersGallery = () => {
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-14 bg-white overflow-hidden">
       <div className="container">
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-[#3B82F6] text-xs font-bold uppercase tracking-widest mb-6">
             <Camera className="w-4 h-4" /> Real Homes, Real Sleep
           </div>
@@ -55,7 +55,7 @@ export const SleepersGallery = () => {
           ))}
         </div>
 
-        <div className="mt-20 text-center">
+        <div className="mt-10 text-center">
            <div className="inline-block p-1 rounded-full bg-slate-100 border border-slate-200">
               <button className="px-10 py-5 bg-[#1E3A8A] text-white rounded-full font-black font-montserrat shadow-xl shadow-blue-900/20 hover:bg-blue-900 hover:-translate-y-1 transition-all flex items-center gap-3">
                  Share Your Bedroom Photo <Camera className="w-5 h-5" />

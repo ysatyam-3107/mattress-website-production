@@ -45,6 +45,13 @@
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
     
+    /* Premium palette additions */
+    --gold: 40 72% 58%;
+    --gold-light: 43 80% 70%;
+    --gold-dark: 38 65% 42%;
+    --cream: 30 67% 96%;
+    --warm-gray: 30 10% 55%;
+    
     --surface: 0 0% 100%;
     --surface-elevated: 210 20% 98%;
     --hero-overlay: 224 71% 20%;
@@ -85,6 +92,11 @@
     --success-foreground: 0 0% 100%;
     --warning: 38 80% 50%;
     --warning-foreground: 0 0% 100%;
+    --gold: 40 72% 58%;
+    --gold-light: 43 80% 70%;
+    --gold-dark: 38 65% 50%;
+    --cream: 30 20% 14%;
+    --warm-gray: 30 10% 55%;
     --sidebar-background: 222 47% 6%;
     --sidebar-foreground: 210 40% 96%;
     --sidebar-primary: 217 91% 60%;
@@ -131,6 +143,22 @@
     font-family: 'Montserrat', sans-serif;
   }
 
+  /* ── Premium scrollbar ── */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.15);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.3);
+  }
+
   /* ── Section Reveal Animation ── */
   .reveal-section {
     opacity: 0;
@@ -171,17 +199,127 @@
   }
 
   .hover-lift:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 60px -12px rgba(30, 58, 138, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 
+      0 20px 60px -12px rgba(30, 58, 138, 0.12),
+      0 8px 20px -4px rgba(30, 58, 138, 0.08);
   }
 
+  /* ── Glassmorphism Card ── */
   .glass {
     @apply bg-white/80 dark:bg-surface/80 backdrop-blur-xl;
   }
 
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .dark .glass-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* ── Gradient Text ── */
+  .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #93c5fd 50%, #ffffff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientText 4s ease infinite;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #D4A853 0%, #F5E6C8 40%, #D4A853 80%, #B8942F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 60%, #60A5FA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Shimmer / Loading ── */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    animation: shimmerSlide 2s infinite;
+  }
+
+  /* ── Button Fill Sweep ── */
+  .btn-sweep {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .btn-sweep::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+    transition: left 0.6s ease;
+    z-index: -1;
+  }
+  .btn-sweep:hover::before {
+    left: 100%;
+  }
+
+  /* ── Premium Badge Glow ── */
+  .badge-glow {
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.3), 0 0 4px rgba(59, 130, 246, 0.2);
+    animation: badgePulse 2.5s ease-in-out infinite;
+  }
+
+  .badge-glow-gold {
+    box-shadow: 0 0 12px rgba(212, 168, 83, 0.35), 0 0 4px rgba(212, 168, 83, 0.25);
+    animation: badgePulseGold 2.5s ease-in-out infinite;
+  }
+
+  /* ── Animated Gradient Background ── */
   .animate-gradient {
     background-size: 200% 200%;
     animation: gradient 3s ease infinite;
+  }
+
+  .animate-gradient-slow {
+    background-size: 300% 300%;
+    animation: gradient 8s ease infinite;
+  }
+
+  /* ── Progress Bar for Hero Dots ── */
+  .dot-progress {
+    position: relative;
+    overflow: hidden;
+  }
+  .dot-progress::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: rgba(255,255,255,0.6);
+    border-radius: inherit;
+    animation: dotFill 5s linear forwards;
   }
 
   .line-clamp-2 {
@@ -236,6 +374,47 @@
   .parallax-slow {
     animation: parallax 20s linear infinite;
   }
+
+  /* ── Scroll down indicator ── */
+  .scroll-indicator {
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+
+  /* ── Floating orbs ── */
+  .float-orb {
+    animation: floatOrb 6s ease-in-out infinite;
+  }
+  .float-orb-delay {
+    animation: floatOrb 8s ease-in-out 2s infinite;
+  }
+
+  /* ── Number flip for countdown ── */
+  .flip-number {
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s;
+  }
+
+  /* ── Ring glow for avatars ── */
+  .ring-gradient {
+    background: linear-gradient(135deg, #3B82F6, #1E3A8A, #D4A853);
+    padding: 2px;
+    border-radius: 50%;
+  }
+
+  /* ── Wave divider ── */
+  .wave-divider {
+    position: relative;
+  }
+  .wave-divider::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%23111827' d='M0,30 C360,60 720,0 1080,30 C1260,45 1380,30 1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E") no-repeat center bottom;
+    background-size: cover;
+  }
 }
 
 /* ── Keyframes ── */
@@ -264,6 +443,11 @@
   50% { background-position: 100% 50%; }
 }
 
+@keyframes gradientText {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 @keyframes subtleZoom {
   from { transform: scale(1); }
   to { transform: scale(1.05); }
@@ -272,4 +456,47 @@
 @keyframes slideInRight {
   from { opacity: 0; transform: translateX(30px); }
   to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes shimmerSlide {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(59, 130, 246, 0.3), 0 0 4px rgba(59, 130, 246, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 8px rgba(59, 130, 246, 0.3); }
+}
+
+@keyframes badgePulseGold {
+  0%, 100% { box-shadow: 0 0 12px rgba(212, 168, 83, 0.35), 0 0 4px rgba(212, 168, 83, 0.25); }
+  50% { box-shadow: 0 0 20px rgba(212, 168, 83, 0.55), 0 0 8px rgba(212, 168, 83, 0.35); }
+}
+
+@keyframes dotFill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes scrollBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+  40% { transform: translateY(8px) translateX(-50%); }
+  60% { transform: translateY(4px) translateX(-50%); }
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(10px, -15px) scale(1.05); }
+  50% { transform: translate(-5px, -25px) scale(1); }
+  75% { transform: translate(-15px, -10px) scale(0.95); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
