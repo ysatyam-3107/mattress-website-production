@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 /**
  * Hook that observes elements and adds a "revealed" class when they enter the viewport.
@@ -66,3 +66,22 @@ export const useStaggerReveal = (threshold = 0.1) => {
 
   return ref;
 };
+
+export const RevealSection = ({ children, threshold = 0.12, className = "", id }: { children: React.ReactNode, threshold?: number, className?: string, id?: string }) => {
+  const ref = useScrollReveal(threshold);
+  return (
+    <div id={id} ref={ref} className={`reveal-section ${className}`}>
+      {children}
+    </div>
+  );
+};
+
+export const StaggerRevealSection = ({ children, threshold = 0.1, className = "", id }: { children: React.ReactNode, threshold?: number, className?: string, id?: string }) => {
+  const ref = useStaggerReveal(threshold);
+  return (
+    <div id={id} ref={ref} className={`stagger-children ${className}`}>
+      {children}
+    </div>
+  );
+};
+

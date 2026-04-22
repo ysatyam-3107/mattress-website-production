@@ -56,3 +56,4 @@ export default defineConfig(({ mode }) => ({
     drop: mode === "production" ? ["console", "debugger"] : [],
   },
 }));
+

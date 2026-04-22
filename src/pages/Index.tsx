@@ -28,7 +28,7 @@ import FindMattressBanner from "@/components/FindMattressBanner";
 const TopSellers = lazy(() => import("@/components/TopSellers"));
 const TestimonialsCarousel = lazy(() => import("@/components/TestimonialsCarousel"));
 const SleepersGallery = lazy(() => import("@/components/SleepersGallery").then(m => ({ default: m.SleepersGallery })));
-import { useScrollReveal, useStaggerReveal } from "@/hooks/useScrollReveal";
+import { RevealSection, StaggerRevealSection } from "@/hooks/useScrollReveal";
 import { SEO } from "@/components/SEO";
 
 // Premium skeleton for lazy content
@@ -53,10 +53,6 @@ const SectionSkeleton = () => (
 );
 
 const Index = () => {
-  const reveal1 = useScrollReveal();
-  const reveal2 = useScrollReveal();
-  const reveal3 = useScrollReveal();
-  const staggerReveal1 = useStaggerReveal();
   
   return (
     <>
@@ -75,25 +71,25 @@ const Index = () => {
       <Suspense fallback={<SectionSkeleton />}>
 
       {/* 2. Sale Timer + Trust Badges */}
-      <div ref={reveal1} className="reveal-section">
+      <RevealSection>
         <SaleCountdown />
-      </div>
+      </RevealSection>
 
       {/* 3. Shop by Categories */}
-      <div ref={staggerReveal1} className="reveal-section stagger-children">
+      <StaggerRevealSection>
         <CategoryGrid />
-      </div>
+      </StaggerRevealSection>
 
       {/* 4. "Confused? Find Your Mattress" CTA */}
       <FindMattressBanner />
 
       {/* 5. Top Selling Products */}
-      <div ref={reveal2} className="reveal-section">
+      <RevealSection>
         <TopSellers />
-      </div>
+      </RevealSection>
 
       {/* 6. Smart Mattress Finder */}
-      <section id="sleep-quiz" ref={reveal3} className="py-16 relative overflow-hidden bg-[#1E3A8A] reveal-section">
+      <RevealSection id="sleep-quiz" className="py-16 relative overflow-hidden bg-[#1E3A8A]">
         {/* Decorative orbs */}
         <div className="absolute -top-40 right-10 w-[500px] h-[500px] bg-[#3B82F6]/15 rounded-full blur-[100px] pointer-events-none float-orb" />
         <div className="absolute -bottom-40 left-10 w-[400px] h-[400px] bg-blue-300/10 rounded-full blur-[80px] pointer-events-none float-orb-delay" />
@@ -116,7 +112,7 @@ const Index = () => {
           </div>
           <SmartMattressFinder />
         </div>
-      </section>
+      </RevealSection>
 
       {/* 7. Comparison Section — Premium redesign */}
       <section className="py-16 bg-[#111827] relative overflow-hidden">

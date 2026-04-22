@@ -91,7 +91,7 @@ const HeroCarousel = () => {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {slides.map((slide, i) => (
-            <div key={i} className="flex-[0_0_100%] min-w-0 relative h-[55vh] sm:h-[65vh] lg:h-[80vh] overflow-hidden">
+            <div key={i} className="flex-[0_0_100%] min-w-0 relative h-[55vh] sm:h-[65vh] lg:h-[80vh] overflow-hidden bg-[#0f172a]">
               {/* Background image with subtle zoom animation */}
               <img
                 src={slide.image}
