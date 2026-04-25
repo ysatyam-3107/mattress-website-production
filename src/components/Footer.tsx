@@ -41,7 +41,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-14">
           <div>
             <h3 className="text-2xl font-bold text-white mb-2 font-playfair">
               <span className="drop-shadow-[0_0_12px_rgba(255,255,255,0.1)]">Mustafa's</span>{" "}

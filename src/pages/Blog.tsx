@@ -52,10 +52,10 @@ const Blog = () => (
         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-white border border-white/20 font-bold text-xs tracking-widest uppercase mb-8 backdrop-blur-sm">
           <BookOpen className="w-4 h-4" /> Mustafa's Mattress Editorial
         </span>
-        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tight">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tight">
           The Science of <br/> <span className="text-blue-300">Perfect Rest.</span>
         </h1>
-        <p className="text-xl md:text-2xl text-white/80 leading-relaxed font-medium max-w-2xl mx-auto">
+        <p className="text-base sm:text-xl md:text-2xl text-white/80 leading-relaxed font-medium max-w-2xl mx-auto">
           Expert advice, clinical insights, and routines to transform your nights and energize your days.
         </p>
       </div>
@@ -78,7 +78,7 @@ const Blog = () => (
                </div>
             </div>
             
-            <div className="lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center bg-white relative">
+            <div className="lg:w-1/2 p-6 sm:p-10 lg:p-16 flex flex-col justify-center bg-white relative">
                <div className="hidden lg:flex items-center gap-3 mb-6">
                   <span className="bg-primary/10 text-primary text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest flex items-center gap-1.5">
                     <ShoppingBag className="w-3.5 h-3.5" />
@@ -89,7 +89,7 @@ const Blog = () => (
                   </span>
                </div>
                
-               <h2 className="text-3xl lg:text-5xl font-black text-slate-900 mb-6 leading-[1.15] tracking-tight hover:text-primary transition-colors cursor-pointer">
+               <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-slate-900 mb-4 sm:mb-6 leading-[1.15] tracking-tight hover:text-primary transition-colors cursor-pointer">
                   {blogPosts[0].title}
                </h2>
                
@@ -255,17 +255,17 @@ const Blog = () => (
     </section>
 
     {/* Massive Footer CTA */}
-    <section className="py-32 bg-slate-900 relative overflow-hidden">
+    <section className="py-16 sm:py-32 bg-slate-900 relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[100px]" />
       </div>
       
       <div className="container relative z-10 text-center max-w-3xl mx-auto">
-        <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-[1.1] tracking-tight">
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white mb-6 leading-[1.1] tracking-tight">
           Ready to experience the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-300">perfect night?</span>
         </h2>
-        <p className="text-xl text-white/70 mb-12 font-medium leading-relaxed">
+        <p className="text-base sm:text-xl text-white/70 mb-8 sm:mb-12 font-medium leading-relaxed">
           Put our science into practice. Find the exact mattress engineered for your body type and sleep position.
         </p>
         

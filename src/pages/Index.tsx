@@ -133,14 +133,17 @@ const Index = () => {
           </div>
           
           <div className="bg-white/[0.03] rounded-3xl border border-white/10 overflow-hidden shadow-2xl backdrop-blur-sm">
-            <table className="w-full text-left">
+            {/* Swipe hint for mobile */}
+            <p className="text-center text-white/30 text-xs py-2 sm:hidden font-montserrat">← Swipe to compare →</p>
+            <div className="overflow-x-auto">
+            <table className="w-full text-left min-w-[500px]">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="p-6 font-semibold text-base text-gray-400 w-1/3 font-montserrat">Features</th>
-                  <th className="p-6 font-bold text-xl text-white bg-[#3B82F6]/10 w-1/3 text-center border-x border-white/10 font-playfair">
+                  <th className="p-3 sm:p-6 font-semibold text-sm sm:text-base text-gray-400 w-1/3 font-montserrat">Features</th>
+                  <th className="p-3 sm:p-6 font-bold text-lg sm:text-xl text-white bg-[#3B82F6]/10 w-1/3 text-center border-x border-white/10 font-playfair">
                     <span className="text-gradient-gold">Mustafa's</span>
                   </th>
-                  <th className="p-6 font-semibold text-base text-gray-500 w-1/3 text-center font-montserrat">Others</th>
+                  <th className="p-3 sm:p-6 font-semibold text-sm sm:text-base text-gray-500 w-1/3 text-center font-montserrat">Others</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -152,23 +155,24 @@ const Index = () => {
                   { feature: "Returns", us: "100% Free", them: "Return fee applies" },
                 ].map((row, i) => (
                   <tr key={i} className="hover:bg-white/[0.03] transition-colors duration-300 group">
-                    <td className="p-6 text-gray-300 font-semibold font-montserrat group-hover:text-white transition-colors">{row.feature}</td>
-                    <td className="p-6 text-center bg-[#3B82F6]/5 border-x border-white/10">
-                      <div className="flex items-center justify-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                        <span className="font-bold text-white font-montserrat">{row.us}</span>
+                    <td className="p-3 sm:p-6 text-sm sm:text-base text-gray-300 font-semibold font-montserrat group-hover:text-white transition-colors">{row.feature}</td>
+                    <td className="p-3 sm:p-6 text-center bg-[#3B82F6]/5 border-x border-white/10">
+                      <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+                        <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 shrink-0" />
+                        <span className="font-bold text-sm sm:text-base text-white font-montserrat">{row.us}</span>
                       </div>
                     </td>
-                    <td className="p-6 text-center">
-                      <div className="flex items-center justify-center gap-2">
-                        <XCircle className="w-5 h-5 text-red-400/60 shrink-0" />
-                        <span className="text-gray-500 font-montserrat">{row.them}</span>
+                    <td className="p-3 sm:p-6 text-center">
+                      <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+                        <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-400/60 shrink-0" />
+                        <span className="text-sm sm:text-base text-gray-500 font-montserrat">{row.them}</span>
                       </div>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </section>

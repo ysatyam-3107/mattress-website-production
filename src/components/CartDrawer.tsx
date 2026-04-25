@@ -1,12 +1,28 @@
 import { X, Plus, Minus, ShoppingBag, ShieldCheck } from "lucide-react";
 import { useCartStore, useCartTotalPrice } from "@/store/cartStore";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { TrustBadges } from "@/components/TrustBadges";
+import { createShopifyCheckout } from "@/api/cart";
+import { Loader2 } from "lucide-react";
 
 const CartDrawer = () => {
   const { items, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity } = useCartStore();
   const totalPrice = useCartTotalPrice();
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+
+  const handleCheckout = async () => {
+    setIsCheckingOut(true);
+    try {
+      const checkoutUrl = await createShopifyCheckout(items);
+      window.location.href = checkoutUrl;
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert("Failed to initiate checkout. Please try again.");
+      setIsCheckingOut(false);
+    }
+  };
 
   if (!isCartOpen) return null;
 
@@ -61,11 +77,17 @@ const CartDrawer = () => {
                 <span className="text-muted-foreground">Delivery</span>
                 <span className="font-medium text-success uppercase text-[10px] tracking-wider">Free</span>
               </div>
-              <Link to="/checkout" onClick={() => setIsCartOpen(false)} className="block mt-4">
-                <Button className="w-full bg-[#1E3A8A] hover:bg-blue-900 border-[#1E3A8A] border h-10 text-sm font-montserrat font-bold shadow-md btn-press">
-                  Checkout — ₹{totalPrice.toLocaleString()}
-                </Button>
-              </Link>
+              <Button 
+                onClick={handleCheckout} 
+                disabled={isCheckingOut}
+                className="w-full mt-4 bg-[#1E3A8A] hover:bg-blue-900 border-[#1E3A8A] border h-10 text-sm font-montserrat font-bold shadow-md btn-press"
+              >
+                {isCheckingOut ? (
+                  <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Redirecting...</>
+                ) : (
+                  `Checkout — ₹${totalPrice.toLocaleString()}`
+                )}
+              </Button>
               <div className="flex items-center justify-center gap-1.5 pt-1 text-[#3B82F6]">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span className="text-[10px] font-montserrat font-bold uppercase tracking-tight">Secure Payment</span>

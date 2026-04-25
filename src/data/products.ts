@@ -28,6 +28,7 @@ export interface Product {
   warranty: string;
   layers: number;
   trialPeriod: string;
+  variants?: { id: string; title: string }[];
 }
 
 export const products: Product[] = [

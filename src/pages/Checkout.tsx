@@ -78,17 +78,17 @@ const Checkout = () => {
       <div className="bg-gray-50 min-h-screen pb-20">
         <div className="bg-white border-b border-gray-200 py-6">
           <div className="container max-w-6xl flex justify-center">
-             <div className="flex items-center gap-4 text-sm font-montserrat font-bold text-gray-400">
-                <span className={`flex items-center gap-2 ${step >= 1 ? "text-[#1E3A8A]" : ""}`}>
-                   <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white ${step >= 1 ? "bg-[#1E3A8A]" : "bg-gray-300"}`}>1</span> Shipping
+             <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-montserrat font-bold text-gray-400">
+                <span className={`flex items-center gap-1.5 sm:gap-2 ${step >= 1 ? "text-[#1E3A8A]" : ""}`}>
+                   <span className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[10px] sm:text-xs text-white ${step >= 1 ? "bg-[#1E3A8A]" : "bg-gray-300"}`}>1</span> <span className="hidden sm:inline">Shipping</span><span className="sm:hidden">Ship</span>
                 </span>
-                <ChevronRight className="w-4 h-4" />
-                <span className={`flex items-center gap-2 ${step >= 2 ? "text-[#1E3A8A]" : ""}`}>
-                   <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white ${step >= 2 ? "bg-[#1E3A8A]" : "bg-gray-300"}`}>2</span> Payment
+                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className={`flex items-center gap-1.5 sm:gap-2 ${step >= 2 ? "text-[#1E3A8A]" : ""}`}>
+                   <span className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[10px] sm:text-xs text-white ${step >= 2 ? "bg-[#1E3A8A]" : "bg-gray-300"}`}>2</span> <span className="hidden sm:inline">Payment</span><span className="sm:hidden">Pay</span>
                 </span>
-                <ChevronRight className="w-4 h-4" />
-                <span className={`flex items-center gap-2 ${step >= 3 ? "text-[#1E3A8A]" : ""}`}>
-                   <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white ${step >= 3 ? "bg-[#1E3A8A]" : "bg-gray-300"}`}>3</span> Confirm
+                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className={`flex items-center gap-1.5 sm:gap-2 ${step >= 3 ? "text-[#1E3A8A]" : ""}`}>
+                   <span className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-[10px] sm:text-xs text-white ${step >= 3 ? "bg-[#1E3A8A]" : "bg-gray-300"}`}>3</span> <span className="hidden sm:inline">Confirm</span><span className="sm:hidden">Done</span>
                 </span>
              </div>
           </div>
@@ -175,7 +175,7 @@ const Checkout = () => {
                         
                         {/* Inline Card Details (only visible if Card is checked) */}
                         {paymentMethod === "card" && (
-                          <div className="pl-14 pr-4 py-4 space-y-4 animate-fade-in bg-blue-50/30 rounded-xl border border-blue-100/50 ml-2 shadow-inner">
+                           <div className="pl-4 sm:pl-14 pr-4 py-4 space-y-4 animate-fade-in bg-blue-50/30 rounded-xl border border-blue-100/50 sm:ml-2 shadow-inner">
                              <div>
                                <input {...register("cardNumber")} className={`w-full bg-white rounded-xl px-4 py-3 outline-none border ${errors.cardNumber ? 'border-red-500' : 'border-gray-200 focus:border-[#3B82F6]'}`} placeholder="0000 0000 0000 0000" />
                                <ErrorMsg field="cardNumber" />
@@ -207,7 +207,7 @@ const Checkout = () => {
 
                         <ErrorMsg field="paymentMethod" />
                      </div>
-                     <div className="mt-8 flex justify-between items-center border-t border-gray-100 pt-6">
+                     <div className="mt-8 flex flex-col-reverse sm:flex-row justify-between items-stretch sm:items-center gap-3 border-t border-gray-100 pt-6">
                         <Button type="button" variant="ghost" onClick={() => setStep(1)} className="font-montserrat font-bold text-gray-500 hover:text-gray-800">
                            <ChevronLeft className="w-4 h-4 mr-1" /> Back to Shipping
                         </Button>

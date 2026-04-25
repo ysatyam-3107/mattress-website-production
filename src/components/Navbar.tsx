@@ -81,6 +81,16 @@ const Navbar = () => {
     return () => document.removeEventListener("keydown", handleEscape);
   }, [searchOpen, mobileOpen]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
   return (
     <header
       className={`sticky top-0 z-50 bg-[#3B1286] text-white transition-all duration-300 ${
@@ -287,6 +297,19 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+            {/* Mobile-only links */}
+            <Link
+              to="/wishlist"
+              onClick={() => setMobileOpen(false)}
+              className="px-6 py-4 text-base font-semibold text-white border-b border-white/10 font-montserrat flex items-center gap-3"
+            >
+              <Heart className="w-5 h-5" /> Wishlist
+              {wishlist.length > 0 && (
+                <span className="ml-auto bg-pink-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
+                  {wishlist.length}
+                </span>
+              )}
+            </Link>
           </nav>
         </div>
       )}

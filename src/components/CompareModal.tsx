@@ -22,33 +22,33 @@ export const CompareModal = () => {
 
   return (
     <Dialog open={isCompareOpen} onOpenChange={setIsCompareOpen}>
-      <DialogContent className="max-w-5xl h-[85vh] overflow-hidden flex flex-col p-0 gap-0 border-none rounded-[2rem] shadow-2xl">
-        <DialogHeader className="p-8 bg-slate-50 border-b border-slate-200">
+      <DialogContent className="w-[95vw] sm:max-w-5xl h-[90vh] sm:h-[85vh] overflow-hidden flex flex-col p-0 gap-0 border-none rounded-2xl sm:rounded-[2rem] shadow-2xl">
+        <DialogHeader className="p-4 sm:p-8 bg-slate-50 border-b border-slate-200">
           <div className="flex items-center justify-between">
-            <DialogTitle className="text-3xl font-black font-playfair text-[#1E3A8A]">Compare Mattresses</DialogTitle>
+            <DialogTitle className="text-xl sm:text-3xl font-black font-playfair text-[#1E3A8A]">Compare Mattresses</DialogTitle>
           </div>
         </DialogHeader>
 
         <div className="flex-1 overflow-auto p-0 scrollbar-hide">
-          <table className="w-full text-left border-collapse min-w-[700px]">
+          <table className="w-full text-left border-collapse min-w-[480px]">
             <thead>
               <tr className="bg-white sticky top-0 z-10">
-                <th className="p-8 w-1/4 bg-slate-50/50 backdrop-blur border-b border-r border-slate-100">
+                <th className="p-4 sm:p-8 w-1/4 bg-slate-50/50 backdrop-blur border-b border-r border-slate-100">
                    <div className="flex flex-col items-center justify-center text-center">
-                      <div className="w-12 h-12 rounded-full bg-blue-100 text-[#3B82F6] flex items-center justify-center mb-4">
-                         <Info className="w-6 h-6" />
+                      <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-blue-100 text-[#3B82F6] flex items-center justify-center mb-2 sm:mb-4">
+                         <Info className="w-4 h-4 sm:w-6 sm:h-6" />
                       </div>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Technical Specifications</p>
+                      <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest">Specs</p>
                    </div>
                 </th>
                 {selectedProducts.map((p) => (
-                  <th key={p.id} className="p-8 w-1/4 border-b border-slate-100 font-montserrat min-w-[200px]">
+                  <th key={p.id} className="p-3 sm:p-8 w-1/4 border-b border-slate-100 font-montserrat min-w-[140px]">
                     <div className="flex flex-col items-center">
-                      <div className="w-32 h-24 bg-slate-50 rounded-2xl p-2 mb-4 overflow-hidden border border-slate-100 translate-y-0 group-hover:-translate-y-1 transition-transform">
+                      <div className="w-20 sm:w-32 h-16 sm:h-24 bg-slate-50 rounded-xl sm:rounded-2xl p-1 sm:p-2 mb-2 sm:mb-4 overflow-hidden border border-slate-100">
                         <img src={p.image} className="w-full h-full object-cover mix-blend-multiply" alt={p.name} />
                       </div>
-                      <h4 className="text-sm font-black text-[#111827] text-center mb-1 leading-tight">{p.name}</h4>
-                      <p className="text-[#3B82F6] font-bold text-sm mb-4">₹{p.price.toLocaleString()}</p>
+                      <h4 className="text-xs sm:text-sm font-black text-[#111827] text-center mb-1 leading-tight">{p.name}</h4>
+                      <p className="text-[#3B82F6] font-bold text-xs sm:text-sm mb-2 sm:mb-4">₹{p.price.toLocaleString()}</p>
                       <Button 
                          size="sm" 
                          className="w-full bg-[#1E3A8A] hover:bg-blue-900 rounded-xl"
@@ -64,9 +64,9 @@ export const CompareModal = () => {
             <tbody className="divide-y divide-slate-100 font-montserrat">
               {specs.map((spec) => (
                 <tr key={spec.key} className="group hover:bg-blue-50/30 transition-colors">
-                  <td className="p-6 bg-slate-50/30 font-bold text-slate-500 text-xs uppercase tracking-wider border-r border-slate-100">{spec.label}</td>
+                  <td className="p-3 sm:p-6 bg-slate-50/30 font-bold text-slate-500 text-[10px] sm:text-xs uppercase tracking-wider border-r border-slate-100">{spec.label}</td>
                   {selectedProducts.map((p) => (
-                    <td key={p.id} className="p-6 text-center text-sm font-semibold text-slate-700">
+                    <td key={p.id} className="p-3 sm:p-6 text-center text-xs sm:text-sm font-semibold text-slate-700">
                       {spec.format ? spec.format((p as any)[spec.key]) : (p as any)[spec.key]}
                     </td>
                   ))}

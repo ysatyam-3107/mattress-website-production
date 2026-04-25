@@ -116,6 +116,11 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+
+  html {
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -170,6 +175,20 @@
   .reveal-section.revealed {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Reduced motion on mobile for smoother feel */
+  @media (max-width: 640px) {
+    .reveal-section {
+      transform: translateY(20px);
+    }
+  }
+
+  /* Body scroll lock for mobile overlays */
+  .body-no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
   }
 
   /* ── Stagger Children ── */

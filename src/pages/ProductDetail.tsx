@@ -113,7 +113,7 @@ const ProductDetail = () => {
       </script>
       
       {/* Sticky Mobile Add to Cart */}
-      <div className={`fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-50 lg:hidden transform transition-transform duration-300 ${isStickyCTAVisible ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div className={`fixed bottom-0 left-0 right-0 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] bg-white border-t border-gray-200 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-50 lg:hidden transform transition-transform duration-300 ${isStickyCTAVisible ? 'translate-y-0' : 'translate-y-full'}`}>
          <div className="flex items-center justify-between max-w-md mx-auto gap-4">
             <div>
                <p className="font-bold text-[#1E3A8A] text-sm leading-none m-0">{product.name}</p>
@@ -169,7 +169,7 @@ const ProductDetail = () => {
                 
                 {/* Arrow Nav (Mobile) */}
                 {gallery.length > 1 && (
-                   <div className="md:hidden absolute inset-x-4 top-1/2 -translate-y-1/2 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity">
+                   <div className="md:hidden absolute inset-x-4 top-1/2 -translate-y-1/2 flex items-center justify-between">
                      <button onClick={() => setActiveImage(prev => prev === 0 ? gallery.length - 1 : prev - 1)} className="w-10 h-10 rounded-full bg-white/90 shadow text-gray-800 flex items-center justify-center">
                         <ChevronLeft className="w-5 h-5" />
                      </button>
@@ -208,8 +208,10 @@ const ProductDetail = () => {
                     <Star className="w-3.5 h-3.5 fill-[#059669] text-[#059669] mr-2" />
                     <span className="text-gray-400 text-sm border-l border-gray-200 pl-2">{product.reviews.toLocaleString()}L</span>
                   </div>
-                  <span className="text-sm font-medium flex items-center gap-1 bg-gray-50 px-3 py-1.5 rounded-md border border-gray-200">
-                    <ShoppingCart className="w-3.5 h-3.5 text-gray-400" /> 3,100+ added to the cart past week
+                  <span className="text-xs sm:text-sm font-medium flex items-center gap-1 bg-gray-50 px-2 sm:px-3 py-1.5 rounded-md border border-gray-200">
+                    <ShoppingCart className="w-3.5 h-3.5 text-gray-400" />
+                    <span className="hidden sm:inline">3,100+ added to the cart past week</span>
+                    <span className="sm:hidden">3.1K+ added</span>
                   </span>
                 </div>
               </div>
@@ -330,7 +332,7 @@ const ProductDetail = () => {
               </div>
 
               {/* Anatomy Box */}
-              <div className="bg-slate-900 p-8 lg:p-12 rounded-3xl shadow-2xl h-full flex flex-col items-center justify-center text-center relative overflow-hidden group">
+              <div className="bg-slate-900 p-6 sm:p-8 lg:p-12 rounded-3xl shadow-2xl h-full flex flex-col items-center justify-center text-center relative overflow-hidden group">
                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-transparent opacity-50 block" />
                  
                  <div className="relative z-10">

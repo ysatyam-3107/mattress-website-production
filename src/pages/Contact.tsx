@@ -243,7 +243,7 @@ const Contact = () => {
       {/* Live Chat Mock */}
       <div className="fixed bottom-6 right-6 z-40">
         {chatOpen && (
-          <div className="mb-4 w-80 bg-card rounded-2xl border border-border shadow-2xl overflow-hidden animate-fade-up">
+          <div className="mb-4 w-[calc(100vw-3rem)] sm:w-80 bg-card rounded-2xl border border-border shadow-2xl overflow-hidden animate-fade-up">
             <div className="bg-primary p-4 flex items-center justify-between">
               <div>
                 <h3 className="text-primary-foreground font-semibold text-sm">Mustafa's Mattress Support</h3>
