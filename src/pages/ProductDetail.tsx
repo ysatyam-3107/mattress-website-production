@@ -69,7 +69,7 @@ const ProductDetail = () => {
     );
   }
 
-  const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+  const discount = product.originalPrice > product.price ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
   const related = storeProducts.filter((p) => p.id !== product.id && p.type === product.type).slice(0, 3);
   const size = selectedSize || product.sizes[0];
 
@@ -224,10 +224,12 @@ const ProductDetail = () => {
               {/* Price Block */}
               <div className="mb-6 flex items-end gap-3 flex-wrap">
                 <span className="text-4xl font-black text-[#111827] font-montserrat tracking-tight">₹{product.price.toLocaleString()}</span>
-                <span className="text-base text-gray-400 line-through font-montserrat font-medium mb-1">MRP ₹{product.originalPrice.toLocaleString()}</span>
-                <span className="text-[#059669] text-sm font-bold mb-1 font-montserrat">
-                  {discount}% off <span className="text-gray-400 font-normal ml-1">(Incl of all Taxes)</span>
-                </span>
+                {discount > 0 && <span className="text-base text-gray-400 line-through font-montserrat font-medium mb-1">MRP ₹{product.originalPrice.toLocaleString()}</span>}
+                {discount > 0 && (
+                  <span className="text-[#059669] text-sm font-bold mb-1 font-montserrat">
+                    {discount}% off <span className="text-gray-400 font-normal ml-1">(Incl of all Taxes)</span>
+                  </span>
+                )}
               </div>
 
               {/* Action Blocks: Pincode & Size */}

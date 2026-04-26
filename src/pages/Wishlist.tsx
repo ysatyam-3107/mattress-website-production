@@ -52,9 +52,9 @@ const Wishlist = () => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {wishlistProducts.map((product) => {
-                const discount = Math.round(
+                const discount = product.originalPrice > product.price ? Math.round(
                   ((product.originalPrice - product.price) / product.originalPrice) * 100
-                );
+                ) : 0;
                 return (
                   <div
                     key={product.id}
@@ -68,9 +68,11 @@ const Wishlist = () => {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
-                        <span className="absolute top-3 left-3 bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-lg">
-                          {discount}% OFF
-                        </span>
+                        {discount > 0 && (
+                          <span className="absolute top-3 left-3 bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-lg">
+                            {discount}% OFF
+                          </span>
+                        )}
                       </div>
                     </Link>
                     <div className="p-5 space-y-3">
@@ -83,9 +85,11 @@ const Wishlist = () => {
                         <span className="text-xl font-extrabold text-gray-900 dark:text-gray-100 font-montserrat">
                           ₹{product.price.toLocaleString()}
                         </span>
-                        <span className="text-sm text-gray-400 line-through font-montserrat">
-                          ₹{product.originalPrice.toLocaleString()}
-                        </span>
+                        {discount > 0 && (
+                          <span className="text-sm text-gray-400 line-through font-montserrat">
+                            ₹{product.originalPrice.toLocaleString()}
+                          </span>
+                        )}
                       </div>
                       <div className="flex gap-2 pt-2">
                         <Button

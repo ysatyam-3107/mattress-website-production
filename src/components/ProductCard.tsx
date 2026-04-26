@@ -24,7 +24,7 @@ export const ProductSkeleton = () => (
 // Quick View Modal Component
 const ProductQuickView = ({ product, onClose }: { product: Product; onClose: () => void }) => {
   const { addToCart } = useCartStore();
-  const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+  const discount = product.originalPrice > product.price ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
 
   return (
     <Dialog open={true} onOpenChange={onClose}>
@@ -54,10 +54,12 @@ const ProductQuickView = ({ product, onClose }: { product: Product; onClose: () 
             </div>
             <div className="flex items-center gap-2">
               <span className="text-2xl font-bold text-gray-900 dark:text-gray-100">₹{product.price.toLocaleString()}</span>
-              <span className="text-lg text-gray-400 line-through">₹{product.originalPrice.toLocaleString()}</span>
-              <Badge variant="secondary" className="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 font-bold">
-                {discount}% OFF
-              </Badge>
+              {discount > 0 && <span className="text-lg text-gray-400 line-through">₹{product.originalPrice.toLocaleString()}</span>}
+              {discount > 0 && (
+                <Badge variant="secondary" className="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 font-bold">
+                  {discount}% OFF
+                </Badge>
+              )}
             </div>
             <p className="text-sm text-gray-500 leading-relaxed">{product.description}</p>
             <div className="space-y-2 text-sm bg-gray-50 dark:bg-muted/30 p-4 rounded-xl">
@@ -84,7 +86,7 @@ const ProductCard = ({ product }: { product: Product }) => {
   const { addToCart, wishlist, toggleWishlist } = useCartStore();
   const { toggleCompare, selectedIds } = useCompareStore();
   const [showQuickView, setShowQuickView] = useState(false);
-  const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+  const discount = product.originalPrice > product.price ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
   const isWished = wishlist.includes(product.id);
   const isComparing = selectedIds.includes(product.id);
 
@@ -125,9 +127,11 @@ const ProductCard = ({ product }: { product: Product }) => {
                 <Award className="w-3.5 h-3.5" /> Bestseller
               </span>
             )}
-            <span className="bg-white/95 dark:bg-card/95 backdrop-blur-sm text-gray-800 dark:text-gray-100 text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm flex items-center gap-1 uppercase font-montserrat border border-gray-100/50 dark:border-border/50">
-              <Zap className="w-3.5 h-3.5 text-emerald-500" /> {discount}% OFF
-            </span>
+            {discount > 0 && (
+              <span className="bg-white/95 dark:bg-card/95 backdrop-blur-sm text-gray-800 dark:text-gray-100 text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm flex items-center gap-1 uppercase font-montserrat border border-gray-100/50 dark:border-border/50">
+                <Zap className="w-3.5 h-3.5 text-emerald-500" /> {discount}% OFF
+              </span>
+            )}
           </div>
 
           {/* Action Buttons: Wishlist & Quick View */}
@@ -167,7 +171,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           <div className="mt-auto">
             <div className="flex items-end gap-2 mb-1">
               <span className="text-2xl font-extrabold text-gray-900 dark:text-gray-100 leading-none font-montserrat">₹{product.price.toLocaleString()}</span>
-              <span className="text-sm font-semibold text-gray-400 line-through mb-0.5 font-montserrat">₹{product.originalPrice.toLocaleString()}</span>
+              {discount > 0 && <span className="text-sm font-semibold text-gray-400 line-through mb-0.5 font-montserrat">₹{product.originalPrice.toLocaleString()}</span>}
             </div>
             <p className="text-xs font-medium text-gray-400 mb-4 font-montserrat flex items-center gap-1">
               <TrendingUp className="w-3 h-3 text-emerald-500" />

@@ -66,7 +66,7 @@ const formatShopifyProduct = (shopifyNode: any): Product => {
     id: shopifyNode.id,
     slug: shopifyNode.handle,
     name: shopifyNode.title,
-    type: shopifyNode.productType?.toLowerCase() || "memory-foam",
+    type: shopifyNode.productType?.toLowerCase().replace(/\s+/g, '-') || "memory-foam",
     price: currentPrice,
     originalPrice: compareAtPrice,
     image: shopifyNode.images?.edges[0]?.node?.url || "https://images.unsplash.com/photo-1584100936595-c0654b5536be?auto=format&fit=crop&q=80",

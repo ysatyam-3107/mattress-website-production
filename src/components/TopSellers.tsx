@@ -83,7 +83,7 @@ const TopSellers = () => {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {bestsellers.map((product, idx) => {
-              const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+              const discount = product.originalPrice > product.price ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
               const isWished = wishlist.includes(product.id);
               const isFirst = idx === 0;
 
@@ -153,8 +153,8 @@ const TopSellers = () => {
                     {/* Price */}
                     <div className="flex items-end gap-2 mb-4">
                       <span className="text-xl font-extrabold text-[#111827] dark:text-gray-100 font-montserrat">₹{product.price.toLocaleString()}</span>
-                      <span className="text-sm text-gray-400 line-through font-montserrat">₹{product.originalPrice.toLocaleString()}</span>
-                      <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 px-2 py-0.5 rounded-md font-montserrat">{discount}% off</span>
+                      {discount > 0 && <span className="text-sm text-gray-400 line-through font-montserrat">₹{product.originalPrice.toLocaleString()}</span>}
+                      {discount > 0 && <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 px-2 py-0.5 rounded-md font-montserrat">{discount}% off</span>}
                     </div>
 
                     {/* Gradient bottom accent */}
