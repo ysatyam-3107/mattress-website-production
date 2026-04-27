@@ -7,7 +7,7 @@ const PromoBanner = () => {
   if (!visible) return null;
 
   return (
-    <div className="relative bg-gradient-to-r from-[#1E3A8A] via-[#2d4da6] to-[#1E3A8A] text-white text-center py-3 px-4 z-[60] overflow-hidden animate-gradient-slow" style={{ backgroundSize: '200% 200%' }}>
+    <div className="relative bg-gradient-to-r from-[#001166] via-[#0a2280] to-[#001166] text-white text-center py-3 px-4 z-[60] overflow-hidden animate-gradient-slow" style={{ backgroundSize: '200% 200%' }}>
       {/* Animated shimmer overlay */}
       <div className="absolute inset-0 shimmer pointer-events-none" />
       

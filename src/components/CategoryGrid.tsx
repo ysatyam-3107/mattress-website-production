@@ -26,13 +26,13 @@ const CategoryGrid = () => (
       {/* Section Header */}
       <div className="text-center max-w-2xl mx-auto mb-10">
         <div className="flex items-center justify-center gap-2 mb-4">
-          <div className="h-px w-10 bg-[#3B82F6]" />
-          <span className="text-[#3B82F6] font-bold text-[11px] tracking-[0.2em] uppercase font-montserrat">
+          <div className="h-px w-10 bg-[#2563EB]" />
+          <span className="text-[#2563EB] font-bold text-[11px] tracking-[0.2em] uppercase font-montserrat">
             Categories
           </span>
-          <div className="h-px w-10 bg-[#3B82F6]" />
+          <div className="h-px w-10 bg-[#2563EB]" />
         </div>
-        <h2 className="text-3xl lg:text-4xl font-bold text-[#111827] dark:text-gray-100 mb-3 font-playfair">Shop By Category</h2>
+        <h2 className="text-3xl lg:text-4xl font-bold text-[#000d44] dark:text-gray-100 mb-3 font-playfair">Shop By Category</h2>
         <p className="text-gray-500 font-montserrat">Find the perfect mattress for every need</p>
       </div>
 
@@ -46,7 +46,7 @@ const CategoryGrid = () => (
           >
             {/* Circle thumbnail with ring */}
             <div className="relative w-full aspect-square max-w-[160px] mx-auto mb-4">
-              <div className="w-full h-full rounded-full overflow-hidden border-[3px] border-gray-100 dark:border-border/50 shadow-soft group-hover:border-[#3B82F6]/50 group-hover:shadow-premium transition-all duration-500 ease-out group-hover:-translate-y-2">
+              <div className="w-full h-full rounded-full overflow-hidden border-[3px] border-gray-100 dark:border-border/50 shadow-soft group-hover:border-[#2563EB]/50 group-hover:shadow-premium transition-all duration-500 ease-out group-hover:-translate-y-2">
                 <img
                   src={cat.image}
                   alt={cat.name}
@@ -63,9 +63,9 @@ const CategoryGrid = () => (
             </div>
 
             {/* Label with animated underline */}
-            <span className="relative text-sm font-bold text-[#111827] dark:text-gray-100 group-hover:text-[#3B82F6] transition-colors duration-300 font-montserrat">
+            <span className="relative text-sm font-bold text-[#000d44] dark:text-gray-100 group-hover:text-[#2563EB] transition-colors duration-300 font-montserrat">
               {cat.name}
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-0.5 bg-[#3B82F6] transition-all duration-400 rounded-full" />
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-0.5 bg-[#2563EB] transition-all duration-400 rounded-full" />
             </span>
           </Link>
         ))}

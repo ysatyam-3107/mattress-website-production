@@ -51,11 +51,11 @@ const BlogPost = () => {
   if (!post) {
     return (
       <div className="container py-20 text-center">
-        <h1 className="text-2xl font-bold mb-4 font-playfair text-[#1E3A8A]">
+        <h1 className="text-2xl font-bold mb-4 font-playfair text-[#001166]">
           Article not found
         </h1>
         <Link to="/blog">
-          <Button className="bg-[#3B82F6] hover:bg-blue-600 font-montserrat">
+          <Button className="bg-[#2563EB] hover:bg-blue-600 font-montserrat">
             Back to Sleep Guide
           </Button>
         </Link>
@@ -96,8 +96,8 @@ const BlogPost = () => {
 
       <article className="min-h-screen bg-background">
         {/* Hero */}
-        <div className="bg-[#1E3A8A] py-16 lg:py-24 relative overflow-hidden">
-          <div className="absolute -top-40 right-10 w-[500px] h-[500px] bg-[#3B82F6]/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="bg-[#001166] py-16 lg:py-24 relative overflow-hidden">
+          <div className="absolute -top-40 right-10 w-[500px] h-[500px] bg-[#2563EB]/10 rounded-full blur-[100px] pointer-events-none" />
           <div className="container relative z-10 max-w-3xl">
             <Link
               to="/blog"
@@ -106,7 +106,7 @@ const BlogPost = () => {
               <ArrowLeft className="w-4 h-4" /> Back to Sleep Guide
             </Link>
             <div className="flex items-center gap-3 mb-6">
-              <span className="bg-[#3B82F6] text-white text-xs font-bold px-3 py-1 rounded-lg uppercase tracking-wider font-montserrat">
+              <span className="bg-[#2563EB] text-white text-xs font-bold px-3 py-1 rounded-lg uppercase tracking-wider font-montserrat">
                 {post.category}
               </span>
               <span className="text-blue-200/60 text-sm flex items-center gap-1.5 font-montserrat">
@@ -117,7 +117,7 @@ const BlogPost = () => {
               {post.title}
             </h1>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#3B82F6]/30 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-[#2563EB]/30 flex items-center justify-center">
                 <User className="w-5 h-5 text-blue-200" />
               </div>
               <div>
@@ -135,7 +135,7 @@ const BlogPost = () => {
         {/* Content */}
         <div className="container max-w-3xl py-16">
           <div className="prose prose-lg dark:prose-invert max-w-none font-montserrat">
-            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-medium border-l-4 border-[#3B82F6] pl-6 mb-10">
+            <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-medium border-l-4 border-[#2563EB] pl-6 mb-10">
               {post.excerpt}
             </p>
             {content.map((paragraph, idx) => (
@@ -153,12 +153,12 @@ const BlogPost = () => {
             {prevPost ? (
               <Link
                 to={`/blog/${toSlug(prevPost.title)}`}
-                className="group p-5 rounded-xl border border-border hover:border-[#3B82F6]/30 hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-all"
+                className="group p-5 rounded-xl border border-border hover:border-[#2563EB]/30 hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-all"
               >
                 <span className="text-xs text-muted-foreground font-montserrat flex items-center gap-1">
                   <ArrowLeft className="w-3 h-3" /> Previous
                 </span>
-                <p className="font-bold text-sm mt-2 group-hover:text-[#3B82F6] transition-colors font-playfair line-clamp-1">
+                <p className="font-bold text-sm mt-2 group-hover:text-[#2563EB] transition-colors font-playfair line-clamp-1">
                   {prevPost.title}
                 </p>
               </Link>
@@ -168,12 +168,12 @@ const BlogPost = () => {
             {nextPost && (
               <Link
                 to={`/blog/${toSlug(nextPost.title)}`}
-                className="group p-5 rounded-xl border border-border hover:border-[#3B82F6]/30 hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-all text-right"
+                className="group p-5 rounded-xl border border-border hover:border-[#2563EB]/30 hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-all text-right"
               >
                 <span className="text-xs text-muted-foreground font-montserrat flex items-center gap-1 justify-end">
                   Next <ArrowRight className="w-3 h-3" />
                 </span>
-                <p className="font-bold text-sm mt-2 group-hover:text-[#3B82F6] transition-colors font-playfair line-clamp-1">
+                <p className="font-bold text-sm mt-2 group-hover:text-[#2563EB] transition-colors font-playfair line-clamp-1">
                   {nextPost.title}
                 </p>
               </Link>

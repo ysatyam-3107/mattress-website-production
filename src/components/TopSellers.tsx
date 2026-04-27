@@ -38,9 +38,9 @@ const TopSellers = () => {
   };
 
   return (
-    <section className="py-14 bg-[#F9FAFB] dark:bg-background relative overflow-hidden">
+    <section className="py-14 bg-[#f0f0e7] dark:bg-background relative overflow-hidden">
       {/* Decorative background */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#3B82F6]/20 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#2563EB]/20 to-transparent" />
       
       <div className="container">
         {/* Header */}
@@ -52,12 +52,12 @@ const TopSellers = () => {
                 Trending Now
               </span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#111827] dark:text-gray-100 font-playfair">Top Selling Mattresses</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#000d44] dark:text-gray-100 font-playfair">Top Selling Mattresses</h2>
             <p className="text-gray-500 mt-2 font-montserrat">The mattresses India trusts the most</p>
           </div>
           <Link
             to="/products"
-            className="text-[#3B82F6] font-bold text-sm hover:underline hidden sm:flex items-center gap-1 font-montserrat group"
+            className="text-[#2563EB] font-bold text-sm hover:underline hidden sm:flex items-center gap-1 font-montserrat group"
           >
             View All
             <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -70,7 +70,7 @@ const TopSellers = () => {
           {canScrollLeft && (
             <button
               onClick={() => scroll("left")}
-              className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white dark:bg-card shadow-premium border border-gray-100/80 dark:border-border flex items-center justify-center text-[#111827] dark:text-gray-100 hover:bg-[#3B82F6] hover:text-white hover:border-[#3B82F6] transition-all duration-300 opacity-0 group-hover/scroll:opacity-100"
+              className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white dark:bg-card shadow-premium border border-gray-100/80 dark:border-border flex items-center justify-center text-[#000d44] dark:text-gray-100 hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] transition-all duration-300 opacity-0 group-hover/scroll:opacity-100"
               aria-label="Scroll left"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -117,7 +117,7 @@ const TopSellers = () => {
 
                     {/* Best Seller Badge */}
                     {!isFirst && (
-                      <span className="absolute top-3 left-3 bg-[#1E3A8A] text-white text-[10px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-wider flex items-center gap-1 shadow-md font-montserrat">
+                      <span className="absolute top-3 left-3 bg-[#001166] text-white text-[10px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-wider flex items-center gap-1 shadow-md font-montserrat">
                         <Award className="w-3 h-3" /> Best Seller
                       </span>
                     )}
@@ -135,7 +135,7 @@ const TopSellers = () => {
                   {/* Content */}
                   <div className="p-5">
                     <Link to={`/product/${product.slug}`}>
-                      <h3 className="font-bold text-[#111827] dark:text-gray-100 text-sm mb-2.5 line-clamp-1 group-hover:text-[#3B82F6] transition-colors duration-300 font-playfair">
+                      <h3 className="font-bold text-[#000d44] dark:text-gray-100 text-sm mb-2.5 line-clamp-1 group-hover:text-[#2563EB] transition-colors duration-300 font-playfair">
                         {product.name}
                       </h3>
                     </Link>
@@ -152,17 +152,17 @@ const TopSellers = () => {
 
                     {/* Price */}
                     <div className="flex items-end gap-2 mb-4">
-                      <span className="text-xl font-extrabold text-[#111827] dark:text-gray-100 font-montserrat">₹{product.price.toLocaleString()}</span>
+                      <span className="text-xl font-extrabold text-[#000d44] dark:text-gray-100 font-montserrat">₹{product.price.toLocaleString()}</span>
                       {discount > 0 && <span className="text-sm text-gray-400 line-through font-montserrat">₹{product.originalPrice.toLocaleString()}</span>}
                       {discount > 0 && <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 px-2 py-0.5 rounded-md font-montserrat">{discount}% off</span>}
                     </div>
 
                     {/* Gradient bottom accent */}
-                    <div className="h-px bg-gradient-to-r from-transparent via-[#3B82F6]/20 to-transparent mb-4" />
+                    <div className="h-px bg-gradient-to-r from-transparent via-[#2563EB]/20 to-transparent mb-4" />
 
                     <Button
                       size="sm"
-                      className="w-full bg-[#1E3A8A] hover:bg-[#3B82F6] text-white rounded-xl h-10 text-xs font-bold btn-press btn-sweep transition-all duration-300 font-montserrat shadow-sm"
+                      className="w-full bg-[#001166] hover:bg-[#2563EB] text-white rounded-xl h-10 text-xs font-bold btn-press btn-sweep transition-all duration-300 font-montserrat shadow-sm"
                       onClick={() => addToCart(product)}
                     >
                       <ShoppingCart className="w-3.5 h-3.5 mr-1.5" /> Add to Cart
@@ -177,7 +177,7 @@ const TopSellers = () => {
           {canScrollRight && (
             <button
               onClick={() => scroll("right")}
-              className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white dark:bg-card shadow-premium border border-gray-100/80 dark:border-border flex items-center justify-center text-[#111827] dark:text-gray-100 hover:bg-[#3B82F6] hover:text-white hover:border-[#3B82F6] transition-all duration-300 opacity-0 group-hover/scroll:opacity-100 animate-bounce-gentle"
+              className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white dark:bg-card shadow-premium border border-gray-100/80 dark:border-border flex items-center justify-center text-[#000d44] dark:text-gray-100 hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] transition-all duration-300 opacity-0 group-hover/scroll:opacity-100 animate-bounce-gentle"
               aria-label="Scroll right"
             >
               <ChevronRight className="w-5 h-5" />
@@ -188,7 +188,7 @@ const TopSellers = () => {
         {/* Mobile View All */}
         <div className="mt-8 text-center sm:hidden">
           <Link to="/products">
-            <Button variant="outline" className="w-full border-[#1E3A8A] text-[#1E3A8A] hover:bg-[#1E3A8A] hover:text-white btn-press font-montserrat rounded-xl h-12 font-bold">
+            <Button variant="outline" className="w-full border-[#001166] text-[#001166] hover:bg-[#001166] hover:text-white btn-press font-montserrat rounded-xl h-12 font-bold">
               View All Products
             </Button>
           </Link>

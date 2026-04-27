@@ -19,7 +19,7 @@ const Wishlist = () => {
       <div className="min-h-screen bg-background">
         <div className="bg-card border-b border-border/50 py-10">
           <div className="container">
-            <h1 className="text-3xl font-bold mb-2 font-playfair text-[#1E3A8A]">
+            <h1 className="text-3xl font-bold mb-2 font-playfair text-[#001166]">
               <Heart className="inline w-8 h-8 mr-2 text-red-500 fill-red-500" />
               My Wishlist
             </h1>
@@ -44,7 +44,7 @@ const Wishlist = () => {
                 </p>
               </div>
               <Link to="/products">
-                <Button className="bg-[#1E3A8A] hover:bg-blue-900 font-montserrat font-bold">
+                <Button className="bg-[#001166] hover:bg-blue-900 font-montserrat font-bold">
                   Browse Mattresses
                 </Button>
               </Link>
@@ -77,7 +77,7 @@ const Wishlist = () => {
                     </Link>
                     <div className="p-5 space-y-3">
                       <Link to={`/product/${product.slug}`}>
-                        <h3 className="font-bold text-gray-900 dark:text-gray-100 group-hover:text-[#3B82F6] transition-colors font-playfair">
+                        <h3 className="font-bold text-gray-900 dark:text-gray-100 group-hover:text-[#2563EB] transition-colors font-playfair">
                           {product.name}
                         </h3>
                       </Link>
@@ -93,7 +93,7 @@ const Wishlist = () => {
                       </div>
                       <div className="flex gap-2 pt-2">
                         <Button
-                          className="flex-1 bg-[#1E3A8A] hover:bg-[#3B82F6] text-white font-montserrat font-bold text-sm"
+                          className="flex-1 bg-[#001166] hover:bg-[#2563EB] text-white font-montserrat font-bold text-sm"
                           onClick={() => addToCart(product)}
                         >
                           <ShoppingCart className="w-4 h-4 mr-1.5" /> Add to Cart

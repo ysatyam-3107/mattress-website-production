@@ -40,7 +40,7 @@ const ProductQuickView = ({ product, onClose }: { product: Product; onClose: () 
               className="w-full aspect-square object-cover"
             />
             {product.bestseller && (
-              <Badge className="absolute top-3 left-3 bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] text-white border-0 shadow-lg">
+              <Badge className="absolute top-3 left-3 bg-gradient-to-r from-[#001166] to-[#2563EB] text-white border-0 shadow-lg">
                 <Award className="w-3 h-3 mr-1" /> Bestseller
               </Badge>
             )}
@@ -68,11 +68,11 @@ const ProductQuickView = ({ product, onClose }: { product: Product; onClose: () 
               <p><strong>Sizes:</strong> {product.sizes.join(", ")}</p>
             </div>
             <div className="flex gap-2 pt-4">
-              <Button onClick={() => addToCart(product)} className="flex-1 bg-[#3B82F6] hover:bg-blue-500 text-white btn-press btn-sweep font-montserrat rounded-xl">
+              <Button onClick={() => addToCart(product)} className="flex-1 bg-[#2563EB] hover:bg-blue-500 text-white btn-press btn-sweep font-montserrat rounded-xl">
                 <ShoppingCart className="h-4 w-4 mr-2" /> Add to Cart
               </Button>
               <Link to={`/product/${product.slug}`} className="flex-1">
-                <Button variant="outline" className="w-full border-[#1E3A8A] text-[#1E3A8A] hover:bg-[#1E3A8A] hover:text-white btn-press font-montserrat rounded-xl">View Details</Button>
+                <Button variant="outline" className="w-full border-[#001166] text-[#001166] hover:bg-[#001166] hover:text-white btn-press font-montserrat rounded-xl">View Details</Button>
               </Link>
             </div>
           </div>
@@ -102,7 +102,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               loading="lazy"
             />
             {/* Cinematic vignette on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000833]/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </Link>
           
           {/* Compare Checkbox — improved */}
@@ -114,7 +114,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               toggleCompare(product.id);
             }}
           >
-            <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${isComparing ? 'bg-[#1E3A8A] border-[#1E3A8A] scale-110' : 'border-slate-300'}`}>
+            <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${isComparing ? 'bg-[#001166] border-[#001166] scale-110' : 'border-slate-300'}`}>
               {isComparing && <Check className="w-3 h-3 text-white" />}
             </div>
             <span className="text-[10px] font-bold text-slate-700 uppercase tracking-tighter">Compare</span>
@@ -123,7 +123,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-2">
             {product.bestseller && (
-              <span className="bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1.5 uppercase tracking-wider font-montserrat border border-white/10">
+              <span className="bg-gradient-to-r from-[#001166] to-[#2563EB] text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1.5 uppercase tracking-wider font-montserrat border border-white/10">
                 <Award className="w-3.5 h-3.5" /> Bestseller
               </span>
             )}
@@ -144,7 +144,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             </button>
             <button
               onClick={() => setShowQuickView(true)}
-              className="h-10 w-10 rounded-xl glass-card shadow-sm flex items-center justify-center transition-all duration-200 hover:scale-110 text-gray-500 hover:text-[#1E3A8A]"
+              className="h-10 w-10 rounded-xl glass-card shadow-sm flex items-center justify-center transition-all duration-200 hover:scale-110 text-gray-500 hover:text-[#001166]"
             >
               <Eye className="h-4 w-4" />
             </button>
@@ -154,7 +154,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         {/* Card Body */}
         <div className="p-5 flex flex-col flex-1">
           <Link to={`/product/${product.slug}`} className="mb-2">
-            <h3 className="font-bold text-gray-900 dark:text-gray-100 text-lg group-hover:text-[#3B82F6] transition-colors duration-300 line-clamp-1 font-playfair">{product.name}</h3>
+            <h3 className="font-bold text-gray-900 dark:text-gray-100 text-lg group-hover:text-[#2563EB] transition-colors duration-300 line-clamp-1 font-playfair">{product.name}</h3>
           </Link>
 
           {/* Rating with gold glow */}
@@ -179,10 +179,10 @@ const ProductCard = ({ product }: { product: Product }) => {
             </p>
             
             {/* Gradient accent line */}
-            <div className="h-px bg-gradient-to-r from-transparent via-[#3B82F6]/15 to-transparent mb-4" />
+            <div className="h-px bg-gradient-to-r from-transparent via-[#2563EB]/15 to-transparent mb-4" />
             
             <Button 
-              className="w-full bg-[#1E3A8A] hover:bg-[#3B82F6] text-white rounded-xl h-11 font-bold shadow-sm transition-all duration-300 text-sm btn-press btn-sweep font-montserrat" 
+              className="w-full bg-[#001166] hover:bg-[#2563EB] text-white rounded-xl h-11 font-bold shadow-sm transition-all duration-300 text-sm btn-press btn-sweep font-montserrat" 
               onClick={() => addToCart(product)}
             >
               <ShoppingCart className="h-4 w-4 mr-2" />

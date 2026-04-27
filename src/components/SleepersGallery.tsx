@@ -7,11 +7,11 @@ export const SleepersGallery = () => {
     <section className="py-14 bg-white overflow-hidden">
       <div className="container">
         <div className="max-w-3xl mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-[#3B82F6] text-xs font-bold uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-[#2563EB] text-xs font-bold uppercase tracking-widest mb-6">
             <Camera className="w-4 h-4" /> Real Homes, Real Sleep
           </div>
-          <h2 className="text-5xl font-black text-[#111827] mb-6 font-playfair leading-tight">
-            The Sleepers <span className="text-[#3B82F6]">Gallery</span>
+          <h2 className="text-5xl font-black text-[#000d44] mb-6 font-playfair leading-tight">
+            The Sleepers <span className="text-[#2563EB]">Gallery</span>
           </h2>
           <p className="text-xl text-slate-500 font-montserrat leading-relaxed">
             See how Mustafa's Mattresses look and feel in actual bedrooms across the country. Join 50,000+ happy sleepers.
@@ -48,7 +48,7 @@ export const SleepersGallery = () => {
               </div>
 
               {/* Tag in inactive state */}
-              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[10px] font-bold text-[#1E3A8A] uppercase tracking-tighter shadow-sm group-hover:opacity-0 transition-opacity">
+              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-[10px] font-bold text-[#001166] uppercase tracking-tighter shadow-sm group-hover:opacity-0 transition-opacity">
                  {item.userName} — {item.location}
               </div>
             </motion.div>
@@ -57,7 +57,7 @@ export const SleepersGallery = () => {
 
         <div className="mt-10 text-center">
            <div className="inline-block p-1 rounded-full bg-slate-100 border border-slate-200">
-              <button className="px-10 py-5 bg-[#1E3A8A] text-white rounded-full font-black font-montserrat shadow-xl shadow-blue-900/20 hover:bg-blue-900 hover:-translate-y-1 transition-all flex items-center gap-3">
+              <button className="px-10 py-5 bg-[#001166] text-white rounded-full font-black font-montserrat shadow-xl shadow-blue-900/20 hover:bg-blue-900 hover:-translate-y-1 transition-all flex items-center gap-3">
                  Share Your Bedroom Photo <Camera className="w-5 h-5" />
               </button>
            </div>

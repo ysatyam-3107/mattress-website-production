@@ -13,9 +13,9 @@ const NotFound = () => {
         description="The page you're looking for doesn't exist. Return to Mustafa's Mattress to find your perfect sleep solution."
         noIndex
       />
-      <div className="flex min-h-[75vh] items-center justify-center bg-[#1E3A8A] px-4 relative overflow-hidden">
+      <div className="flex min-h-[75vh] items-center justify-center bg-[#001166] px-4 relative overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#3B82F6]/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2563EB]/10 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-300/5 rounded-full blur-[80px] pointer-events-none" />
         
         <div className="text-center max-w-lg mx-auto space-y-8 relative z-10 animate-fade-up">
@@ -39,7 +39,7 @@ const NotFound = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Link to="/">
-              <Button size="lg" className="w-full sm:w-auto bg-[#3B82F6] hover:bg-blue-500 text-white font-bold h-14 rounded-xl shadow-xl hover:shadow-blue-500/30 transition-all btn-press font-montserrat">
+              <Button size="lg" className="w-full sm:w-auto bg-[#2563EB] hover:bg-blue-500 text-white font-bold h-14 rounded-xl shadow-xl hover:shadow-blue-500/30 transition-all btn-press font-montserrat">
                 <Home className="w-5 h-5 mr-2" /> Back to Home
               </Button>
             </Link>

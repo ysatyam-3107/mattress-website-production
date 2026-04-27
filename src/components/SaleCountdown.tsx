@@ -35,7 +35,7 @@ const SaleCountdown = () => {
 
   const TimeBox = ({ value, label }: { value: number; label: string }) => (
     <div className="text-center group">
-      <div className="relative bg-gradient-to-br from-[#1E3A8A] to-[#0f1d47] text-white font-extrabold text-xl sm:text-2xl w-14 sm:w-16 h-14 sm:h-16 rounded-2xl flex items-center justify-center shadow-premium font-montserrat border border-white/5 overflow-hidden">
+      <div className="relative bg-gradient-to-br from-[#001166] to-[#0f1d47] text-white font-extrabold text-xl sm:text-2xl w-14 sm:w-16 h-14 sm:h-16 rounded-2xl flex items-center justify-center shadow-premium font-montserrat border border-white/5 overflow-hidden">
         {/* Inner glow */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent rounded-2xl" />
         <span className="relative z-10 tabular-nums">{String(value).padStart(2, "0")}</span>
@@ -58,7 +58,7 @@ const SaleCountdown = () => {
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
-                <span className="font-black text-[#111827] dark:text-gray-100 text-sm sm:text-base whitespace-nowrap font-montserrat block leading-tight">
+                <span className="font-black text-[#000d44] dark:text-gray-100 text-sm sm:text-base whitespace-nowrap font-montserrat block leading-tight">
                   {timeLeft.expired ? "Sale Ended" : "Flash Sale"}
                 </span>
                 {!timeLeft.expired && (
@@ -69,11 +69,11 @@ const SaleCountdown = () => {
             {!timeLeft.expired && (
               <div className="flex items-center gap-1.5 sm:gap-2.5">
                 <TimeBox value={timeLeft.days} label="Days" />
-                <span className="text-xl font-black text-[#1E3A8A]/30 pb-5 select-none">:</span>
+                <span className="text-xl font-black text-[#001166]/30 pb-5 select-none">:</span>
                 <TimeBox value={timeLeft.hours} label="Hrs" />
-                <span className="text-xl font-black text-[#1E3A8A]/30 pb-5 select-none">:</span>
+                <span className="text-xl font-black text-[#001166]/30 pb-5 select-none">:</span>
                 <TimeBox value={timeLeft.mins} label="Mins" />
-                <span className="text-xl font-black text-[#1E3A8A]/30 pb-5 select-none">:</span>
+                <span className="text-xl font-black text-[#001166]/30 pb-5 select-none">:</span>
                 <TimeBox value={timeLeft.secs} label="Secs" />
               </div>
             )}
@@ -86,11 +86,11 @@ const SaleCountdown = () => {
           <div className="flex items-center gap-5 sm:gap-7">
             {trustBadges.map((badge) => (
               <div key={badge.sublabel} className="flex items-center gap-2.5 group cursor-default">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center group-hover:bg-[#3B82F6] group-hover:shadow-glow-blue transition-all duration-400 border border-blue-100/50 dark:border-blue-800/30">
-                  <badge.icon className="w-4.5 h-4.5 text-[#3B82F6] group-hover:text-white transition-colors duration-300" />
+                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center group-hover:bg-[#2563EB] group-hover:shadow-glow-blue transition-all duration-400 border border-blue-100/50 dark:border-blue-800/30">
+                  <badge.icon className="w-4.5 h-4.5 text-[#2563EB] group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div className="hidden sm:block">
-                  <p className="text-xs font-extrabold text-[#111827] dark:text-gray-100 leading-tight font-montserrat">{badge.label}</p>
+                  <p className="text-xs font-extrabold text-[#000d44] dark:text-gray-100 leading-tight font-montserrat">{badge.label}</p>
                   <p className="text-[10px] text-warm-gray font-medium font-montserrat">{badge.sublabel}</p>
                 </div>
               </div>

@@ -80,7 +80,7 @@ const CartDrawer = () => {
               <Button 
                 onClick={handleCheckout} 
                 disabled={isCheckingOut}
-                className="w-full mt-4 bg-[#1E3A8A] hover:bg-blue-900 border-[#1E3A8A] border h-10 text-sm font-montserrat font-bold shadow-md btn-press"
+                className="w-full mt-4 bg-[#001166] hover:bg-blue-900 border-[#001166] border h-10 text-sm font-montserrat font-bold shadow-md btn-press"
               >
                 {isCheckingOut ? (
                   <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Redirecting...</>
@@ -88,7 +88,7 @@ const CartDrawer = () => {
                   `Checkout — ₹${totalPrice.toLocaleString()}`
                 )}
               </Button>
-              <div className="flex items-center justify-center gap-1.5 pt-1 text-[#3B82F6]">
+              <div className="flex items-center justify-center gap-1.5 pt-1 text-[#2563EB]">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span className="text-[10px] font-montserrat font-bold uppercase tracking-tight">Secure Payment</span>
               </div>

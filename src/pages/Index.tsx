@@ -89,9 +89,9 @@ const Index = () => {
       </RevealSection>
 
       {/* 6. Smart Mattress Finder */}
-      <RevealSection id="sleep-quiz" className="py-16 relative overflow-hidden bg-[#1E3A8A]">
+      <RevealSection id="sleep-quiz" className="py-16 relative overflow-hidden bg-[#001166]">
         {/* Decorative orbs */}
-        <div className="absolute -top-40 right-10 w-[500px] h-[500px] bg-[#3B82F6]/15 rounded-full blur-[100px] pointer-events-none float-orb" />
+        <div className="absolute -top-40 right-10 w-[500px] h-[500px] bg-[#2563EB]/15 rounded-full blur-[100px] pointer-events-none float-orb" />
         <div className="absolute -bottom-40 left-10 w-[400px] h-[400px] bg-blue-300/10 rounded-full blur-[80px] pointer-events-none float-orb-delay" />
         
         <div className="container relative z-10">
@@ -115,9 +115,9 @@ const Index = () => {
       </RevealSection>
 
       {/* 7. Comparison Section — Premium redesign */}
-      <section className="py-16 bg-[#111827] relative overflow-hidden">
+      <section className="py-16 bg-[#000d44] relative overflow-hidden">
         {/* Decorative blur */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#3B82F6]/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#2563EB]/5 rounded-full blur-[120px] pointer-events-none" />
         
         <div className="container max-w-4xl relative z-10">
           <div className="text-center mb-10">
@@ -140,7 +140,7 @@ const Index = () => {
               <thead>
                 <tr className="border-b border-white/10">
                   <th className="p-3 sm:p-6 font-semibold text-sm sm:text-base text-gray-400 w-1/3 font-montserrat">Features</th>
-                  <th className="p-3 sm:p-6 font-bold text-lg sm:text-xl text-white bg-[#3B82F6]/10 w-1/3 text-center border-x border-white/10 font-playfair">
+                  <th className="p-3 sm:p-6 font-bold text-lg sm:text-xl text-white bg-[#2563EB]/10 w-1/3 text-center border-x border-white/10 font-playfair">
                     <span className="text-gradient-gold">Mustafa's</span>
                   </th>
                   <th className="p-3 sm:p-6 font-semibold text-sm sm:text-base text-gray-500 w-1/3 text-center font-montserrat">Others</th>
@@ -156,7 +156,7 @@ const Index = () => {
                 ].map((row, i) => (
                   <tr key={i} className="hover:bg-white/[0.03] transition-colors duration-300 group">
                     <td className="p-3 sm:p-6 text-sm sm:text-base text-gray-300 font-semibold font-montserrat group-hover:text-white transition-colors">{row.feature}</td>
-                    <td className="p-3 sm:p-6 text-center bg-[#3B82F6]/5 border-x border-white/10">
+                    <td className="p-3 sm:p-6 text-center bg-[#2563EB]/5 border-x border-white/10">
                       <div className="flex items-center justify-center gap-1.5 sm:gap-2">
                         <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 shrink-0" />
                         <span className="font-bold text-sm sm:text-base text-white font-montserrat">{row.us}</span>
@@ -178,8 +178,8 @@ const Index = () => {
       </section>
 
       {/* 8. Sleep Score Calculator */}
-      <section className="py-16 relative overflow-hidden bg-gradient-to-br from-[#0f1d47] to-[#1E3A8A]">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3B82F6]/10 rounded-full blur-[120px] pointer-events-none" />
+      <section className="py-16 relative overflow-hidden bg-gradient-to-br from-[#0f1d47] to-[#001166]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#2563EB]/10 rounded-full blur-[120px] pointer-events-none" />
         
         <div className="container relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-10">
@@ -208,7 +208,7 @@ const Index = () => {
       <SleepersGallery />
 
       {/* 9. SLEEP GUIDE — Magazine-Quality Editorial Section */}
-      <section className="py-16 bg-[#F9FAFB] dark:bg-card relative overflow-hidden">
+      <section className="py-16 bg-[#f0f0e7] dark:bg-card relative overflow-hidden">
         {/* Decorative blobs */}
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-blue-50 dark:bg-blue-900/10 blur-3xl pointer-events-none" />
         <div className="absolute -bottom-60 -left-40 w-[500px] h-[500px] rounded-full bg-blue-100/30 dark:bg-blue-900/10 blur-3xl pointer-events-none" />
@@ -218,17 +218,17 @@ const Index = () => {
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
             <div className="max-w-xl">
               <div className="flex items-center gap-2 mb-4">
-                <div className="h-px w-10 bg-[#3B82F6]" />
-                <span className="text-[#3B82F6] font-bold text-xs tracking-[0.2em] uppercase font-montserrat">
+                <div className="h-px w-10 bg-[#2563EB]" />
+                <span className="text-[#2563EB] font-bold text-xs tracking-[0.2em] uppercase font-montserrat">
                   Sleep Guide
                 </span>
               </div>
-              <h2 className="text-4xl lg:text-[3.2rem] font-bold text-[#111827] dark:text-gray-100 leading-[1.1] tracking-tight font-playfair">
+              <h2 className="text-4xl lg:text-[3.2rem] font-bold text-[#000d44] dark:text-gray-100 leading-[1.1] tracking-tight font-playfair">
                 Expert knowledge,<br />better nights.
               </h2>
             </div>
             <Link to="/blog" className="self-start lg:self-end">
-              <Button className="group rounded-full bg-[#1E3A8A] text-white hover:bg-[#3B82F6] px-8 h-12 font-bold shadow-lg hover:shadow-glow-blue transition-all btn-press font-montserrat">
+              <Button className="group rounded-full bg-[#001166] text-white hover:bg-[#2563EB] px-8 h-12 font-bold shadow-lg hover:shadow-glow-blue transition-all btn-press font-montserrat">
                 Browse all articles
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -248,11 +248,11 @@ const Index = () => {
                 alt="Sleep guide cover"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#000d44] via-[#000d44]/60 to-transparent" />
 
               <div className="relative z-10 p-8 lg:p-12">
                 <div className="flex flex-wrap items-center gap-3 mb-6">
-                  <span className="inline-flex items-center gap-1.5 bg-[#3B82F6] text-white px-3 py-1 rounded-lg text-[11px] font-bold uppercase tracking-wider shadow font-montserrat">
+                  <span className="inline-flex items-center gap-1.5 bg-[#2563EB] text-white px-3 py-1 rounded-lg text-[11px] font-bold uppercase tracking-wider shadow font-montserrat">
                     <ShoppingBagIcon className="w-3.5 h-3.5" />
                     {blogPosts[0].category}
                   </span>
@@ -271,7 +271,7 @@ const Index = () => {
                 <div className="flex items-center justify-between border-t border-white/10 pt-6">
                   <div className="flex items-center gap-3">
                     <div className="ring-gradient p-[2px] rounded-full">
-                      <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center text-white font-bold text-sm shadow-lg font-montserrat">
+                      <div className="w-10 h-10 rounded-full bg-[#2563EB] flex items-center justify-center text-white font-bold text-sm shadow-lg font-montserrat">
                         NK
                       </div>
                     </div>
@@ -280,7 +280,7 @@ const Index = () => {
                       <p className="text-white/40 text-xs font-montserrat">{blogPosts[0].authorRole}</p>
                     </div>
                   </div>
-                  <div className="w-12 h-12 rounded-full border-2 border-white/20 flex items-center justify-center text-white group-hover:bg-[#3B82F6] group-hover:border-[#3B82F6] group-hover:shadow-glow-blue transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full border-2 border-white/20 flex items-center justify-center text-white group-hover:bg-[#2563EB] group-hover:border-[#2563EB] group-hover:shadow-glow-blue transition-all duration-300">
                     <ArrowUpRight className="w-5 h-5" />
                   </div>
                 </div>
@@ -300,7 +300,7 @@ const Index = () => {
                   alt="Back pain guide"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/95 via-[#111827]/50 to-[#111827]/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#000d44]/95 via-[#000d44]/50 to-[#000d44]/10" />
 
                 <div className="relative z-10 p-7">
                   <div className="flex items-center gap-2 mb-4">
@@ -327,31 +327,31 @@ const Index = () => {
                 to={`/blog/${toSlug(blogPosts[2].title)}`}
                 className="group relative rounded-3xl bg-white dark:bg-card border border-gray-100 dark:border-border p-7 flex flex-col justify-between shadow-soft hover:shadow-premium hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
-                <div className="absolute -top-4 -right-4 w-28 h-28 rounded-full bg-[#3B82F6]/5 pointer-events-none" />
-                <div className="absolute top-5 right-5 w-12 h-12 rounded-2xl bg-[#1E3A8A]/10 flex items-center justify-center">
-                  <MoonIcon className="w-6 h-6 text-[#1E3A8A] dark:text-blue-400" />
+                <div className="absolute -top-4 -right-4 w-28 h-28 rounded-full bg-[#2563EB]/5 pointer-events-none" />
+                <div className="absolute top-5 right-5 w-12 h-12 rounded-2xl bg-[#001166]/10 flex items-center justify-center">
+                  <MoonIcon className="w-6 h-6 text-[#001166] dark:text-blue-400" />
                 </div>
 
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="text-[#3B82F6] font-bold text-[10px] uppercase tracking-widest bg-[#3B82F6]/10 px-3 py-1 rounded-lg font-montserrat">
+                    <span className="text-[#2563EB] font-bold text-[10px] uppercase tracking-widest bg-[#2563EB]/10 px-3 py-1 rounded-lg font-montserrat">
                       {blogPosts[2].category}
                     </span>
                     <span className="text-gray-400 text-xs flex items-center gap-1 font-montserrat">
                       <Clock className="w-3 h-3" /> {blogPosts[2].readTime}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 leading-snug group-hover:text-[#3B82F6] transition-colors pr-12 font-playfair">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 leading-snug group-hover:text-[#2563EB] transition-colors pr-12 font-playfair">
                     {blogPosts[2].title}
                   </h3>
                 </div>
 
                 <div className="flex items-center justify-between border-t border-gray-100 dark:border-border pt-5 mt-4">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-[#1E3A8A] dark:text-blue-400 text-[10px] font-bold font-montserrat">SR</div>
+                    <div className="w-7 h-7 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-[#001166] dark:text-blue-400 text-[10px] font-bold font-montserrat">SR</div>
                     <span className="text-xs text-gray-500 font-medium font-montserrat">{blogPosts[2].author}</span>
                   </div>
-                  <span className="text-sm font-bold text-gray-900 dark:text-gray-100 group-hover:text-[#3B82F6] flex items-center gap-1 transition-colors font-montserrat">
+                  <span className="text-sm font-bold text-gray-900 dark:text-gray-100 group-hover:text-[#2563EB] flex items-center gap-1 transition-colors font-montserrat">
                     Read <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
@@ -362,17 +362,17 @@ const Index = () => {
           {/* Bottom Strip */}
           <Link
             to={`/blog/${toSlug(blogPosts[3].title)}`}
-            className="group mt-5 rounded-3xl bg-[#111827] p-8 lg:p-10 flex flex-col md:flex-row items-center gap-8 shadow-premium hover:shadow-premium-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden relative"
+            className="group mt-5 rounded-3xl bg-[#000d44] p-8 lg:p-10 flex flex-col md:flex-row items-center gap-8 shadow-premium hover:shadow-premium-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden relative"
           >
-            <div className="absolute top-0 right-0 w-80 h-80 bg-[#3B82F6]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-80 h-80 bg-[#2563EB]/10 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-[#3B82F6]/15 border border-[#3B82F6]/10 flex items-center justify-center shrink-0">
-              <BarChart3Icon className="w-8 h-8 lg:w-10 lg:h-10 text-[#3B82F6]" />
+            <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-[#2563EB]/15 border border-[#2563EB]/10 flex items-center justify-center shrink-0">
+              <BarChart3Icon className="w-8 h-8 lg:w-10 lg:h-10 text-[#2563EB]" />
             </div>
 
             <div className="flex-1 relative z-10">
               <div className="flex flex-wrap items-center gap-3 mb-3">
-                <span className="bg-[#3B82F6]/20 text-[#3B82F6] text-[10px] font-bold px-3 py-1 rounded-lg uppercase tracking-wider font-montserrat">
+                <span className="bg-[#2563EB]/20 text-[#2563EB] text-[10px] font-bold px-3 py-1 rounded-lg uppercase tracking-wider font-montserrat">
                   {blogPosts[3].category}
                 </span>
                 <span className="text-white/50 text-xs flex items-center gap-1 font-montserrat">
@@ -385,7 +385,7 @@ const Index = () => {
               <p className="text-white/50 text-sm line-clamp-1 max-w-2xl font-montserrat">{blogPosts[3].excerpt}</p>
             </div>
 
-            <div className="w-14 h-14 rounded-full border-2 border-white/20 flex items-center justify-center text-white shrink-0 group-hover:bg-[#3B82F6] group-hover:border-[#3B82F6] group-hover:shadow-glow-blue transition-all duration-300">
+            <div className="w-14 h-14 rounded-full border-2 border-white/20 flex items-center justify-center text-white shrink-0 group-hover:bg-[#2563EB] group-hover:border-[#2563EB] group-hover:shadow-glow-blue transition-all duration-300">
               <ArrowUpRight className="w-5 h-5" />
             </div>
           </Link>

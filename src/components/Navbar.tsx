@@ -93,7 +93,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-[#3B1286] text-white transition-all duration-300 ${
+      className={`sticky top-0 z-50 bg-[#001166] text-white transition-all duration-300 ${
         scrolled ? "shadow-lg" : "shadow-none"
       } relative`}
     >
@@ -134,18 +134,18 @@ const Navbar = () => {
             </div>
 
             {searchOpen && searchResults.length > 0 && (
-              <div className="absolute top-[calc(100%+4px)] left-0 w-full bg-white dark:bg-[#1E1E24] rounded-md shadow-2xl border border-gray-100 dark:border-white/10 overflow-hidden z-50">
+              <div className="absolute top-[calc(100%+4px)] left-0 w-full bg-white dark:bg-[#0a0f2e] rounded-md shadow-2xl border border-gray-100 dark:border-white/10 overflow-hidden z-50">
                 {searchResults.map((product) => (
                   <Link
                     key={product.id}
                     to={`/product/${product.slug}`}
                     onClick={clearSearch}
-                    className="flex items-center gap-3 p-3 hover:bg-purple-50 dark:hover:bg-white/5 transition-colors border-b border-gray-50 dark:border-white/10 last:border-b-0 group"
+                    className="flex items-center gap-3 p-3 hover:bg-blue-50 dark:hover:bg-white/5 transition-colors border-b border-gray-50 dark:border-white/10 last:border-b-0 group"
                   >
                     <img src={product.image} alt={product.name} className="w-12 h-12 object-cover rounded" />
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-[14px] text-gray-900 dark:text-gray-100 font-montserrat group-hover:text-[#3B1286] dark:group-hover:text-purple-300">{product.name}</h4>
-                      <p className="text-[13px] font-bold text-[#3B1286] dark:text-purple-400">₹{product.price.toLocaleString()}</p>
+                      <h4 className="font-semibold text-[14px] text-gray-900 dark:text-gray-100 font-montserrat group-hover:text-[#001166] dark:group-hover:text-blue-300">{product.name}</h4>
+                      <p className="text-[13px] font-bold text-[#001166] dark:text-blue-400">₹{product.price.toLocaleString()}</p>
                     </div>
                   </Link>
                 ))}
@@ -178,7 +178,7 @@ const Navbar = () => {
               <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(true)} className="relative text-white hover:bg-white/10 rounded-full">
                 <ShoppingCart className="h-[22px] w-[22px]" />
                 {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 h-[18px] w-[18px] rounded-full bg-pink-500 border-2 border-[#3B1286] text-white text-[10px] flex items-center justify-center font-bold">
+                  <span className="absolute -top-1 -right-1 h-[18px] w-[18px] rounded-full bg-pink-500 border-2 border-[#001166] text-white text-[10px] flex items-center justify-center font-bold">
                     {totalItems}
                   </span>
                 )}
@@ -189,7 +189,7 @@ const Navbar = () => {
 
         {/* Mobile Search - Drops down directly beneath Top Row */}
         {searchOpen && (
-          <div className="lg:hidden px-4 pb-3 animate-fade-in bg-[#3B1286]">
+          <div className="lg:hidden px-4 pb-3 animate-fade-in bg-[#001166]">
             <div className="w-full relative flex items-center bg-white rounded-md overflow-hidden shadow-inner">
               <Search className="absolute left-3 text-gray-400 h-4 w-4" />
               <input
@@ -219,7 +219,7 @@ const Navbar = () => {
                     <img src={product.image} alt={product.name} className="w-10 h-10 object-cover rounded" />
                     <div>
                       <h4 className="font-semibold text-[13px] text-gray-900 dark:text-gray-100 font-montserrat">{product.name}</h4>
-                      <p className="text-[12px] font-bold text-[#3B1286] dark:text-purple-400">₹{product.price.toLocaleString()}</p>
+                      <p className="text-[12px] font-bold text-[#001166] dark:text-blue-400">₹{product.price.toLocaleString()}</p>
                     </div>
                   </Link>
                 ))}
@@ -229,7 +229,7 @@ const Navbar = () => {
         )}
 
         {/* BOTTOM ROW: CATEGORY TABS (Desktop Only) */}
-        <div className="hidden lg:block border-t border-white/20 bg-[#3B1286] relative">
+        <div className="hidden lg:block border-t border-white/20 bg-[#001166] relative">
           <div className="container flex">
             {bottomTabs.map((tab) => {
               const isMega = tab.hasMegaMenu;
@@ -239,7 +239,7 @@ const Navbar = () => {
                     to={tab.to}
                     className={`block px-6 py-2.5 text-[14px] font-bold font-montserrat transition-all tracking-wide ${
                       isMega 
-                      ? "text-white group-hover/nav:bg-white group-hover/nav:text-[#3B1286] group-hover/nav:border-t-4 group-hover/nav:border-blue-400 border-t-4 border-transparent"
+                      ? "text-white group-hover/nav:bg-white group-hover/nav:text-[#001166] group-hover/nav:border-t-4 group-hover/nav:border-blue-400 border-t-4 border-transparent"
                       : "text-white hover:bg-white/10 border-t-4 border-transparent"
                     }`}
                   >
@@ -254,7 +254,7 @@ const Navbar = () => {
                         <div className="grid grid-cols-7 gap-x-4 gap-y-6">
                           {megaMenuCategories.map((column, idx) => (
                             <div key={idx} className="space-y-4">
-                              <h4 className="font-bold text-[13px] text-[#3B1286] border-b-2 pb-1.5 border-gray-200/50 uppercase tracking-widest font-montserrat truncate">
+                              <h4 className="font-bold text-[13px] text-[#001166] border-b-2 pb-1.5 border-gray-200/50 uppercase tracking-widest font-montserrat truncate">
                                 {column.title}
                               </h4>
                               <ul className="space-y-2.5">
@@ -262,7 +262,7 @@ const Navbar = () => {
                                   <li key={lidx}>
                                     <Link 
                                       to={sublink.href} 
-                                      className="text-[13.5px] font-medium text-gray-600 hover:text-[#3B1286] hover:translate-x-1 block transition-all font-montserrat"
+                                      className="text-[13.5px] font-medium text-gray-600 hover:text-[#001166] hover:translate-x-1 block transition-all font-montserrat"
                                     >
                                       {sublink.label}
                                     </Link>
@@ -285,7 +285,7 @@ const Navbar = () => {
 
       {/* MOBILE FULLSCREEN MENU */}
       {mobileOpen && (
-        <div className="lg:hidden absolute top-[calc(100%+1px)] left-0 w-full h-[calc(100vh-64px)] bg-[#3B1286] overflow-y-auto animate-fade-in z-40 border-t border-white/10">
+        <div className="lg:hidden absolute top-[calc(100%+1px)] left-0 w-full h-[calc(100vh-64px)] bg-[#001166] overflow-y-auto animate-fade-in z-40 border-t border-white/10">
           <nav className="flex flex-col">
             {bottomTabs.map((link) => (
               <Link

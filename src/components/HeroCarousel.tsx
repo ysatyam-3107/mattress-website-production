@@ -91,7 +91,7 @@ const HeroCarousel = () => {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {slides.map((slide, i) => (
-            <div key={i} className="flex-[0_0_100%] min-w-0 relative h-[55vh] sm:h-[65vh] lg:h-[80vh] overflow-hidden bg-[#0f172a]">
+            <div key={i} className="flex-[0_0_100%] min-w-0 relative h-[55vh] sm:h-[65vh] lg:h-[80vh] overflow-hidden bg-[#000833]">
               {/* Background image with subtle zoom animation */}
               <img
                 src={slide.image}
@@ -103,14 +103,14 @@ const HeroCarousel = () => {
                 fetchpriority={i === 0 ? "high" : undefined}
               />
               {/* Multi-layer gradient overlay for cinematic depth */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628]/95 via-[#1E3A8A]/60 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#000833]/95 via-[#001166]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#000833]/40 via-transparent to-transparent" />
               
               <div className="absolute inset-0 flex items-center">
                 <div className="container px-4">
                   <div className={`max-w-xl space-y-6 ${i === selectedIndex ? "animate-fade-up" : "opacity-0"}`}>
                     {/* Glowing badge */}
-                    <span className="inline-block px-5 py-2 rounded-full bg-[#3B82F6]/90 text-white font-bold text-[11px] tracking-[0.15em] uppercase shadow-lg badge-glow font-montserrat backdrop-blur-sm border border-white/10">
+                    <span className="inline-block px-5 py-2 rounded-full bg-[#2563EB]/90 text-white font-bold text-[11px] tracking-[0.15em] uppercase shadow-lg badge-glow font-montserrat backdrop-blur-sm border border-white/10">
                       {slide.badge}
                     </span>
                     {/* Gradient headline */}
@@ -121,7 +121,7 @@ const HeroCarousel = () => {
                       {slide.subtitle}
                     </p>
                     <Link to={slide.ctaLink}>
-                      <Button size="lg" className="bg-white text-[#1E3A8A] hover:bg-blue-50 font-bold px-10 h-14 rounded-full shadow-xl hover:shadow-2xl btn-press btn-sweep mt-2 font-montserrat text-base group transition-all duration-300">
+                      <Button size="lg" className="bg-white text-[#001166] hover:bg-blue-50 font-bold px-10 h-14 rounded-full shadow-xl hover:shadow-2xl btn-press btn-sweep mt-2 font-montserrat text-base group transition-all duration-300">
                         {slide.cta}
                         <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </Button>

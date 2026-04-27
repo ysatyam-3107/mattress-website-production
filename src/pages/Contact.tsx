@@ -195,7 +195,7 @@ const Contact = () => {
             </div>
             <Button 
               type="submit" 
-              className={`w-full transition-all duration-300 ${submitted ? 'bg-green-600 hover:bg-green-600' : 'bg-[#1E3A8A] hover:bg-[#3B82F6]'}`}
+              className={`w-full transition-all duration-300 ${submitted ? 'bg-green-600 hover:bg-green-600' : 'bg-[#001166] hover:bg-[#2563EB]'}`}
               size="lg"
               disabled={isSubmitting}
             >

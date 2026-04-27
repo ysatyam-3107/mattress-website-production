@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 const FindMattressBanner = () => (
   <section className="py-8">
     <div className="container">
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1E3A8A] via-[#2545a0] to-[#3B82F6] px-8 py-10 sm:px-14 sm:py-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-premium-lg">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#001166] via-[#0a2280] to-[#2563EB] px-8 py-10 sm:px-14 sm:py-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-premium-lg">
         {/* Animated floating orbs */}
         <div className="absolute top-10 right-20 w-64 h-64 bg-white/[0.04] rounded-full float-orb pointer-events-none" />
         <div className="absolute -bottom-20 left-1/4 w-48 h-48 bg-white/[0.03] rounded-full float-orb-delay pointer-events-none" />
@@ -34,7 +34,7 @@ const FindMattressBanner = () => (
           <a href="#sleep-quiz">
             <Button
               size="lg"
-              className="bg-white text-[#1E3A8A] hover:bg-blue-50 font-bold px-10 h-16 rounded-2xl shadow-2xl text-lg transition-all btn-press group font-montserrat hover:-translate-y-1 hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.3)]"
+              className="bg-white text-[#001166] hover:bg-blue-50 font-bold px-10 h-16 rounded-2xl shadow-2xl text-lg transition-all btn-press group font-montserrat hover:-translate-y-1 hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.3)]"
             >
               FIND MY MATTRESS
               <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1.5 transition-transform" />

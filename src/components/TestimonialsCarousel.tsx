@@ -22,7 +22,7 @@ const TestimonialsCarousel = () => {
   }, [next, paused]);
 
   return (
-    <section className="py-14 bg-[#F9FAFB] dark:bg-background overflow-hidden relative">
+    <section className="py-14 bg-[#f0f0e7] dark:bg-background overflow-hidden relative">
       {/* Decorative background */}
       <div className="absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-blue-50/50 dark:bg-blue-900/5 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-40 -left-20 w-[400px] h-[400px] rounded-full bg-blue-100/30 dark:bg-blue-900/5 blur-3xl pointer-events-none" />
@@ -37,7 +37,7 @@ const TestimonialsCarousel = () => {
             </span>
             <div className="h-px w-10 bg-gold" />
           </div>
-          <h2 className="text-3xl lg:text-5xl font-bold text-[#111827] dark:text-gray-100 mb-4 font-playfair leading-tight">
+          <h2 className="text-3xl lg:text-5xl font-bold text-[#000d44] dark:text-gray-100 mb-4 font-playfair leading-tight">
             What Our Customers Say
           </h2>
           <p className="text-gray-500 font-montserrat text-lg">
@@ -53,7 +53,7 @@ const TestimonialsCarousel = () => {
         >
           {/* Large decorative quote watermark */}
           <div className="absolute -top-10 left-8 z-0 opacity-[0.04] pointer-events-none">
-            <Quote className="w-40 h-40 text-[#1E3A8A]" strokeWidth={1} />
+            <Quote className="w-40 h-40 text-[#001166]" strokeWidth={1} />
           </div>
 
           {/* Cards track */}
@@ -75,12 +75,12 @@ const TestimonialsCarousel = () => {
                 >
                   <div className="bg-white dark:bg-card rounded-3xl border border-gray-100/80 dark:border-border p-8 sm:p-10 shadow-premium h-full flex flex-col justify-between relative overflow-hidden">
                     {/* Decorative gradient corner */}
-                    <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-[#3B82F6]/5 to-transparent rounded-full pointer-events-none" />
+                    <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-[#2563EB]/5 to-transparent rounded-full pointer-events-none" />
                     
                     {/* Quote content */}
                     <div className="relative z-10">
                       <div className="flex items-center gap-1 mb-4">
-                        <Quote className="w-5 h-5 text-[#3B82F6]/30 -mt-1" />
+                        <Quote className="w-5 h-5 text-[#2563EB]/30 -mt-1" />
                       </div>
                       <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg leading-relaxed font-montserrat italic">
                         "{t.text}"
@@ -91,12 +91,12 @@ const TestimonialsCarousel = () => {
                       <div className="flex items-center gap-3">
                         {/* Gradient ring avatar */}
                         <div className="ring-gradient p-[2px] rounded-full">
-                          <div className="w-11 h-11 rounded-full bg-[#1E3A8A] flex items-center justify-center text-white font-bold text-sm font-montserrat">
+                          <div className="w-11 h-11 rounded-full bg-[#001166] flex items-center justify-center text-white font-bold text-sm font-montserrat">
                             {t.name.split(" ").map(n => n[0]).join("")}
                           </div>
                         </div>
                         <div>
-                          <p className="font-bold text-[#111827] dark:text-gray-100 text-sm font-montserrat">{t.name}</p>
+                          <p className="font-bold text-[#000d44] dark:text-gray-100 text-sm font-montserrat">{t.name}</p>
                           <p className="text-xs text-gray-400 font-montserrat">{t.location} · {t.product}</p>
                         </div>
                       </div>
@@ -115,14 +115,14 @@ const TestimonialsCarousel = () => {
           {/* Navigation Arrows — premium */}
           <button
             onClick={prev}
-            className="absolute left-0 lg:-left-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white dark:bg-card shadow-premium border border-gray-100/80 dark:border-border flex items-center justify-center text-gray-600 hover:bg-[#3B82F6] hover:text-white hover:border-[#3B82F6] hover:shadow-glow-blue transition-all duration-300"
+            className="absolute left-0 lg:-left-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white dark:bg-card shadow-premium border border-gray-100/80 dark:border-border flex items-center justify-center text-gray-600 hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] hover:shadow-glow-blue transition-all duration-300"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={next}
-            className="absolute right-0 lg:-right-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white dark:bg-card shadow-premium border border-gray-100/80 dark:border-border flex items-center justify-center text-gray-600 hover:bg-[#3B82F6] hover:text-white hover:border-[#3B82F6] hover:shadow-glow-blue transition-all duration-300"
+            className="absolute right-0 lg:-right-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white dark:bg-card shadow-premium border border-gray-100/80 dark:border-border flex items-center justify-center text-gray-600 hover:bg-[#2563EB] hover:text-white hover:border-[#2563EB] hover:shadow-glow-blue transition-all duration-300"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-5 h-5" />
@@ -136,7 +136,7 @@ const TestimonialsCarousel = () => {
                 onClick={() => setActive(i)}
                 className={`rounded-full transition-all duration-400 ${
                   i === active
-                    ? "w-10 h-2.5 bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] shadow-sm"
+                    ? "w-10 h-2.5 bg-gradient-to-r from-[#001166] to-[#2563EB] shadow-sm"
                     : "w-2.5 h-2.5 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400"
                 }`}
                 aria-label={`Go to testimonial ${i + 1}`}

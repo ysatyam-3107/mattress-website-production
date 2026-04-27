@@ -46,6 +46,8 @@ const GET_PRODUCTS_QUERY = `
           layers: metafield(namespace: "custom", key: "layers") { value }
           warranty: metafield(namespace: "custom", key: "warranty") { value }
           trial: metafield(namespace: "custom", key: "trial_period") { value }
+          rating: metafield(namespace: "custom", key: "rating") { value }
+          reviews: metafield(namespace: "custom", key: "reviews") { value }
         }
       }
     }
@@ -70,8 +72,8 @@ const formatShopifyProduct = (shopifyNode: any): Product => {
     price: currentPrice,
     originalPrice: compareAtPrice,
     image: shopifyNode.images?.edges[0]?.node?.url || "https://images.unsplash.com/photo-1584100936595-c0654b5536be?auto=format&fit=crop&q=80",
-    rating: 4.8, // Ratings usually come from a separate review app in Shopify
-    reviews: 124,
+    rating: shopifyNode.rating?.value ? parseFloat(shopifyNode.rating.value) : 4.8,
+    reviews: shopifyNode.reviews?.value ? parseInt(shopifyNode.reviews.value, 10) : 124,
     description: shopifyNode.description,
     features: ["CertiPUR-US® Certified Foam", "Breathable Cover", "100-Night Trial"], // Could also be mapped to a list metafield
     sizes: sizes.length > 0 ? sizes : ["Single", "Double", "Queen", "King"],

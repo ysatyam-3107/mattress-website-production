@@ -26,6 +26,10 @@ const BlogPost = lazy(() => import("./pages/BlogPost"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Wishlist = lazy(() => import("./pages/Wishlist"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const ShippingPolicy = lazy(() => import("./pages/ShippingPolicy"));
+const ReturnPolicy = lazy(() => import("./pages/ReturnPolicy"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -114,6 +118,10 @@ const App = () => (
                   <Route path="/contact" element={<Contact />} />
                   {/* Removed /checkout route as it now redirects to Shopify directly from CartDrawer */}
                   <Route path="/wishlist" element={<Wishlist />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms-of-service" element={<TermsOfService />} />
+                  <Route path="/shipping-policy" element={<ShippingPolicy />} />
+                  <Route path="/return-policy" element={<ReturnPolicy />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

@@ -63,8 +63,8 @@ const ProductDetail = () => {
   if (!product) {
     return (
       <div className="container py-20 text-center">
-        <h1 className="text-2xl font-bold mb-4 font-playfair text-[#1E3A8A]">Product not found</h1>
-        <Link to="/products"><Button className="bg-[#3B82F6] hover:bg-blue-600 font-montserrat">Browse Mattresses</Button></Link>
+        <h1 className="text-2xl font-bold mb-4 font-playfair text-[#001166]">Product not found</h1>
+        <Link to="/products"><Button className="bg-[#2563EB] hover:bg-blue-600 font-montserrat">Browse Mattresses</Button></Link>
       </div>
     );
   }
@@ -116,10 +116,10 @@ const ProductDetail = () => {
       <div className={`fixed bottom-0 left-0 right-0 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] bg-white border-t border-gray-200 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-50 lg:hidden transform transition-transform duration-300 ${isStickyCTAVisible ? 'translate-y-0' : 'translate-y-full'}`}>
          <div className="flex items-center justify-between max-w-md mx-auto gap-4">
             <div>
-               <p className="font-bold text-[#1E3A8A] text-sm leading-none m-0">{product.name}</p>
-               <p className="font-bold text-[#3B82F6] text-lg leading-none m-0 pt-1">₹{product.price.toLocaleString()}</p>
+               <p className="font-bold text-[#001166] text-sm leading-none m-0">{product.name}</p>
+               <p className="font-bold text-[#2563EB] text-lg leading-none m-0 pt-1">₹{product.price.toLocaleString()}</p>
             </div>
-            <Button className="bg-[#3B82F6] hover:bg-blue-600 text-white font-montserrat shadow-lg px-8 rounded-full h-12 flex-1 max-w-[160px]" onClick={() => addToCart(product, size)}>
+            <Button className="bg-[#2563EB] hover:bg-blue-600 text-white font-montserrat shadow-lg px-8 rounded-full h-12 flex-1 max-w-[160px]" onClick={() => addToCart(product, size)}>
               <ShoppingCart className="w-4 h-4 mr-2" /> Add
             </Button>
          </div>
@@ -128,8 +128,8 @@ const ProductDetail = () => {
       <div className="min-h-screen bg-slate-50 pb-20">
         <div className="container py-6">
           <p className="text-sm text-gray-500 font-montserrat flex items-center gap-2">
-            <Link to="/" className="hover:text-[#3B82F6] transition-colors">Home</Link> <ChevronRight className="w-3 h-3" />
-            <Link to="/products" className="hover:text-[#3B82F6] transition-colors">Mattresses</Link> <ChevronRight className="w-3 h-3" />
+            <Link to="/" className="hover:text-[#2563EB] transition-colors">Home</Link> <ChevronRight className="w-3 h-3" />
+            <Link to="/products" className="hover:text-[#2563EB] transition-colors">Mattresses</Link> <ChevronRight className="w-3 h-3" />
             <span className="text-gray-900 font-medium">{product.name}</span>
           </p>
         </div>
@@ -145,7 +145,7 @@ const ProductDetail = () => {
                     <button 
                       key={idx} 
                       onClick={() => setActiveImage(idx)}
-                      className={`w-full aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all ${activeImage === idx ? 'border-[#1E3A8A] opacity-100' : 'border-transparent opacity-60 hover:opacity-100 bg-gray-50'}`}
+                      className={`w-full aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all ${activeImage === idx ? 'border-[#001166] opacity-100' : 'border-transparent opacity-60 hover:opacity-100 bg-gray-50'}`}
                     >
                       <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover mix-blend-multiply" />
                     </button>
@@ -162,7 +162,7 @@ const ProductDetail = () => {
                 />
                 
                 {product.bestseller && (
-                  <div className="absolute top-4 left-4 bg-[#1E3A8A] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm font-montserrat">
+                  <div className="absolute top-4 left-4 bg-[#001166] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm font-montserrat">
                     Bestseller
                   </div>
                 )}
@@ -187,7 +187,7 @@ const ProductDetail = () => {
                     <button 
                       key={idx} 
                       onClick={() => setActiveImage(idx)}
-                      className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${activeImage === idx ? 'border-[#1E3A8A]' : 'border-transparent bg-gray-50'}`}
+                      className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${activeImage === idx ? 'border-[#001166]' : 'border-transparent bg-gray-50'}`}
                     >
                       <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover mix-blend-multiply" />
                     </button>
@@ -199,7 +199,7 @@ const ProductDetail = () => {
             {/* Product Details Right Side */}
             <div className="lg:w-[45%] flex flex-col">
               <div className="mb-6">
-                <h1 className="text-3xl font-black text-[#111827] mb-2 font-montserrat tracking-tight">{product.name}</h1>
+                <h1 className="text-3xl font-black text-[#000d44] mb-2 font-montserrat tracking-tight">{product.name}</h1>
                 <p className="text-sm text-gray-500 font-montserrat mb-4">Single | 72" x 36" x 6" | 1.83m x 91.4cm x 15.2cm</p>
                 
                 <div className="flex flex-wrap items-center gap-4 font-montserrat">
@@ -223,7 +223,7 @@ const ProductDetail = () => {
 
               {/* Price Block */}
               <div className="mb-6 flex items-end gap-3 flex-wrap">
-                <span className="text-4xl font-black text-[#111827] font-montserrat tracking-tight">₹{product.price.toLocaleString()}</span>
+                <span className="text-4xl font-black text-[#000d44] font-montserrat tracking-tight">₹{product.price.toLocaleString()}</span>
                 {discount > 0 && <span className="text-base text-gray-400 line-through font-montserrat font-medium mb-1">MRP ₹{product.originalPrice.toLocaleString()}</span>}
                 {discount > 0 && (
                   <span className="text-[#059669] text-sm font-bold mb-1 font-montserrat">
@@ -243,11 +243,11 @@ const ProductDetail = () => {
                       placeholder="Enter Pincode" 
                       value={pincode}
                       onChange={(e) => setPincode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                      className="w-full border-2 border-gray-200 rounded-lg h-12 pl-4 pr-16 text-sm font-montserrat focus:outline-none focus:border-[#1E3A8A] transition-colors"
+                      className="w-full border-2 border-gray-200 rounded-lg h-12 pl-4 pr-16 text-sm font-montserrat focus:outline-none focus:border-[#001166] transition-colors"
                     />
                     <button 
                       onClick={checkDelivery}
-                      className="absolute right-2 top-2 bottom-2 px-3 text-[#1E3A8A] font-bold text-sm font-montserrat hover:bg-blue-50 rounded-md transition-colors"
+                      className="absolute right-2 top-2 bottom-2 px-3 text-[#001166] font-bold text-sm font-montserrat hover:bg-blue-50 rounded-md transition-colors"
                     >
                       {deliveryStatus === "checking" ? "..." : "CHECK"}
                     </button>
@@ -263,18 +263,18 @@ const ProductDetail = () => {
                      <SizeGuideModal />
                   </div>
                   <div className="relative">
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#1E3A8A] text-white text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap z-10 shadow-sm font-montserrat">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#001166] text-white text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap z-10 shadow-sm font-montserrat">
                       116 Standard & Custom options
                     </div>
                     <select 
                       value={selectedSize || product.sizes[0]}
                       onChange={(e) => setSelectedSize(e.target.value)}
-                      className="w-full border-2 border-[#1E3A8A] rounded-lg h-12 px-4 text-sm font-montserrat font-semibold text-[#1E3A8A] appearance-none bg-blue-50 focus:outline-none cursor-pointer relative"
+                      className="w-full border-2 border-[#001166] rounded-lg h-12 px-4 text-sm font-montserrat font-semibold text-[#001166] appearance-none bg-blue-50 focus:outline-none cursor-pointer relative"
                     >
                       {product.sizes.map(s => <option key={s} value={s}>{s}</option>)}
                     </select>
                     <div className="absolute top-0 right-4 h-full flex items-center pointer-events-none">
-                       <div className="w-5 h-5 bg-[#1E3A8A] rounded-full flex items-center justify-center">
+                       <div className="w-5 h-5 bg-[#001166] rounded-full flex items-center justify-center">
                           <ChevronRight className="w-3 h-3 text-white rotate-90" />
                        </div>
                     </div>
@@ -286,7 +286,7 @@ const ProductDetail = () => {
               <div ref={ctaRef} className="mb-8">
                 <Button 
                    size="lg" 
-                   className="w-full bg-[#1E3A8A] hover:bg-blue-900 text-white h-14 rounded-xl text-lg transition-all font-bold font-montserrat flex items-center justify-center gap-2" 
+                   className="w-full bg-[#001166] hover:bg-blue-900 text-white h-14 rounded-xl text-lg transition-all font-bold font-montserrat flex items-center justify-center gap-2" 
                    onClick={() => addToCart(product, size)}
                 >
                   <ShoppingCart className="w-5 h-5" /> Go To Cart
@@ -341,7 +341,7 @@ const ProductDetail = () => {
                     <h3 className="text-3xl font-black text-white mb-6 font-playfair">Engineered for Comfort</h3>
                     <div className="space-y-4 max-w-sm mx-auto mb-8">
                        <div className="bg-white/10 backdrop-blur border border-white/20 p-4 rounded-xl text-white font-montserrat font-semibold hover:bg-white/20 transition-colors">1. Premium Fabric Cover</div>
-                       <div className="bg-[#3B82F6] border border-blue-400 p-4 rounded-xl text-white font-montserrat font-bold shadow-lg hover:bg-blue-400 transition-colors">2. Adaptive Pressure Core</div>
+                       <div className="bg-[#2563EB] border border-blue-400 p-4 rounded-xl text-white font-montserrat font-bold shadow-lg hover:bg-blue-400 transition-colors">2. Adaptive Pressure Core</div>
                        <div className="bg-white/5 border border-white/10 p-5 rounded-xl text-slate-300 font-montserrat font-semibold hover:bg-white/10 transition-colors">3. High-Density Support Base</div>
                     </div>
                     <p className="text-blue-200">Discover the multilayered support system <br/>designed for ultimate rest.</p>
@@ -352,7 +352,7 @@ const ProductDetail = () => {
 
         {/* Reviews Section (Wakefit Style) */}
         <div className="container max-w-6xl mx-auto mb-20 bg-white p-8 lg:p-12 rounded-3xl border border-gray-100 shadow-sm">
-           <div className="mb-8 border-b-4 border-[#1E3A8A] w-max pb-1">
+           <div className="mb-8 border-b-4 border-[#001166] w-max pb-1">
               <h2 className="text-2xl font-black text-slate-900 font-montserrat">Reviews</h2>
            </div>
            
@@ -386,7 +386,7 @@ const ProductDetail = () => {
         {/* Related */}
         {related.length > 0 && (
           <div className="container max-w-6xl mx-auto">
-            <div className="mb-8 border-b-4 border-[#1E3A8A] w-max pb-1">
+            <div className="mb-8 border-b-4 border-[#001166] w-max pb-1">
                <h2 className="text-2xl font-black text-slate-900 font-montserrat">You May Also Like</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

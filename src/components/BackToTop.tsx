@@ -31,7 +31,7 @@ const BackToTop = () => {
     <button
       onClick={scrollToTop}
       aria-label="Back to top"
-      className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-[#1E3A8A] text-white shadow-premium hover:shadow-glow-blue flex items-center justify-center transition-all duration-500 group ${
+      className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-[#001166] text-white shadow-premium hover:shadow-glow-blue flex items-center justify-center transition-all duration-500 group ${
         visible
           ? "opacity-100 translate-y-0 scale-100"
           : "opacity-0 translate-y-4 scale-90 pointer-events-none"
@@ -44,7 +44,7 @@ const BackToTop = () => {
           cy="24"
           r={radius}
           fill="none"
-          stroke="rgba(59, 130, 246, 0.2)"
+          stroke="rgba(37, 99, 235, 0.2)"
           strokeWidth="2"
         />
         <circle
@@ -52,7 +52,7 @@ const BackToTop = () => {
           cy="24"
           r={radius}
           fill="none"
-          stroke="#3B82F6"
+          stroke="#2563EB"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeDasharray={circumference}

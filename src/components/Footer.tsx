@@ -6,16 +6,16 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   
   return (
-    <footer className="bg-[#111827] text-white relative overflow-hidden wave-divider">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#111827] via-[#111827] to-[#1E3A8A]/20" />
+    <footer className="bg-[#000d44] text-white relative overflow-hidden wave-divider">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#000d44] via-[#000d44] to-[#001166]/20" />
       
       {/* Decorative blur orbs */}
-      <div className="absolute top-20 right-0 w-[400px] h-[400px] bg-[#3B82F6]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-20 right-0 w-[400px] h-[400px] bg-[#2563EB]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute -bottom-40 left-20 w-[300px] h-[300px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
       
       <div className="container py-20 relative z-10">
         {/* Newsletter Section */}
-        <div className="relative mb-10 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#1E3A8A]/50 to-[#3B82F6]/30 border border-white/10 overflow-hidden">
+        <div className="relative mb-10 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#001166]/50 to-[#2563EB]/30 border border-white/10 overflow-hidden">
           <div className="absolute inset-0 opacity-[0.03]" style={{
             backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
             backgroundSize: '20px 20px'
@@ -31,7 +31,7 @@ const Footer = () => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 md:w-72 bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder:text-blue-200/40 outline-none focus:ring-2 focus:ring-[#3B82F6]/30 transition-all font-montserrat"
+                className="flex-1 md:w-72 bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder:text-blue-200/40 outline-none focus:ring-2 focus:ring-[#2563EB]/30 transition-all font-montserrat"
               />
               <button className="bg-gold hover:bg-gold-dark text-white px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 hover:shadow-glow-gold font-montserrat flex items-center gap-2 shrink-0">
                 <Send className="w-4 h-4" />
@@ -115,20 +115,20 @@ const Footer = () => {
             </h4>
             <div className="space-y-4 text-sm text-gray-400 font-montserrat">
               <a href="tel:18001234567" className="flex items-center gap-3 hover:text-white transition-colors group">
-                <div className="w-10 h-10 rounded-xl bg-[#3B82F6]/10 flex items-center justify-center group-hover:bg-[#3B82F6]/20 transition-all border border-[#3B82F6]/10">
-                  <Phone className="w-4 h-4 text-[#3B82F6]" />
+                <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 flex items-center justify-center group-hover:bg-[#2563EB]/20 transition-all border border-[#2563EB]/10">
+                  <Phone className="w-4 h-4 text-[#2563EB]" />
                 </div>
                 1800-123-4567
               </a>
               <a href="mailto:hello@mustafasmattress.in" className="flex items-center gap-3 hover:text-white transition-colors group">
-                <div className="w-10 h-10 rounded-xl bg-[#3B82F6]/10 flex items-center justify-center group-hover:bg-[#3B82F6]/20 transition-all border border-[#3B82F6]/10">
-                  <Mail className="w-4 h-4 text-[#3B82F6]" />
+                <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 flex items-center justify-center group-hover:bg-[#2563EB]/20 transition-all border border-[#2563EB]/10">
+                  <Mail className="w-4 h-4 text-[#2563EB]" />
                 </div>
                 hello@mustafasmattress.in
               </a>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#3B82F6]/10 flex items-center justify-center border border-[#3B82F6]/10">
-                  <Clock className="w-4 h-4 text-[#3B82F6]" />
+                <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 flex items-center justify-center border border-[#2563EB]/10">
+                  <Clock className="w-4 h-4 text-[#2563EB]" />
                 </div>
                 Mon–Sat, 9AM – 7PM
               </div>
@@ -141,12 +141,14 @@ const Footer = () => {
           <p className="text-sm text-gray-500 font-montserrat">
             © 2026 Mustafa's Mattress. All rights reserved. Sleep Better, Live Better.
           </p>
-          <div className="flex items-center gap-6 text-xs text-gray-500 font-montserrat">
-            <span className="hover:text-gray-300 cursor-pointer transition-colors">Privacy Policy</span>
-            <span className="text-gray-700">·</span>
-            <span className="hover:text-gray-300 cursor-pointer transition-colors">Terms of Service</span>
-            <span className="text-gray-700">·</span>
-            <span className="hover:text-gray-300 cursor-pointer transition-colors">Shipping Policy</span>
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-2 text-xs text-gray-500 font-montserrat mt-4 md:mt-0">
+            <Link to="/privacy-policy" className="hover:text-gray-300 transition-colors">Privacy Policy</Link>
+            <span className="text-gray-700 hidden sm:inline">·</span>
+            <Link to="/terms-of-service" className="hover:text-gray-300 transition-colors">Terms of Service</Link>
+            <span className="text-gray-700 hidden sm:inline">·</span>
+            <Link to="/shipping-policy" className="hover:text-gray-300 transition-colors">Shipping Policy</Link>
+            <span className="text-gray-700 hidden sm:inline">·</span>
+            <Link to="/return-policy" className="hover:text-gray-300 transition-colors">Return Policy</Link>
           </div>
         </div>
       </div>
